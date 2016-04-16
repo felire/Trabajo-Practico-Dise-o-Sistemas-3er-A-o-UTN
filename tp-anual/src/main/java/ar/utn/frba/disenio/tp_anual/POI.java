@@ -18,15 +18,6 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		listaTags = new ArrayList<String>();
 	}
 	
-	public Boolean estaDisponible(LocalDateTime fecha, String valorX)
-	{
-		
-	}
-	public abstract Boolean estaDisponible(LocalDateTime fecha)
-	{
-		
-	}
-	
 	public void addTag(String tag)
 	{
 		listaTags.add(tag);

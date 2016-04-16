@@ -27,14 +27,19 @@ public class CGP extends POI{
 		servicios.remove(servicio);
 	}
 	
-	public Boolean esCercano(Coordenada coordenada) {
+	public Boolean esCercano(Coordenada coordenada) 
+	{
 		Point punto = new Point(coordenada.getLatitud(), coordenada.getLongitud());
 		return this.comuna.isInside(punto);
 	}
 
-	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
+	{
+		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha));
+	}
+	public Boolean estaDisponibel(LocalDateTime fecha)
+	{
+		return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
 	}
 
 }
