@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class LocalComercial extends POI{
 
@@ -13,7 +14,7 @@ public class LocalComercial extends POI{
 		return (distancia(this.getCoordenada(), coordenada) < this.radioDeCercania.intValue());
 	}
 
-	public Boolean estaDisponible(Date fecha, String valorX) {
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
 		// TODO Auto-generated method stub
 		return null;
 	}

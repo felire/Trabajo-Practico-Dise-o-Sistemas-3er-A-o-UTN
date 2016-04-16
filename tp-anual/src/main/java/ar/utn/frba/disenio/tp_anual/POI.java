@@ -2,6 +2,7 @@ package ar.utn.frba.disenio.tp_anual;
 
 import java.awt.Point;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,11 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		listaTags = new ArrayList<String>();
 	}
 	
-	public Boolean estaDisponible(Date fecha, String valorX)
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX)
 	{
 		
 	}
-	public abstract Boolean estaDisponible(Date fecha)
+	public abstract Boolean estaDisponible(LocalDateTime fecha)
 	{
 		
 	}
