@@ -3,17 +3,27 @@ package ar.utn.frba.disenio.tp_anual;
 import java.awt.Point;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class POI {
+public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
 	
 	private String nombre;
 	private Coordenada coordenada;
-	private Direccion direccion;
-	private ArrayList<String> listaTags;
+	private Direccion direccion; 
+	private List<String> listaTags;
 	
 	public POI()
 	{
 		listaTags = new ArrayList<String>();
+	}
+	
+	public Boolean estaDisponible(Date fecha, String valorX)
+	{
+		
+	}
+	public abstract Boolean estaDisponible(Date fecha)
+	{
+		
 	}
 	
 	public void addTag(String tag)
@@ -48,13 +58,9 @@ public abstract class POI {
 	{
 		return (distancia(this.getCoordenada(), coordenada) < 500);
 	}
-	public Boolean estaDisponible(Date fecha, String valorX)
-	{
-		
-	}
 	
 	public Boolean esValido(){
-		return null;
+		return (this.coordenada != null && this.nombre != null);
 	}
 
 	public String getNombre() {

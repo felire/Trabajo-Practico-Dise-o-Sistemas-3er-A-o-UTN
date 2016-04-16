@@ -1,7 +1,11 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
 /**
  * Hello world!
@@ -9,14 +13,14 @@ import java.util.stream.Collectors;
  */
 public class ProgramaPrincipal 
 {
-	public ArrayList<POI> listaPOIs;
+	private List<POI> listaPOIs;
 	public ProgramaPrincipal()
 	{
 		listaPOIs = new ArrayList<POI>();
 	}
-	public ArrayList<POI> filtrarPOIs(String palabraClave)
+	public List<POI> filtrarPOIs(String palabraClave)
 	{
-		return (ArrayList<POI>) listaPOIs.stream().filter(poi -> poi.tengoPalabraClave(palabraClave)).collect(Collectors.toList());
+		return  listaPOIs.stream().filter(poi -> poi.tengoPalabraClave(palabraClave)).collect(Collectors.toList());
 	}
 	public void addPOI(POI poi)
 	{
@@ -28,6 +32,6 @@ public class ProgramaPrincipal
 	}
     public static void main( String[] args )
     {
-        
+    	
     }
 }

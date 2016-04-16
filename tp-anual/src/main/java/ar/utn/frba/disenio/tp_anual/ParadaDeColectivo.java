@@ -9,7 +9,7 @@ public class ParadaDeColectivo extends POI{
 	}
 
 	public Boolean estaDisponible(Date fecha, String valorX) {
-		
+		return true;
 	}
 
 }
