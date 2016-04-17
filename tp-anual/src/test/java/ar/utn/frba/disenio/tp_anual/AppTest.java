@@ -1,38 +1,35 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
-    extends TestCase
 {
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
+	POI localComercial;
+	LocalDate localDate;
+	LocalTime localTime;
+	LocalDateTime fecha;
+	@Before
+	public void init()
+	{
+		FranjaHoraria franjaHoraria = new FranjaHoraria(10,18);
+		Disponibilidad disponibilidad = new Disponibilidad(DayOfWeek.MONDAY, 
+				DayOfWeek.FRIDAY, franjaHoraria);
+		localComercial = new LocalComercial(500, disponibilidad);
+		localDate = LocalDate.of(2016, 4, 12);
+		fecha = localDate.atTime(15, 00);
+	}
+    @Test
+    public void testDisponibilidadLocalComercial()
     {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    	assertEquals(true, localComercial.estaDisponible(fecha, ""));
     }
 }
