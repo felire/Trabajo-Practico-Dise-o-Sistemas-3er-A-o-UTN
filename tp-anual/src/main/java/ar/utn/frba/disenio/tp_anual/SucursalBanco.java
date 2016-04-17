@@ -33,18 +33,11 @@ public class SucursalBanco extends POI{
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
 	{
 		if(fueraDeHorarioBancario(fecha)) return false;
+		if(valorX==null || valorX.equals("")) return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
 		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha));
 	}
 	
-
 	private boolean fueraDeHorarioBancario(LocalDateTime fecha) {
 		return horarioBancario.estaDisponible(fecha);
-	}
-
-	public Boolean estaDisponible(LocalDateTime fecha)
-	{
-		if(fueraDeHorarioBancario(fecha)) return false;
-		return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
-	}
-	
+	}	
 }

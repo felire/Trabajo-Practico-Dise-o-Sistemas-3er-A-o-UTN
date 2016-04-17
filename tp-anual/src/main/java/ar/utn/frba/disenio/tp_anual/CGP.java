@@ -33,7 +33,7 @@ public class CGP extends POI{
 
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
 	{
-		if(valorX==null || valorX.equals("")) return true;
+		if(valorX==null || valorX.equals("")) return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
 		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha));
 	}
 
