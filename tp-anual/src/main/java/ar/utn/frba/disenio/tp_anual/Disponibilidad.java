@@ -2,13 +2,14 @@ package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Disponibilidad {
 
 	private DayOfWeek desdeDia;
 	private DayOfWeek hastaDia;
-	private List<FranjaHoraria> franjas;
+	private Set<FranjaHoraria> franjas;
 	
 	public Boolean estaDisponible(LocalDateTime fecha){
 		Integer dia = fecha.getDayOfWeek().getValue();
@@ -17,6 +18,19 @@ public class Disponibilidad {
 	
 	}
 
+	public Disponibilidad(DayOfWeek desde, DayOfWeek hasta, Set<FranjaHoraria> franjas){
+		this.desdeDia = desde;
+		this.hastaDia = hasta;
+		this.franjas = franjas;
+	}
+	
+	public Disponibilidad(DayOfWeek desde, DayOfWeek hasta, FranjaHoraria franja){
+		this.desdeDia = desde;
+		this.hastaDia = hasta;
+		this.franjas = new HashSet<>();
+		this.franjas.add(franja);
+	}
+	
 	private boolean horaEstaDisponible(Integer hora) {
 		return franjas.stream().anyMatch(franja -> franja.contiene(hora));
 	}
