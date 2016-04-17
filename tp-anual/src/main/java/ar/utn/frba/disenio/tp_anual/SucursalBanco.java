@@ -24,8 +24,13 @@ public class SucursalBanco extends POI{
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
 	{
 		if(isEmpty(valorX)) return true;
-		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha));
+		return servicios.stream().anyMatch(servicio -> cumpleDisponibilidad(fecha, valorX, servicio));
 	}
+	
+	private boolean cumpleDisponibilidad(LocalDateTime fecha, String valorX, Servicio servicio) {
+		return servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha);
+	}
+	
 	public Boolean estaDisponibel(LocalDateTime fecha)
 	{
 		return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
