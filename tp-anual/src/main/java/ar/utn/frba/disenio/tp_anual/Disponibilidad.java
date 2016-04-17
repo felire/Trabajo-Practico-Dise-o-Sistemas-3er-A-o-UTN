@@ -31,6 +31,19 @@ public class Disponibilidad {
 		this.franjas.add(franja);
 	}
 	
+	public Disponibilidad(DayOfWeek dia, FranjaHoraria franja){
+		this.desdeDia = dia;
+		this.hastaDia = dia;
+		this.franjas = new HashSet<>();
+		this.franjas.add(franja);
+	}
+	
+	public Disponibilidad(DayOfWeek dia, Set<FranjaHoraria> franjas){
+		this.desdeDia = dia;
+		this.hastaDia = dia;
+		this.franjas = franjas;
+	}
+	
 	private boolean horaEstaDisponible(Integer hora) {
 		return franjas.stream().anyMatch(franja -> franja.contiene(hora));
 	}
