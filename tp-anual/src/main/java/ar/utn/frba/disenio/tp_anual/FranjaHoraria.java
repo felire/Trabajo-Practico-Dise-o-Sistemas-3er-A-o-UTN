@@ -1,15 +1,17 @@
 package ar.utn.frba.disenio.tp_anual;
 
+import java.time.LocalTime;
+
 public class FranjaHoraria {
 
-	private Integer desdeHorario;
-	private Integer hastaHorario;
+	private LocalTime desdeHorario;
+	private LocalTime hastaHorario;
 	
-	public Boolean contiene(Integer hora){
-		return (desdeHorario <= hora && hora <= hastaHorario);
+	public Boolean contiene(LocalTime hora){
+		return (desdeHorario.isBefore(hora) && hora.isBefore(hastaHorario));
 	}
 	
-	public FranjaHoraria(Integer desde, Integer hasta){
+	public FranjaHoraria(LocalTime desde, LocalTime hasta){
 		this.desdeHorario = desde;
 		this.hastaHorario = hasta;
 	}
