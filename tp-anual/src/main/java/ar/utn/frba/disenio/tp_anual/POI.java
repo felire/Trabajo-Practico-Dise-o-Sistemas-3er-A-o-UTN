@@ -65,9 +65,4 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		this.nombre = nombre;
 	}
 	
-	protected boolean isEmpty(String valor) {
-		return (valor==null || valor.equals("")); 
-	}
-	
-	
 }
