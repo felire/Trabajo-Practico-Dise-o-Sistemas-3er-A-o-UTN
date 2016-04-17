@@ -51,7 +51,7 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		return (distancia(this.getCoordenada(), coordenada) < 500);
 	}
 	
-	public abstract Boolean estaDisponible(LocalDateTime fecha);
+	public abstract Boolean estaDisponible(LocalDateTime fecha, String valorX);
 	
 	public Boolean esValido(){
 		return (this.coordenada != null && this.nombre != null);
