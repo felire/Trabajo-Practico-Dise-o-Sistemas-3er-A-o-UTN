@@ -1,7 +1,10 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +13,17 @@ import org.uqbar.geodds.Polygon;
 public class SucursalBanco extends POI{
 
 	private List<Servicio> servicios;
-	private static Integer horarioBancarioArranque = 10;
-	private static Integer horarioBancarioCierre = 15;
+	private static Disponibilidad horarioBancario;
+	
+	public SucursalBanco(){
+		setHorarioBancario();
+	}
+
+	private void setHorarioBancario() {
+		FranjaHoraria franjaHoraria = new FranjaHoraria(10,15);
+		horarioBancario = new Disponibilidad(DayOfWeek.MONDAY, 
+				DayOfWeek.FRIDAY, franjaHoraria);
+	}
 	
 	public void addServicio(Servicio servicio)
 	{
@@ -29,9 +41,9 @@ public class SucursalBanco extends POI{
 		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha));
 	}
 	
+
 	private boolean fueraDeHorarioBancario(LocalDateTime fecha) {
-		return (fecha.getHour()<horarioBancarioArranque ||
-				fecha.getHour()>horarioBancarioCierre);
+		return horarioBancario.estaDisponible(fecha);
 	}
 
 	public Boolean estaDisponible(LocalDateTime fecha)
