@@ -8,13 +8,15 @@ import java.util.List;
 
 public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
 	
-	private String nombre;
-	private Coordenada coordenada;
-	private Direccion direccion; 
-	private List<String> listaTags;
+	protected String nombre;
+	protected Point coordenada;
+	protected Direccion direccion; 
+	protected List<String> listaTags;
+	protected Integer radioDeCercania;
 	
 	public POI()
 	{
+		radioDeCercania = 500;
 		listaTags = new ArrayList<String>();
 	}
 	
@@ -31,24 +33,15 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	{
 		return (listaTags.stream().anyMatch(cadena1 -> cadena1.indexOf(palabraClave) != -1));
 	}
-	public Coordenada getCoordenada()
-	{
-		return coordenada;
-	}
+	
 	public Boolean seEncuentraAXDe(Integer metros, POI poi)
 	{
-		double distancia = distancia(this.getCoordenada(), poi.getCoordenada());
-		return (distancia <= metros);
+		return this.coordenada.distance(poi.getCoordenada()) <= metros;
 	}
 	
-	public double distancia(Coordenada coordenada1, Coordenada coordenada2)
+	public Boolean esCercano(Point coordenada)
 	{
-		return Math.sqrt(Math.pow((coordenada1.getLatitud() - coordenada1.getLatitud()),2) + Math.pow((coordenada2.getLongitud() - coordenada2.getLongitud()),2));
-	}
-	
-	public Boolean esCercano(Coordenada coordenada)
-	{
-		return (distancia(this.getCoordenada(), coordenada) < 500);
+		return this.coordenada.distance(coordenada) <= this.radioDeCercania;
 	}
 	
 	public abstract Boolean estaDisponible(LocalDateTime fecha, String valorX);
@@ -64,5 +57,23 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public Point getCoordenada() {
+		return coordenada;
+	}
+
+	public void setCoordenada(Point coordenada) {
+		this.coordenada = coordenada;
+	}
+
+	public List<String> getListaTags() {
+		return listaTags;
+	}
+
+	public void setListaTags(List<String> listaTags) {
+		this.listaTags = listaTags;
+	}
+	
+	
 	
 }
