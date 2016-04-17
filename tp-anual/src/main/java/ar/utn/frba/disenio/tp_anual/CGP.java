@@ -1,6 +1,5 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +41,6 @@ public class CGP extends POI{
 		return servicio.toString().equals(valorX) && servicio.estaDisponibe(fecha);
 	}
 	
-	private boolean isEmpty(String valor) {
-		return (valor==null || valor.equals("")); 
-	}
 	public Boolean estaDisponibel(LocalDateTime fecha)
 	{
 		return servicios.stream().anyMatch(servicio -> servicio.estaDisponibe(fecha));
