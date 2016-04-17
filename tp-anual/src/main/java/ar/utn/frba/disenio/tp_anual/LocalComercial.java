@@ -1,13 +1,8 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.sql.Date;
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import org.uqbar.geodds.Point;
 
 public class LocalComercial extends POI{
 

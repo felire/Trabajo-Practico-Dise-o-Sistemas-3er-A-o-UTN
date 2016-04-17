@@ -1,12 +1,8 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
 /**
  * Hello world!

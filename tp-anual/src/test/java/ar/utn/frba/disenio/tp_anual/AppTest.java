@@ -20,7 +20,7 @@ public class AppTest
 	@Before
 	public void init()
 	{
-		FranjaHoraria franjaHoraria = new FranjaHoraria(10,18);
+		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(18, 0));
 		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
 		localComercial = new LocalComercial(500, disponibilidad);

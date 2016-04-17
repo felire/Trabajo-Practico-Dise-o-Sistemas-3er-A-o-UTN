@@ -2,9 +2,8 @@ package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
-
-import org.uqbar.geodds.Polygon;
 
 public class SucursalBanco extends POI{
 
@@ -16,7 +15,7 @@ public class SucursalBanco extends POI{
 	}
 
 	private void setHorarioBancario() {
-		FranjaHoraria franjaHoraria = new FranjaHoraria(10,15);
+		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(15, 0));
 		horarioBancario = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
 	}
