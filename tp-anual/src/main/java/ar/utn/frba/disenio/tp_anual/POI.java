@@ -9,7 +9,8 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	protected String nombre;
 	protected Point coordenada;
-	protected Direccion direccion; 
+	protected String calle;
+	protected Integer altura;
 	protected List<String> listaTags;
 	protected Integer radioDeCercania;
 	
