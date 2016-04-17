@@ -12,10 +12,7 @@ public class DisponibilidadHoraria {
 	private Set<FranjaHoraria> franjas;
 	
 	public Boolean estaDisponible(LocalDateTime fecha){
-		Integer dia = fecha.getDayOfWeek().getValue();
-		Integer hora = fecha.getHour();
-		return (diaEstaDisponible(dia) && horaEstaDisponible(hora));
-	
+		return (diaEstaDisponible(fecha) && horaEstaDisponible(fecha));
 	}
 
 	public DisponibilidadHoraria(DayOfWeek desde, DayOfWeek hasta, Set<FranjaHoraria> franjas){
@@ -44,11 +41,12 @@ public class DisponibilidadHoraria {
 		this.franjas = franjas;
 	}
 	
-	private boolean horaEstaDisponible(Integer hora) {
-		return franjas.stream().anyMatch(franja -> franja.contiene(hora));
+	private boolean horaEstaDisponible(LocalDateTime hora) {
+		return franjas.stream().anyMatch(franja -> franja.contiene(hora.toLocalTime()));
 	}
 
-	private Boolean diaEstaDisponible(Integer dia) {
+	private Boolean diaEstaDisponible(LocalDateTime fecha) {
+		Integer dia = fecha.getDayOfWeek().getValue();
 		return (desdeDia.getValue() <= dia && dia <= hastaDia.getValue());
 	}
 }
