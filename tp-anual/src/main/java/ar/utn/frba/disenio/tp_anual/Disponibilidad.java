@@ -49,6 +49,6 @@ public class Disponibilidad {
 	}
 
 	private Boolean diaEstaDisponible(Integer dia) {
-		return (desdeDia.getValue() < dia && dia < hastaDia.getValue());
+		return (desdeDia.getValue() <= dia && dia <= hastaDia.getValue());
 	}
 }
