@@ -21,7 +21,7 @@ public class AppTest
 	public void init()
 	{
 		FranjaHoraria franjaHoraria = new FranjaHoraria(10,18);
-		Disponibilidad disponibilidad = new Disponibilidad(DayOfWeek.MONDAY, 
+		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
 		localComercial = new LocalComercial(500, disponibilidad);
 		localDate = LocalDate.of(2016, 4, 12);

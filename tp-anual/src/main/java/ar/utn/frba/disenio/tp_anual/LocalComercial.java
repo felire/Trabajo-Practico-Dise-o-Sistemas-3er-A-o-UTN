@@ -11,21 +11,21 @@ import org.uqbar.geodds.Point;
 
 public class LocalComercial extends POI{
 
-	private Set<Disponibilidad> disponibilidades;
+	private Set<DisponibilidadHoraria> disponibilidades;
 	
-	public void addDisponibilidad(Disponibilidad disponibilidad){
+	public void addDisponibilidad(DisponibilidadHoraria disponibilidad){
 		disponibilidades.add(disponibilidad);
 	}
 	
 	//TODO removeDisponibilidad
 	
-	public LocalComercial(Integer radio, Set<Disponibilidad> disponibilidades)
+	public LocalComercial(Integer radio, Set<DisponibilidadHoraria> disponibilidades)
 	{
 		this.radioDeCercania = radio;
 		this.disponibilidades = disponibilidades;
 	}
 	
-	public LocalComercial(Integer radio, Disponibilidad disponibilidad)
+	public LocalComercial(Integer radio, DisponibilidadHoraria disponibilidad)
 	{
 		this.radioDeCercania = radio;
 		this.disponibilidades = new HashSet<>();

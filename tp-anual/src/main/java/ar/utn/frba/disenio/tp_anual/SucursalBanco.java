@@ -9,7 +9,7 @@ import org.uqbar.geodds.Polygon;
 public class SucursalBanco extends POI{
 
 	private List<Servicio> servicios;
-	private static Disponibilidad horarioBancario;
+	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(){
 		setHorarioBancario();
@@ -17,7 +17,7 @@ public class SucursalBanco extends POI{
 
 	private void setHorarioBancario() {
 		FranjaHoraria franjaHoraria = new FranjaHoraria(10,15);
-		horarioBancario = new Disponibilidad(DayOfWeek.MONDAY, 
+		horarioBancario = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
 	}
 	

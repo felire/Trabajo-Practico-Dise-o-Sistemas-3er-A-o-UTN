@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Servicio {
 	private String nombre;
-	private List<Disponibilidad> diasDisponibles;
+	private List<DisponibilidadHoraria> diasDisponibles;
 	
 	public boolean estaDisponibe(LocalDateTime fecha)
 	{
