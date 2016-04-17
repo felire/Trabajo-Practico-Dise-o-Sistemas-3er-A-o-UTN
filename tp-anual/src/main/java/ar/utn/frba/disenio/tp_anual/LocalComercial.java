@@ -18,11 +18,19 @@ public class LocalComercial extends POI{
 	
 	//TODO removeDisponibilidad
 	
-	public LocalComercial(int radio)
+	public LocalComercial(Integer radio, Set<Disponibilidad> disponibilidades)
 	{
-		radioDeCercania = new Integer(radio);
-		disponibilidades = new HashSet<>();
+		this.radioDeCercania = radio;
+		this.disponibilidades = disponibilidades;
 	}
+	
+	public LocalComercial(Integer radio, Disponibilidad disponibilidad)
+	{
+		this.radioDeCercania = radio;
+		this.disponibilidades = new HashSet<>();
+		disponibilidades.add(disponibilidad);
+	}
+	
 	public Boolean esCercano(Coordenada coordenada) {
 		return (distancia(this.getCoordenada(), coordenada) < this.radioDeCercania.intValue());
 	}
