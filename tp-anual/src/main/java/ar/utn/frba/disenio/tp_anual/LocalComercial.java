@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.uqbar.geodds.Point;
+
 public class LocalComercial extends POI{
 
-	private Integer radioDeCercania;
 	private Set<Disponibilidad> disponibilidades;
 	
 	public void addDisponibilidad(Disponibilidad disponibilidad){
@@ -29,10 +30,6 @@ public class LocalComercial extends POI{
 		this.radioDeCercania = radio;
 		this.disponibilidades = new HashSet<>();
 		disponibilidades.add(disponibilidad);
-	}
-	
-	public Boolean esCercano(Coordenada coordenada) {
-		return (distancia(this.getCoordenada(), coordenada) < this.radioDeCercania.intValue());
 	}
 
 	public Boolean estaDisponible(LocalDateTime fecha) {
