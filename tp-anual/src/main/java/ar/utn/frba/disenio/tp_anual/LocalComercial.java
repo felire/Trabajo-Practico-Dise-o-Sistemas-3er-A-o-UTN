@@ -27,7 +27,7 @@ public class LocalComercial extends POI{
 		return (distancia(this.getCoordenada(), coordenada) < this.radioDeCercania.intValue());
 	}
 
-	public Boolean estaDisponible(LocalDateTime fecha) {
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
 		return (diasDeAtencion.contains(fecha.getDayOfWeek()) && fecha.getHour() > horarioArranque && fecha.getHour()< horarioCierre);
 	}
 
