@@ -16,6 +16,8 @@ public class AppTest
 	POI localComercial;
 	LocalDate localDate;
 	LocalTime localTime;
+	LocalDate localDateCuandoEstaCerrado;
+	LocalDateTime fechaCuandoEstaCerrado;
 	LocalDateTime fecha;
 	@Before
 	public void init()
@@ -26,10 +28,18 @@ public class AppTest
 		localComercial = new LocalComercial(500, disponibilidad);
 		localDate = LocalDate.of(2016, 4, 12);
 		fecha = localDate.atTime(15, 00);
+		localDateCuandoEstaCerrado = LocalDate.of(2016, 4, 18);
+		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(19, 00);
 	}
+	
     @Test
     public void testDisponibilidadLocalComercial()
     {
     	assertEquals(true, localComercial.estaDisponible(fecha, ""));
+    }
+    
+    @Test
+    public void testDisponibilidadLocalComercialFalla(){
+    	assertEquals(false, localComercial.estaDisponible(fechaCuandoEstaCerrado,""));
     }
 }

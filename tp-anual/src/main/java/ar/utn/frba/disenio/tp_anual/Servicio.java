@@ -21,7 +21,7 @@ public class Servicio {
 		this.diasDisponibles.add(disponibilidad);
 	}
 	
-	public boolean estaDisponibe(LocalDateTime fecha)
+	public boolean estaDisponible(LocalDateTime fecha)
 	{
 		return diasDisponibles.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(fecha));
 	}
