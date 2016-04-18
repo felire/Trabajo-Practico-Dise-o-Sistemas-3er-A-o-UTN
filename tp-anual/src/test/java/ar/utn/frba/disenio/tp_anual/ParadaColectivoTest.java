@@ -1,5 +1,10 @@
 package ar.utn.frba.disenio.tp_anual;
 
+/* No pude incluir los tests de ParadaColectivo con los otros porque estos usan java.awt.Point 
+ * y la CGP usa org.uqbar.geodds.Point y cuando trato de importar ambas librerias en la misma clase
+ * tratan de pisarse una a la otra. Si alguno puede solucionarlo, ya sea logrando que coexistan
+ * o cambiando el codigo*/
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,8 +35,8 @@ public class ParadaColectivoTest
 		paradaDe144 = new ParadaDeColectivo("144");
 		posicionDel144 = new Point (15,0);
 		paradaDe144.setCoordenada(posicionDel144);
-		localDate = LocalDate.of(2016, 4, 18);
-		fecha = localDate.atTime(12, 00);
+		localDate = LocalDate.of(1900, 1, 01);
+		fecha = localDate.atTime(1, 00);
 		otraParadaDe55 = new ParadaDeColectivo("55");
 		posicionDelOtro55 = new Point(0,4);
 		otraParadaDe55.setCoordenada(posicionDelOtro55);

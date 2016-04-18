@@ -25,11 +25,13 @@ public class SucursalBanco extends POI{
 	public void addServicio(Servicio servicio)
 	{
 		servicios.add(servicio);
+		listaTags.add(servicio.toString());
 	}
 	
 	public void deleteServicio(Servicio servicio)
 	{
 		servicios.remove(servicio);
+		listaTags.remove(servicio.toString());
 	}
 
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 

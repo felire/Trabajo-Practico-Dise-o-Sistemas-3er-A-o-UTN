@@ -4,16 +4,21 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest 
 {
+	/* Variables de Local Comercial */
 	POI localComercial;
 	LocalDate localDate;
 	LocalDate localDateCuandoEstaCerrado;
@@ -21,6 +26,7 @@ public class AppTest
 	LocalDateTime fechaCuandoEstaCerrado;
 	LocalDateTime fecha;
 	
+	/* Variables de Banco */
 	SucursalBanco banco;
 	Servicio asesoramientoFinanciero;
 	Servicio cajeroElectronico;
@@ -28,10 +34,26 @@ public class AppTest
 	LocalDate localDateCajero;
 	LocalDateTime fechaBanco;
 	LocalDateTime fechaCajero;
-
+	 
+	/* Variables de CGP */
+	CGP cGP;
+	Servicio rentas;
+	Servicio libreria;
+	LocalDate localDateRentas;
+	LocalDate localDateLibreria;
+	LocalDateTime fechaRentas;
+	LocalDateTime fechaLibreria;
+	Point puntoEnLaComuna;
+	Point puntoFueraDeLaComuna;
+	
+	/* Variables de Programa Principal */
+	ProgramaPrincipal programaPrincipal;
+	List<POI> resultadosDeBusqueda;
+	
 	@Before
 	public void init()
 	{
+		/* Setup de Local Comercial */
 		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(18, 0));
 		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
@@ -40,7 +62,9 @@ public class AppTest
 		fecha = localDate.atTime(15, 00);
 		localDateCuandoEstaCerrado = LocalDate.of(2016, 4, 18);
 		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(19, 00);
+		localComercial.setNombre("Local Comercial");
 		
+		/* Setup de Banco */
 		banco = new SucursalBanco();
 		DisponibilidadHoraria disponibilidadAsesor = new DisponibilidadHoraria(DayOfWeek.MONDAY,
 				DayOfWeek.WEDNESDAY,franjaHoraria);
@@ -54,8 +78,49 @@ public class AppTest
 		fechaCajero = localDateCajero.atTime(14, 00);
 		banco.addServicio(asesoramientoFinanciero);
 		banco.addServicio(cajeroElectronico);
-			
+		banco.setNombre("Banco");
+		
+		/* Setup de poligono usado como comuna en CGP */
+		Polygon polygon = new Polygon();
+		Point punto1 = new Point(0,0);
+		Point punto2 = new Point(0,100);
+		Point punto3 = new Point(100,100);
+		Point punto4 = new Point(100,0);
+		polygon.add(punto1);
+		polygon.add(punto2);
+		polygon.add(punto3);
+		polygon.add(punto4);
+		
+		/* Setup de CGP */
+		cGP = new CGP(polygon);
+		FranjaHoraria franjaHorariaRentas = new FranjaHoraria(LocalTime.of(9, 00),LocalTime.of(19, 00));
+		DisponibilidadHoraria disponibilidadRentas = new DisponibilidadHoraria(DayOfWeek.MONDAY,
+				DayOfWeek.SATURDAY,franjaHorariaRentas);
+		FranjaHoraria franjaHorariaLibreria = new FranjaHoraria(LocalTime.of(11, 00),LocalTime.of(20, 00));
+		DisponibilidadHoraria disponibilidadLibreria = new DisponibilidadHoraria(DayOfWeek.MONDAY,
+				DayOfWeek.SUNDAY,franjaHorariaLibreria);
+		rentas = new Servicio("Rentas",disponibilidadRentas);
+		libreria = new Servicio("Libreria", disponibilidadLibreria);
+		localDateRentas = LocalDate.of(2016, 4, 18);
+		fechaRentas = localDateRentas.atTime(9, 01);
+		localDateLibreria = LocalDate.of(2016, 4, 17);
+		fechaLibreria = localDateLibreria.atTime(14, 00);
+		cGP.addServicio(rentas);
+		cGP.addServicio(libreria);
+		puntoEnLaComuna = new Point(8,40);
+		puntoFueraDeLaComuna = new Point(19,120);
+		cGP.setNombre("CGP");
+		
+		/* Setup de Programa Principal*/
+		programaPrincipal = new ProgramaPrincipal();
+		programaPrincipal.addPOI(cGP);
+		programaPrincipal.addPOI(banco);
+		programaPrincipal.addPOI(localComercial);
+	
 	}
+	
+	
+	/* Tests de Local Comercial */
 	
     @Test
     public void testDisponibilidadLocalComercial()
@@ -69,6 +134,9 @@ public class AppTest
     	assertEquals(false, localComercial.estaDisponible(fechaCuandoEstaCerrado,""));
     }
     
+    
+    /* Tests de Banco */
+    
     @Test
     public void testDisponibilidadSucursalBanco()
     {
@@ -76,10 +144,60 @@ public class AppTest
     }	
     
     @Test
-    public void testDisponibilidadServiciosEspecificosDeBanco()
+    public void testDisponibilidadServiciosDeBanco()
     {
     	assertEquals(true, banco.estaDisponible(fechaBanco, "Asesoramiento Financiero"));
     	assertEquals(false, banco.estaDisponible(fechaBanco, "Cajero Electronico"));
     	assertEquals(true, banco.estaDisponible(fechaCajero, "Cajero Electronico"));
+    }
+    
+    
+    /* Tests de CGP */
+    
+    @Test
+    public void testPuntosCercanosACGP()
+    {
+    	assertEquals(true, cGP.esCercano(puntoEnLaComuna));
+    	assertEquals(false, cGP.esCercano(puntoFueraDeLaComuna));
+    }
+    
+    @Test
+    public void testDisponibilidadServiciosDeCGP()
+    {
+    	assertEquals(true, cGP.estaDisponible(fechaRentas,"Rentas"));
+    	assertEquals(false, cGP.estaDisponible(fechaRentas,"Libreria"));
+    	assertEquals(true, cGP.estaDisponible(fechaLibreria,"Libreria"));
+    }
+    
+    @Test
+    public void testDisponibilidadDeCGP()
+    {
+    	assertEquals(true, cGP.estaDisponible(fechaRentas,""));
+    	assertEquals(true, cGP.estaDisponible(fechaLibreria,""));
+    }
+    
+    @Test
+    public void testBusquedasPorProgramaPrincipal()
+    {
+    	/* Busquedas por servicio */
+    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Lib");
+    	assertEquals(true, resultadosDeBusqueda.contains(cGP));
+    	
+    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Caj");
+    	assertEquals(true, resultadosDeBusqueda.contains(banco));
+    	
+    	/* Busqueda por nombre */
+    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Local");
+    	assertEquals(true, resultadosDeBusqueda.contains(localComercial));
+    	
+    	/* Busqueda por nombre de un POI deleteado */
+    	programaPrincipal.deletePOI(localComercial);
+    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Local");
+    	assertEquals(false, resultadosDeBusqueda.contains(localComercial));
+    	
+    	/* Busqueda por servicio de un servicio deleteado */
+    	banco.deleteServicio(cajeroElectronico);
+    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Caj");
+    	assertEquals(false, resultadosDeBusqueda.contains(banco));
     }
 }

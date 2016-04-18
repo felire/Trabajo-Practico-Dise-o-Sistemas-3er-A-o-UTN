@@ -56,6 +56,7 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+		listaTags.add(nombre);
 	}
 
 	public Point getCoordenada() {

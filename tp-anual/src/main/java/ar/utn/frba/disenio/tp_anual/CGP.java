@@ -19,11 +19,13 @@ public class CGP extends POI{
 	public void addServicio(Servicio servicio)
 	{
 		servicios.add(servicio);
+		listaTags.add(servicio.toString());
 	}
 	
 	public void deleteServicio(Servicio servicio)
 	{
 		servicios.remove(servicio);
+		listaTags.remove(servicio.toString());
 	}
 	
 	public Boolean esCercano(Point coordenada) 
