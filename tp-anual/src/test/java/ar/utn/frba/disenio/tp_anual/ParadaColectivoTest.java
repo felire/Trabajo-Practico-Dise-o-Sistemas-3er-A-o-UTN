@@ -42,20 +42,20 @@ public class ParadaColectivoTest
 	}
 	
 	@Test
-	public void ambasParadasEstanDisponibles()
+	public void ambasParadasEstanDisponiblesTest()
 	{
 		assertEquals(true, paradaDe55.estaDisponible(fecha,""));
 		assertEquals(true, paradaDe144.estaDisponible(fecha, ""));
 	}
 	
 	@Test
-	public void lasParadasEstanAMenosDe20Metros()
+	public void lasParadasEstanAMenosDe20MetrosTest()
 	{
 		assertEquals(true, paradaDe144.seEncuentraAXDe(20, paradaDe55));
 	}
 	
 	@Test
-	public void siBusco55MeSalenSoloLasParadaDel55()
+	public void siBusco55MeSalenSoloLasParadaDel55Test()
 	{
 		resultadosDeBusqueda = programaPrincipal.filtrarPOIs("55");
 		assertEquals(true, resultadosDeBusqueda.contains(paradaDe55));

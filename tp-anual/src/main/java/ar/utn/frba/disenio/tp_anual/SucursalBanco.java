@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.ArrayList;
 
 public class SucursalBanco extends POI{
 
@@ -11,6 +12,7 @@ public class SucursalBanco extends POI{
 	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(){
+		servicios = new ArrayList<Servicio>();
 		setHorarioBancario();
 	}
 
@@ -32,12 +34,12 @@ public class SucursalBanco extends POI{
 
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
 	{
-		if(fueraDeHorarioBancario(fecha)) return false;
+		if(!enHorarioBancario(fecha)) return false;
 		if(valorX==null || valorX.equals("")) return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(fecha));
 		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(fecha));
 	}
 	
-	private boolean fueraDeHorarioBancario(LocalDateTime fecha) {
+	private boolean enHorarioBancario(LocalDateTime fecha) {
 		return horarioBancario.estaDisponible(fecha);
 	}	
 }
