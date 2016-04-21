@@ -10,4 +10,7 @@ public class Rubro {
 	public Integer getRadioCercania(){
 		return this.radioCercania;
 	}
+	public String getNombre(){
+		return this.nombreRubro;
+	}
 }

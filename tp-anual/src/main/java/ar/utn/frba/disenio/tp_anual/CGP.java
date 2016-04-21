@@ -40,5 +40,9 @@ public class CGP extends POI{
 		if(valorX==null || valorX.equals("")) return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(fecha));
 		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(fecha));
 	}
+	
+	public Boolean esBuscado(String palabraClave){
+		return this.servicios.stream().anyMatch(servicio -> servicio.toString().indexOf(palabraClave) != -1) || super.esBuscado(palabraClave);
+	}
 
 }

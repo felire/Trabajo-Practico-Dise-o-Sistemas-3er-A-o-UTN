@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ParadaColectivoTest 
 {
-	ProgramaPrincipal programaPrincipal;
+	BuscadorPOIS buscadorPOIS;
 	POI paradaDe55;
 	POI paradaDe144;
 	POI otraParadaDe55;
@@ -38,10 +38,10 @@ public class ParadaColectivoTest
 		fecha = localDate.atTime(1, 00);
 		posicionDelOtro55 = new Point(0,4);
 		otraParadaDe55 = new ParadaDeColectivo("55", posicionDelOtro55);
-		programaPrincipal = new ProgramaPrincipal();
-		programaPrincipal.addPOI(paradaDe55);
-		programaPrincipal.addPOI(paradaDe144);
-		programaPrincipal.addPOI(otraParadaDe55);
+		buscadorPOIS = new BuscadorPOIS();
+		buscadorPOIS.addPOI(paradaDe55);
+		buscadorPOIS.addPOI(paradaDe144);
+		buscadorPOIS.addPOI(otraParadaDe55);
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ public class ParadaColectivoTest
 	@Test
 	public void siBusco55MeSalenSoloLasParadaDel55Test()
 	{
-		resultadosDeBusqueda = programaPrincipal.filtrarPOIs("55");
+		resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("55");
 		assertEquals(true, resultadosDeBusqueda.contains(paradaDe55));
 		assertEquals(true, resultadosDeBusqueda.contains(otraParadaDe55));
 		assertEquals(false, resultadosDeBusqueda.contains(paradaDe144));

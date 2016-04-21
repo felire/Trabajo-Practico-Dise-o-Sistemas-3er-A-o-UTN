@@ -8,16 +8,16 @@ import java.util.stream.Collectors;
  * Hello world!
  *
  */
-public class ProgramaPrincipal 
+public class BuscadorPOIS
 {
 	private List<POI> listaPOIs;
-	public ProgramaPrincipal()
+	public BuscadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
 	}
 	public List<POI> filtrarPOIs(String palabraClave)
 	{
-		return  listaPOIs.stream().filter(poi -> poi.tengoPalabraClave(palabraClave)).collect(Collectors.toList());
+		return  listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList());
 	}
 	public void addPOI(POI poi)
 	{

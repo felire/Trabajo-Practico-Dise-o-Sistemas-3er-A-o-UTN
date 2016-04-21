@@ -48,4 +48,8 @@ public class SucursalBanco extends POI{
 	private boolean enHorarioBancario(LocalDateTime fecha) {
 		return horarioBancario.estaDisponible(fecha);
 	}	
+	
+	public Boolean esBuscado(String palabraClave){
+		return this.servicios.stream().anyMatch(servicio -> servicio.toString().indexOf(palabraClave) != -1) || super.esBuscado(palabraClave);
+	}
 }

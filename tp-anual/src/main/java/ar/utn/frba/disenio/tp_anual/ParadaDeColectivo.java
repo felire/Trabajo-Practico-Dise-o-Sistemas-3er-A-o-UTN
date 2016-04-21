@@ -8,10 +8,12 @@ public class ParadaDeColectivo extends POI{
 	public ParadaDeColectivo(String linea, Point coordenada)
 	{
 		super(coordenada);
+		this.nombre = linea;
 		this.radioDeCercania = 100;
-		this.addTag(linea);
 	}
-
+	public Boolean esBuscado(String palabraClave){
+		return this.nombre.equals(palabraClave) || super.esBuscado(palabraClave);
+	}
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
 		return true;
 	}

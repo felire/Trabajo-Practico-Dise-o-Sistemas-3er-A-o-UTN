@@ -36,7 +36,9 @@ public class LocalComercial extends POI{
 	public Boolean estaDisponible(LocalDateTime fecha) {
 		return disponibilidades.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(fecha));
 	}
-	
+	public Boolean esBuscado(String palabraClave){
+		return this.rubro.getNombre().equals(palabraClave) || super.esBuscado(palabraClave);
+	}
 	@Override
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
 		return estaDisponible(fecha);

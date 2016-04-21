@@ -31,8 +31,9 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		listaTags.remove(tag);
 	}
 	
-	public boolean tengoPalabraClave(String palabraClave)
+	public Boolean esBuscado(String palabraClave)
 	{
+		if(nombre.indexOf(palabraClave) != -1)return true;
 		return (listaTags.stream().anyMatch(cadena1 -> cadena1.indexOf(palabraClave) != -1));
 	}
 	
@@ -58,7 +59,6 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-		listaTags.add(nombre);
 	}
 
 	public Point getCoordenada() {

@@ -54,7 +54,7 @@ public class AppTest
 	Point coordenadaCGP;
 	
 	/* Variables de Programa Principal */
-	ProgramaPrincipal programaPrincipal;
+	BuscadorPOIS buscadorPOIS;
 	List<POI> resultadosDeBusqueda;
 	
 	@Before
@@ -123,10 +123,10 @@ public class AppTest
 		cGP.setNombre("CGP");
 		
 		/* Setup de Programa Principal*/
-		programaPrincipal = new ProgramaPrincipal();
-		programaPrincipal.addPOI(cGP);
-		programaPrincipal.addPOI(banco);
-		programaPrincipal.addPOI(localComercial);
+		buscadorPOIS = new BuscadorPOIS();
+		buscadorPOIS.addPOI(cGP);
+		buscadorPOIS.addPOI(banco);
+		buscadorPOIS.addPOI(localComercial);
 	
 	}
 	
@@ -194,24 +194,24 @@ public class AppTest
     public void testBusquedasPorProgramaPrincipal()
     {
     	/* Busquedas por servicio */
-    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Lib");
+    	resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("Lib");
     	assertEquals(true, resultadosDeBusqueda.contains(cGP));
     	
-    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Caj");
+    	resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("Caj");
     	assertEquals(true, resultadosDeBusqueda.contains(banco));
     	
     	/* Busqueda por nombre */
-    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Local");
+    	resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("Local");
     	assertEquals(true, resultadosDeBusqueda.contains(localComercial));
     	
     	/* Busqueda por nombre de un POI deleteado */
-    	programaPrincipal.deletePOI(localComercial);
-    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Local");
+    	buscadorPOIS.deletePOI(localComercial);
+    	resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("Local");
     	assertEquals(false, resultadosDeBusqueda.contains(localComercial));
     	
     	/* Busqueda por servicio de un servicio deleteado */
     	banco.deleteServicio(cajeroElectronico);
-    	resultadosDeBusqueda = programaPrincipal.filtrarPOIs("Caj");
+    	resultadosDeBusqueda = buscadorPOIS.filtrarPOIs("Caj");
     	assertEquals(false, resultadosDeBusqueda.contains(banco));
     }
 }
