@@ -1,9 +1,10 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.awt.Point;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.uqbar.geodds.Point;
 
 public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
 	
@@ -14,10 +15,11 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	protected List<String> listaTags;
 	protected Integer radioDeCercania;
 	
-	public POI()
+	public POI(Point coordenada)
 	{
 		radioDeCercania = 500;
 		listaTags = new ArrayList<String>();
+		this.coordenada = coordenada;
 	}
 	
 	public void addTag(String tag)

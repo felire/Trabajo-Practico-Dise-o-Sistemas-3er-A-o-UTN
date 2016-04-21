@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LocalComercial extends POI{
+import org.uqbar.geodds.Point;
 
+public class LocalComercial extends POI{
+	private Rubro rubro;
 	private Set<DisponibilidadHoraria> disponibilidades;
 	
 	public void addDisponibilidad(DisponibilidadHoraria disponibilidad){
@@ -14,15 +16,19 @@ public class LocalComercial extends POI{
 	
 	//TODO removeDisponibilidad
 	
-	public LocalComercial(Integer radio, Set<DisponibilidadHoraria> disponibilidades)
+	public LocalComercial(Rubro rubro,Set<DisponibilidadHoraria> disponibilidades, Point coordenada)
 	{
-		this.radioDeCercania = radio;
+		super(coordenada);
+		this.radioDeCercania = rubro.getRadioCercania();
+		this.rubro = rubro;
 		this.disponibilidades = disponibilidades;
 	}
 	
-	public LocalComercial(Integer radio, DisponibilidadHoraria disponibilidad)
+	public LocalComercial(Rubro rubro, DisponibilidadHoraria disponibilidad, Point coordenada)
 	{
-		this.radioDeCercania = radio;
+		super(coordenada);
+		this.radioDeCercania = rubro.getRadioCercania();
+		this.rubro = rubro;
 		this.disponibilidades = new HashSet<>();
 		disponibilidades.add(disponibilidad);
 	}

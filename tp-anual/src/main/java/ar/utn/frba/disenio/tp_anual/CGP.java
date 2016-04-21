@@ -11,10 +11,12 @@ public class CGP extends POI{
 	private Polygon comuna;
 	private List<Servicio> servicios;
 	
-	public CGP(Polygon comuna)
+	public CGP(Polygon comuna, Point coordenada)
 	{
+		super(coordenada);
 		servicios = new ArrayList<Servicio>();
 		this.comuna = comuna;
+		
 	}
 	public void addServicio(Servicio servicio)
 	{

@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import junit.framework.Assert;
+
 /**
  * Unit test for simple App.
  */
@@ -20,11 +22,13 @@ public class AppTest
 {
 	/* Variables de Local Comercial */
 	POI localComercial;
+	Rubro rubro;
 	LocalDate localDate;
 	LocalDate localDateCuandoEstaCerrado;
 	LocalTime localTime;
 	LocalDateTime fechaCuandoEstaCerrado;
 	LocalDateTime fecha;
+	Point coordenadaLocalComercial;
 	
 	/* Variables de Banco */
 	SucursalBanco banco;
@@ -34,6 +38,8 @@ public class AppTest
 	LocalDate localDateCajero;
 	LocalDateTime fechaBanco;
 	LocalDateTime fechaCajero;
+	Point coordenadaBanco;
+	
 	 
 	/* Variables de CGP */
 	CGP cGP;
@@ -45,6 +51,7 @@ public class AppTest
 	LocalDateTime fechaLibreria;
 	Point puntoEnLaComuna;
 	Point puntoFueraDeLaComuna;
+	Point coordenadaCGP;
 	
 	/* Variables de Programa Principal */
 	ProgramaPrincipal programaPrincipal;
@@ -57,7 +64,9 @@ public class AppTest
 		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(18, 0));
 		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
-		localComercial = new LocalComercial(500, disponibilidad);
+		rubro = new Rubro("Libreria", 500);
+		coordenadaLocalComercial= new Point(0,0);
+		localComercial = new LocalComercial(rubro, disponibilidad, coordenadaLocalComercial);
 		localDate = LocalDate.of(2016, 4, 12);
 		fecha = localDate.atTime(15, 00);
 		localDateCuandoEstaCerrado = LocalDate.of(2016, 4, 18);
@@ -65,7 +74,8 @@ public class AppTest
 		localComercial.setNombre("Local Comercial");
 		
 		/* Setup de Banco */
-		banco = new SucursalBanco();
+		coordenadaBanco = new Point(0,15);
+		banco = new SucursalBanco(coordenadaBanco);
 		DisponibilidadHoraria disponibilidadAsesor = new DisponibilidadHoraria(DayOfWeek.MONDAY,
 				DayOfWeek.WEDNESDAY,franjaHoraria);
 		asesoramientoFinanciero = new Servicio("Asesoramiento Financiero",disponibilidadAsesor);
@@ -92,7 +102,8 @@ public class AppTest
 		polygon.add(punto4);
 		
 		/* Setup de CGP */
-		cGP = new CGP(polygon);
+		coordenadaCGP = new Point(0,10);
+		cGP = new CGP(polygon, coordenadaCGP);
 		FranjaHoraria franjaHorariaRentas = new FranjaHoraria(LocalTime.of(9, 00),LocalTime.of(19, 00));
 		DisponibilidadHoraria disponibilidadRentas = new DisponibilidadHoraria(DayOfWeek.MONDAY,
 				DayOfWeek.SATURDAY,franjaHorariaRentas);
@@ -121,7 +132,10 @@ public class AppTest
 	
 	
 	/* Tests de Local Comercial */
-	
+	@Test
+	public void testPuntoCercanoLocalComercial(){
+		assertEquals(true, localComercial.esCercano(new Point(0,1)));
+	}
     @Test
     public void testDisponibilidadLocalComercial()
     {

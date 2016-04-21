@@ -4,6 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+
+import org.uqbar.geodds.Point;
+
 import java.util.ArrayList;
 
 public class SucursalBanco extends POI{
@@ -11,7 +14,8 @@ public class SucursalBanco extends POI{
 	private List<Servicio> servicios;
 	private static DisponibilidadHoraria horarioBancario;
 	
-	public SucursalBanco(){
+	public SucursalBanco(Point coordenada){
+		super(coordenada);
 		servicios = new ArrayList<Servicio>();
 		setHorarioBancario();
 	}
