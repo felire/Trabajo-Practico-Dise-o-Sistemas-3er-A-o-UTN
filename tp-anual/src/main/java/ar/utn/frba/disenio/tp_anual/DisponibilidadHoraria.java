@@ -41,7 +41,7 @@ public class DisponibilidadHoraria {
 		this.franjas = franjas;
 	}
 	
-	private boolean horaEstaDisponible(LocalDateTime hora) {
+	private Boolean horaEstaDisponible(LocalDateTime hora) {
 		return franjas.stream().anyMatch(franja -> franja.contiene(hora.toLocalTime()));
 	}
 
