@@ -20,7 +20,7 @@ import junit.framework.Assert;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class TestTPA 
 {
 	/* Variables de Local Comercial */
 	POI localComercial;
@@ -31,7 +31,7 @@ public class AppTest
 	LocalDateTime fechaCuandoEstaCerrado;
 	LocalDateTime fecha;
 	Point coordenadaLocalComercial;
-	Set<DisponibilidadHoraria> disponibilidades;
+	Set<DisponibilidadHoraria> disponibilidadesLocalComercial;
 	
 	/* Variables de Banco */
 	SucursalBanco banco;
@@ -67,8 +67,8 @@ public class AppTest
 		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(18, 0));
 		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
-		disponibilidades = new HashSet<>();
-		disponibilidades.add(disponibilidad);
+		disponibilidadesLocalComercial = new HashSet<>();
+		disponibilidadesLocalComercial.add(disponibilidad);
 		rubro = new Rubro("Libreria", 500);
 		coordenadaLocalComercial= new Point(0,0);
 		localComercial = new LocalComercial("Local Comercial",rubro, disponibilidades, coordenadaLocalComercial);
