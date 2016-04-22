@@ -9,16 +9,8 @@ public class Servicio {
 	private Set<DisponibilidadHoraria> diasDisponibles;
 	
 	public Servicio(String nombre, Set<DisponibilidadHoraria> diasDisponibles) {
-		super();
 		this.nombre = nombre;
 		this.diasDisponibles = diasDisponibles;
-	}
-
-	public Servicio(String nombre, DisponibilidadHoraria disponibilidad) {
-		super();
-		this.nombre = nombre;
-		this.diasDisponibles = new HashSet<>();
-		this.diasDisponibles.add(disponibilidad);
 	}
 	
 	public boolean estaDisponible(LocalDateTime fecha)

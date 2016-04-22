@@ -10,8 +10,6 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	protected String nombre;
 	protected Point coordenada;
-	protected String calle;
-	protected Integer altura;
 	protected List<String> listaTags;
 	protected Integer radioDeCercania;
 	
@@ -33,13 +31,12 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	public Boolean esBuscado(String palabraClave)
 	{
-		if(nombre.indexOf(palabraClave) != -1)return true;
-		return (listaTags.stream().anyMatch(cadena1 -> cadena1.indexOf(palabraClave) != -1));
+		return (listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)));
 	}
 	
-	public Boolean seEncuentraAXDe(Integer metros, POI poi)
+	public Boolean seEncuentraAXDe(Integer kilometros, POI poi)
 	{
-		return this.coordenada.distance(poi.getCoordenada()) <= metros;
+		return this.coordenada.distance(poi.getCoordenada()) <= kilometros;
 	}
 	
 	public Boolean esCercano(Point coordenada)
@@ -47,34 +44,13 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		return this.coordenada.distance(coordenada) <= this.radioDeCercania;
 	}
 	
-	public abstract Boolean estaDisponible(LocalDateTime fecha, String valorX);
 	
 	public Boolean esValido(){
 		return (this.coordenada != null && this.nombre != null);
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
+	
 	public Point getCoordenada() {
 		return coordenada;
-	}
-
-	public void setCoordenada(Point coordenada) {
-		this.coordenada = coordenada;
-	}
-
-	public List<String> getListaTags() {
-		return listaTags;
-	}
-
-	public void setListaTags(List<String> listaTags) {
-		this.listaTags = listaTags;
 	}
 	
 	

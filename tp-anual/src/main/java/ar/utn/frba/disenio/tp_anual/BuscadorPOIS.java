@@ -27,8 +27,4 @@ public class BuscadorPOIS
 	{
 		listaPOIs.remove(poi);
 	}
-    public static void main( String[] args )
-    {
-    	
-    }
 }

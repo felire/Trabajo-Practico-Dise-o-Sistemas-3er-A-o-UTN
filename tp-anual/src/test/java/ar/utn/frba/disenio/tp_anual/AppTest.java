@@ -4,7 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -29,6 +31,7 @@ public class AppTest
 	LocalDateTime fechaCuandoEstaCerrado;
 	LocalDateTime fecha;
 	Point coordenadaLocalComercial;
+	Set<DisponibilidadHoraria> disponibilidades;
 	
 	/* Variables de Banco */
 	SucursalBanco banco;
@@ -64,14 +67,15 @@ public class AppTest
 		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(18, 0));
 		DisponibilidadHoraria disponibilidad = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
 				DayOfWeek.FRIDAY, franjaHoraria);
+		disponibilidades = new HashSet<>();
+		disponibilidades.add(disponibilidad);
 		rubro = new Rubro("Libreria", 500);
 		coordenadaLocalComercial= new Point(0,0);
-		localComercial = new LocalComercial(rubro, disponibilidad, coordenadaLocalComercial);
+		localComercial = new LocalComercial("Local Comercial",rubro, disponibilidades, coordenadaLocalComercial);
 		localDate = LocalDate.of(2016, 4, 12);
 		fecha = localDate.atTime(15, 00);
 		localDateCuandoEstaCerrado = LocalDate.of(2016, 4, 18);
 		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(19, 00);
-		localComercial.setNombre("Local Comercial");
 		
 		/* Setup de Banco */
 		coordenadaBanco = new Point(0,15);

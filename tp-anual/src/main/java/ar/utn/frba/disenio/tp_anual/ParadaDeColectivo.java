@@ -14,7 +14,7 @@ public class ParadaDeColectivo extends POI{
 	public Boolean esBuscado(String palabraClave){
 		return this.nombre.equals(palabraClave) || super.esBuscado(palabraClave);
 	}
-	public Boolean estaDisponible(LocalDateTime fecha, String valorX) {
+	public Boolean estaDisponible(LocalDateTime fecha) {
 		return true;
 	}
 
