@@ -34,7 +34,7 @@ public abstract class PrestadorDeServicios extends POI{
 		return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(dia,hora));
 	}
 	
-	public Boolean esBuscado(String palabraClave){
-		return this.servicios.stream().anyMatch(servicio -> servicio.toString().contains(palabraClave)) || super.esBuscado(palabraClave);
+	public Boolean soyBuscado(String palabraClave){
+		return this.servicios.stream().anyMatch(servicio -> servicio.toString().contains(palabraClave));
 	}
 }

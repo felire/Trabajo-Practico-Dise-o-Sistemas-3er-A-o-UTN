@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class DisponibilidadHoraria {
-	private ArrayList<DisponibilidadDelDia> disponibilidades;
+	private ArrayList<DiaLaboral> disponibilidades;
 	
-	public DisponibilidadHoraria(ArrayList<DisponibilidadDelDia> disponibilidades){
+	public DisponibilidadHoraria(ArrayList<DiaLaboral> disponibilidades){
 		this.disponibilidades=disponibilidades;		
 	}
 

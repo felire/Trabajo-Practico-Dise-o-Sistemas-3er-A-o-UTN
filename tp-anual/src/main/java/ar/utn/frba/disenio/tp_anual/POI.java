@@ -31,8 +31,10 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	public Boolean esBuscado(String palabraClave)
 	{
-		return (listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)));
+	    return listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)) || this.soyBuscado(palabraClave);
 	}
+	
+	public abstract Boolean soyBuscado(String palabraClave);
 	
 	public Boolean seEncuentraAXDe(Integer kilometros, POI poi)
 	{

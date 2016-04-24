@@ -5,11 +5,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisponibilidadDelDia {
+public class DiaLaboral {
 	private DayOfWeek dia;
 	private List<FranjaHoraria> franjasDelDia;
 	
-	public DisponibilidadDelDia(DayOfWeek dia, ArrayList<FranjaHoraria> franjas){
+	public DiaLaboral(DayOfWeek dia, ArrayList<FranjaHoraria> franjas){
 		this.dia=dia;
 		this.franjasDelDia=franjas;		
 	}

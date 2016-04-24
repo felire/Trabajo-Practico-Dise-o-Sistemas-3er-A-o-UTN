@@ -10,9 +10,11 @@ public class ParadaDeColectivo extends POI{
 		super(lineaColectivo,coordenada);
 		this.radioDeCercania = 100;
 	}
-	public Boolean esBuscado(String palabraClave){
-		return this.nombre.equals(palabraClave) || super.esBuscado(palabraClave);
+	
+	public Boolean soyBuscado(String palabraClave){
+	    return this.nombre.equals(palabraClave);
 	}
+	
 	public Boolean estaDisponible(LocalDateTime fecha) {
 		return true;
 	}

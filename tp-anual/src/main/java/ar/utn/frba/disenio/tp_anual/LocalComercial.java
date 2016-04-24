@@ -22,12 +22,12 @@ public class LocalComercial extends POI{
 		this.disponibilidades = disponibilidades;
 	}
 	
-
 	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) {
 		return disponibilidades.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(dia,hora));
 	}
-	public Boolean esBuscado(String palabraClave){
-		return this.rubro.getNombre().equals(palabraClave) || super.esBuscado(palabraClave);
+	
+	public Boolean soyBuscado(String palabraClave){
+	    return this.rubro.getNombre().equals(palabraClave);
 	}
 
 }
