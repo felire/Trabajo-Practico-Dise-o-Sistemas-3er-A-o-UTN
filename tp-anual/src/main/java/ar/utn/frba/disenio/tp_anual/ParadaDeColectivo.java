@@ -5,10 +5,9 @@ import java.time.LocalDateTime;
 import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends POI{
-	public ParadaDeColectivo(String linea, Point coordenada)
+	public ParadaDeColectivo(String lineaColectivo, Point coordenada)
 	{
-		super(coordenada);
-		this.nombre = linea;
+		super(lineaColectivo,coordenada);
 		this.radioDeCercania = 100;
 	}
 	public Boolean esBuscado(String palabraClave){

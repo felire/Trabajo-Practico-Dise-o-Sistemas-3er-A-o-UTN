@@ -1,7 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.Set;
 
 public class Servicio {
@@ -13,9 +13,9 @@ public class Servicio {
 		this.diasDisponibles = diasDisponibles;
 	}
 	
-	public boolean estaDisponible(LocalDateTime fecha)
+	public boolean estaDisponible(DayOfWeek dia,LocalTime hora)
 	{
-		return diasDisponibles.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(fecha));
+		return diasDisponibles.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(dia,hora));
 	}
 	
 	public String toString()

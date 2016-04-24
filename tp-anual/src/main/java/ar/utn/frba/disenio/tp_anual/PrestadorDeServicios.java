@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.time.LocalDateTime;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,9 @@ import org.uqbar.geodds.Point;
 
 public abstract class PrestadorDeServicios extends POI{
 	private List<Servicio> servicios;
-	public PrestadorDeServicios(Point coordenada)
+	public PrestadorDeServicios(String nombre,Point coordenada)
 	{
-		super(coordenada);
+		super(nombre,coordenada);
 		servicios = new ArrayList<Servicio>();
 	}
 	
@@ -24,13 +25,13 @@ public abstract class PrestadorDeServicios extends POI{
 		servicios.remove(servicio);
 	}
 	
-	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
+	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora, String valorX) 
 	{
-		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(fecha));
+		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(dia,hora));
 	}
-	public Boolean estaDisponible(LocalDateTime fecha) 
+	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) 
 	{
-		return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(fecha));
+		return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(dia,hora));
 	}
 	
 	public Boolean esBuscado(String palabraClave){

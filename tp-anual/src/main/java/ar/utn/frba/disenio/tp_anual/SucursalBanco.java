@@ -1,9 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 
 import org.uqbar.geodds.Point;
 
@@ -14,30 +12,35 @@ public class SucursalBanco extends PrestadorDeServicios{
 	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(String nombre,Point coordenada){
-		super(coordenada);
-		this.nombre = nombre;
+		super(nombre,coordenada);
 		setHorarioBancario();
 	}
 
 	private void setHorarioBancario() {
-		FranjaHoraria franjaHoraria = new FranjaHoraria(LocalTime.of(10, 0),LocalTime.of(15, 0));
-		horarioBancario = new DisponibilidadHoraria(DayOfWeek.MONDAY, 
-				DayOfWeek.FRIDAY, franjaHoraria);
+		ArrayList<DisponibilidadDelDia>lista=new ArrayList<DisponibilidadDelDia>();
+		ArrayList<FranjaHoraria> franjaBancaria=new ArrayList<FranjaHoraria>();
+		franjaBancaria.add(new FranjaHoraria(LocalTime.of(10,0),LocalTime.of(15,0)));
+		lista.add(new DisponibilidadDelDia(DayOfWeek.MONDAY,franjaBancaria));
+		lista.add(new DisponibilidadDelDia(DayOfWeek.TUESDAY,franjaBancaria));
+		lista.add(new DisponibilidadDelDia(DayOfWeek.WEDNESDAY,franjaBancaria));
+		lista.add(new DisponibilidadDelDia(DayOfWeek.THURSDAY,franjaBancaria));
+		lista.add(new DisponibilidadDelDia(DayOfWeek.FRIDAY,franjaBancaria));
+		horarioBancario = new DisponibilidadHoraria(lista);
 	} 	
 
-	public Boolean estaDisponible(LocalDateTime fecha, String valorX) 
+	public Boolean estaDisponible(DayOfWeek dia,LocalTime hora, String valorX) 
 	{
-		if(!enHorarioBancario(fecha)) return false;
-		return super.estaDisponible(fecha, valorX);
+		if(!enHorarioBancario(dia,hora)) return false;
+		return super.estaDisponible(dia,hora, valorX);
 	}
 	
-	public Boolean estaDisponible(LocalDateTime fecha){
-		if(!enHorarioBancario(fecha)) return false;
-		return super.estaDisponible(fecha);
+	public Boolean estaDisponible(DayOfWeek dia,LocalTime hora){
+		if(!enHorarioBancario(dia,hora)) return false;
+		return super.estaDisponible(dia,hora);
 	}
 	
-	private Boolean enHorarioBancario(LocalDateTime fecha) {
-		return horarioBancario.estaDisponible(fecha);
+	private Boolean enHorarioBancario(DayOfWeek dia,LocalTime hora) {
+		return horarioBancario.estaDisponible(dia,hora);
 	}	
 	
 }
