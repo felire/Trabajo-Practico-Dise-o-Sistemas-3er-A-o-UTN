@@ -12,6 +12,6 @@ public class DisponibilidadHoraria {
 	}
 
 	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora){
-		return disponibilidades.stream().anyMatch(disponibilidad -> (disponibilidad.diaDisponible(dia) && disponibilidad.horaDisponible(hora)));
+		return disponibilidades.stream().anyMatch(disponibilidad -> (disponibilidad.estaDisponible(dia, hora)));
 	}
 }

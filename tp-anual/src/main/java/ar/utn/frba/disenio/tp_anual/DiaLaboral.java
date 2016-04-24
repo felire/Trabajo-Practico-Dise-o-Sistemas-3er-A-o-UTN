@@ -21,4 +21,9 @@ public class DiaLaboral {
 	public Boolean horaDisponible(LocalTime hora){
 		return franjasDelDia.stream().anyMatch(franja-> franja.contiene(hora));
 	}
+
+	
+    public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) {
+		return this.diaDisponible(dia) && horaDisponible(hora);
+	}
 }
