@@ -1,5 +1,6 @@
 package ar.utn.frba.disenio.tp_anual;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.uqbar.geodds.Point;
@@ -8,7 +9,7 @@ public class ParadaDeColectivo extends POI{
 	public ParadaDeColectivo(String lineaColectivo, Point coordenada)
 	{
 		super(lineaColectivo,coordenada);
-		this.radioDeCercania = 100;
+		this.radioDeCercania = new BigDecimal(0.1);
 	}
 	
 	public Boolean soyBuscado(String palabraClave){

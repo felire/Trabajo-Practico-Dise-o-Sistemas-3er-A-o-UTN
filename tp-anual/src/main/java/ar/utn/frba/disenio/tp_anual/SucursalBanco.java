@@ -18,15 +18,15 @@ public class SucursalBanco extends PrestadorDeServicios{
 	}
 
 	private void setHorarioBancario() {
-		ArrayList<DiaLaboral>lista=new ArrayList<DiaLaboral>();
+		ArrayList<DayOfWeek>lista=new ArrayList<DayOfWeek>();
 		ArrayList<FranjaHoraria> franjaBancaria=new ArrayList<FranjaHoraria>();
 		franjaBancaria.add(new FranjaHoraria(LocalTime.of(10,0),LocalTime.of(15,0)));
-		lista.add(new DiaLaboral(DayOfWeek.MONDAY,franjaBancaria));
-		lista.add(new DiaLaboral(DayOfWeek.TUESDAY,franjaBancaria));
-		lista.add(new DiaLaboral(DayOfWeek.WEDNESDAY,franjaBancaria));
-		lista.add(new DiaLaboral(DayOfWeek.THURSDAY,franjaBancaria));
-		lista.add(new DiaLaboral(DayOfWeek.FRIDAY,franjaBancaria));
-		horarioBancario = new DisponibilidadHoraria(lista);
+		lista.add(DayOfWeek.MONDAY);
+		lista.add(DayOfWeek.TUESDAY);
+		lista.add(DayOfWeek.WEDNESDAY);
+		lista.add(DayOfWeek.THURSDAY);
+		lista.add(DayOfWeek.FRIDAY);
+		horarioBancario = new DisponibilidadHoraria(franjaBancaria, lista);
 	} 	
 
 	public Boolean estaDisponible(LocalDateTime fecha, String valorX)
