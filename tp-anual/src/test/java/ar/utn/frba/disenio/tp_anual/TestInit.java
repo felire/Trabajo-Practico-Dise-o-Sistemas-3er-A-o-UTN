@@ -159,7 +159,7 @@ public class TestInit {
 		paradaDe55 = new ParadaDeColectivo("55", posicionDel55);
 		
 		
-		/* Setup de Programa Principal*/
+		/* Setup de Buscador POIs*/
 		buscadorPOIS = new BuscadorPOIS();
 		buscadorPOIS.addPOI(cGP);
 		buscadorPOIS.addPOI(banco);
