@@ -14,10 +14,9 @@ public class SucursalBanco extends PrestadorDeServicios{
 	
 	public SucursalBanco(String nombre,Point coordenada){
 		super(nombre,coordenada);
-		setHorarioBancario();
 	}
 
-	private void setHorarioBancario() {
+	static void setHorarioBancario() {
 		ArrayList<DayOfWeek>lista=new ArrayList<DayOfWeek>();
 		ArrayList<FranjaHoraria> franjaBancaria=new ArrayList<FranjaHoraria>();
 		franjaBancaria.add(new FranjaHoraria(LocalTime.of(10,0),LocalTime.of(15,0)));

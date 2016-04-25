@@ -91,6 +91,7 @@ public class TestInit {
 		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(21, 00);
 		
 		/* Setup de Banco */
+		SucursalBanco.setHorarioBancario();
 		coordenadaBanco = new Point(0,15);
 		banco = new SucursalBanco("Banco UTN",coordenadaBanco);
 		
