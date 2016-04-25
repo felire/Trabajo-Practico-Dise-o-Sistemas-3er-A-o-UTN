@@ -21,7 +21,7 @@ public class TestCercania extends TestInit{
 	
 	@Test
 	public void testPuntoCercanoLocalComercial(){
-		assertEquals(true, localComercial.esCercano(new Point(0,1)));
+		assertEquals(true, localComercial.esCercano(new Point(-34.806537, -58.447796)));
 	}
 	
 /* Tests de CGP */
@@ -36,13 +36,15 @@ public class TestCercania extends TestInit{
     
     @Test
     public void testPuntoCercanoBanco(){
-    	assertEquals(true, banco.esCercano(new Point(0,14.9)));
+    	assertEquals(true, banco.esCercano(new Point(-34.603690, -58.416492)));
+    	assertEquals(false,banco.esCercano(new Point(-34.603214, -58.421003)));
     }
     
     /*Tests de Parada De Colectivo */
     
     @Test
     public void testPuntoCercanoParadaColectivo(){
-    	assertEquals(true, paradaDe55.esCercano(new Point(0, 0.1)));
+    	assertEquals(true, paradaDe55.esCercano(new Point(-34.598384, -58.420269)));
+    	assertEquals(false, paradaDe55.esCercano(new Point(-34.599647, -58.420462)));
     }
 }

@@ -28,7 +28,7 @@ public class TestInit {
 	LocalDateTime fecha;
 	Point coordenadaLocalComercial;
 	Set<DisponibilidadHoraria> disponibilidadesLocalComercial;
-	
+		
 	/* Variables de Banco */
 	SucursalBanco banco;
 	Servicio asesoramientoFinanciero;
@@ -83,18 +83,21 @@ public class TestInit {
 		disponibilidadesLocalComercial = new HashSet<>();
 		disponibilidadesLocalComercial.add(disponibilidadLocalComercial);
 		rubro = new Rubro("Libreria", new BigDecimal(0.5));
-		coordenadaLocalComercial= new Point(0,0);
+		coordenadaLocalComercial= new Point(-34.804824,-58.449473);
 		localComercial = new LocalComercial("Local Comercial",rubro, disponibilidadesLocalComercial, coordenadaLocalComercial);
 		localDate = LocalDate.of(2016, 4, 12);
 		fecha = localDate.atTime(15, 00);
 		localDateCuandoEstaCerrado = LocalDate.of(2016, 4, 18);
 		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(21, 00);
+		localComercial.addTag("utiles");
+		localComercial.addTag("papelera");
+		
 		
 		/* Setup de Banco */
 		SucursalBanco.setHorarioBancario();
-		coordenadaBanco = new Point(0,15);
+		coordenadaBanco = new Point(-34.604056, -58.411226);
 		banco = new SucursalBanco("Banco UTN",coordenadaBanco);
-		
+		banco.addTag("prestamos");
 			/* Setup de Servicios del Banco */
 			ArrayList<DayOfWeek> diasAsesor = new ArrayList<DayOfWeek>();
 			diasAsesor.add(DayOfWeek.MONDAY);
@@ -134,6 +137,7 @@ public class TestInit {
 		/* Setup de CGP */
 		coordenadaCGP = new Point(0,10);
 		cGP = new CGP("CGP1",polygon, coordenadaCGP);
+		cGP.addTag("agip");
 			/* Setup de Servicios del CGP */
 			ArrayList<DayOfWeek> diasRentas = new ArrayList<DayOfWeek>();
 			diasRentas.add(DayOfWeek.MONDAY);
@@ -155,15 +159,16 @@ public class TestInit {
 		cGP.addServicio(rentas);
 		
 		/*Setup de Parada de Colectivo*/
-		posicionDel55 = new Point(0,0);
+		posicionDel55 = new Point(-34.597819, -58.420451);
 		paradaDe55 = new ParadaDeColectivo("55", posicionDel55);
-		
+		paradaDe55.addTag("bondi");
 		
 		/* Setup de Buscador POIs*/
 		buscadorPOIS = new BuscadorPOIS();
 		buscadorPOIS.addPOI(cGP);
 		buscadorPOIS.addPOI(banco);
 		buscadorPOIS.addPOI(localComercial);
+		buscadorPOIS.addPOI(paradaDe55);
 	
 	}
 }
