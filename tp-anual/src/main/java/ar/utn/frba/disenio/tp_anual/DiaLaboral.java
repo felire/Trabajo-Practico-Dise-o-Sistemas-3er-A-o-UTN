@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class DiaLaboral {
 	}
 
 	
-    public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) {
-		return this.diaDisponible(dia) && horaDisponible(hora);
+    public Boolean estaDisponible(LocalDateTime fecha) {
+		return this.diaDisponible(fecha.getDayOfWeek()) && horaDisponible(fecha.toLocalTime());
 	}
 }

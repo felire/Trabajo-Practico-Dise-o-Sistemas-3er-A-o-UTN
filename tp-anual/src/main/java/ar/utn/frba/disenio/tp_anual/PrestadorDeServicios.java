@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +26,13 @@ public abstract class PrestadorDeServicios extends POI{
 		servicios.remove(servicio);
 	}
 	
-	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora, String valorX) 
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX)
 	{
-		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(dia,hora));
+		return servicios.stream().anyMatch(servicio -> servicio.toString().equals(valorX) && servicio.estaDisponible(fecha));
 	}
-	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) 
+	public Boolean estaDisponible(LocalDateTime fecha)
 	{
-		return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(dia,hora));
+		return servicios.stream().anyMatch(servicio -> servicio.estaDisponible(fecha));
 	}
 	
 	public Boolean soyBuscado(String palabraClave){

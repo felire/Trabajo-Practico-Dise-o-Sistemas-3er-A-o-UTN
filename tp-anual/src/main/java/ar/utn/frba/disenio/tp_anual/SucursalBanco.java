@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.uqbar.geodds.Point;
@@ -28,19 +29,19 @@ public class SucursalBanco extends PrestadorDeServicios{
 		horarioBancario = new DisponibilidadHoraria(lista);
 	} 	
 
-	public Boolean estaDisponible(DayOfWeek dia,LocalTime hora, String valorX) 
+	public Boolean estaDisponible(LocalDateTime fecha, String valorX)
 	{
-		if(!enHorarioBancario(dia,hora)) return false;
-		return super.estaDisponible(dia,hora, valorX);
+		if(!enHorarioBancario(fecha)) return false;
+		return super.estaDisponible(fecha, valorX);
 	}
 	
-	public Boolean estaDisponible(DayOfWeek dia,LocalTime hora){
-		if(!enHorarioBancario(dia,hora)) return false;
-		return super.estaDisponible(dia,hora);
+	public Boolean estaDisponible(LocalDateTime fecha){
+		if(!enHorarioBancario(fecha)) return false;
+		return super.estaDisponible(fecha);
 	}
 	
-	private Boolean enHorarioBancario(DayOfWeek dia,LocalTime hora) {
-		return horarioBancario.estaDisponible(dia,hora);
+	private Boolean enHorarioBancario(LocalDateTime fecha) {
+		return horarioBancario.estaDisponible(fecha);
 	}	
 	
 }

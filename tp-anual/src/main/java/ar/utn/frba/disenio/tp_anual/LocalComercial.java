@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -22,8 +23,8 @@ public class LocalComercial extends POI{
 		this.disponibilidades = disponibilidades;
 	}
 	
-	public Boolean estaDisponible(DayOfWeek dia, LocalTime hora) {
-		return disponibilidades.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(dia,hora));
+	public Boolean estaDisponible(LocalDateTime fecha) {
+		return disponibilidades.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(fecha));
 	}
 	
 	public Boolean soyBuscado(String palabraClave){
