@@ -2,12 +2,17 @@ package ar.utn.frba.disenio.tp_anual;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sun.javafx.collections.MappingChange.Map;
+
 public class TestJsonTraduccion {
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
-	private JsonListaBancos listaBancos;
+	private List<JsonBanco> listaBancos;
 	private String jSonBancos = "["
 	                             + "{ \"banco\": \"Banco de la Plaza\","
 	                             + "\"x\": -35.9338322,"
@@ -31,7 +36,13 @@ public class TestJsonTraduccion {
 	}
 	@Test
 	public void compararValoresLeidos(){
-		assertEquals("Banco de la Plaza", listaBancos.getBancos().get(0).getBanco());
+		assertEquals("Banco de la Plaza", listaBancos.get(0).getBanco());
+		assertEquals("Avellaneda", listaBancos.get(0).getSucursal());
+		assertEquals("Javier Loeschbor", listaBancos.get(0).getGerente());
+		
+		assertEquals("Banco de la Plaza", listaBancos.get(1).getBanco());
+		assertEquals("Caballito", listaBancos.get(1).getSucursal());
+		assertEquals("Fabián Fantaguzzi", listaBancos.get(1).getGerente());
 	}
 
 }

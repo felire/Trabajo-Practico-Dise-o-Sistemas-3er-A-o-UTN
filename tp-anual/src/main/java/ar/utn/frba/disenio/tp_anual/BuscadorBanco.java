@@ -10,7 +10,7 @@ import org.uqbar.geodds.Point;
 public abstract class BuscadorBanco {
 	private JsonTraduccion jsonTraduccion;
 	public abstract List<POI> filtrarBancos(String palabraClave, String servicio);
-	public List<POI> crearPOIS(JsonListaBancos bancos){
+	public List<POI> crearPOIS(List<JsonBanco> bancos){
 		
 		DisponibilidadHoraria horarioBancario;
 		Set<DisponibilidadHoraria> disponibilidades;
@@ -26,7 +26,7 @@ public abstract class BuscadorBanco {
 		disponibilidades = new HashSet<>();
 		disponibilidades.add(horarioBancario);
 		int i;
-		List<JsonBanco> lista = bancos.getBancos();
+		List<JsonBanco> lista = bancos;
 		List<POI> listaPOIS = new ArrayList<POI>();		
 		for(i = 0; i < lista.size(); i++){
 			List<String> servicios = lista.get(i).getServicios();
