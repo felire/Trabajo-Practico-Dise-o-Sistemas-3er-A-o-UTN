@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class BuscadorPOIS
 {
 	private List<POI> listaPOIs;
+	private BuscadorCGP buscadorCGP;
+	private BuscadorBanco buscadorBanco;
 	public BuscadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
@@ -26,5 +28,11 @@ public class BuscadorPOIS
 	public void deletePOI(POI poi)
 	{
 		listaPOIs.remove(poi);
+	}
+	public List<POI> filtrarCGPs(String palabraClave){
+		return buscadorCGP.filtrarCGPs(palabraClave);
+	}
+	public List<POI> filtrarBancos(String palabraClave, String servicio){
+		return buscadorBanco.filtrarBancos(palabraClave, servicio);
 	}
 }

@@ -18,6 +18,5 @@ public class CGP extends PrestadorDeServicios{
 		return this.comuna.isInside(coordenada);
 	}
 
-	
 
 }
