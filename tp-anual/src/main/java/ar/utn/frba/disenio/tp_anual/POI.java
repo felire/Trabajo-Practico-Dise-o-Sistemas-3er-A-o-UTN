@@ -21,6 +21,10 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		this.coordenada = coordenada;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
 	public void addTag(String tag)
 	{
 		listaTags.add(tag);

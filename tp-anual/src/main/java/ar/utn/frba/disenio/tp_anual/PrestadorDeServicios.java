@@ -10,6 +10,10 @@ import org.uqbar.geodds.Point;
 
 public abstract class PrestadorDeServicios extends POI{
 	private List<Servicio> servicios;
+	public List<Servicio> getServicios() {
+		return servicios;
+	}
+
 	public PrestadorDeServicios(String nombre,Point coordenada)
 	{
 		super(nombre,coordenada);

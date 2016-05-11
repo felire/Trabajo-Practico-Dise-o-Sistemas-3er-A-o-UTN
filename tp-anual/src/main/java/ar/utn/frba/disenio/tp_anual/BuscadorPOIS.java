@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class BuscadorPOIS
 {
 	private List<POI> listaPOIs;
-	private BuscadorCGP buscadorCGP;
-	private BuscadorBanco buscadorBanco;
+	private BuscadorCGP_I buscadorCGP;
+	private BuscadorBancoI buscadorBanco;
 	public BuscadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
