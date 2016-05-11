@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class) // Nos ayudamos de este runner en JUnit para usar las anotaciones de Mockito
 public class TestFiltrarCGP{
-	@Mock BuscadorCGP buscadorCGP;
+	@Mock BuscadorCGP_I buscadorCGP;
 	@InjectMocks BuscadorPOIS buscadorPOIS = new BuscadorPOIS();
 	@Test
 	  public void pruebaLLamadoFiltrarCGPs(){
