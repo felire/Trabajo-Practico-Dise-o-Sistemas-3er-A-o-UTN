@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class)
 public class TestFiltrarBancos {
 	
-	@Mock BuscadorBanco buscadorBanco;
+	@Mock BuscadorBancoI buscadorBanco;
 	@InjectMocks BuscadorPOIS buscadorPOIS = new BuscadorPOIS();
 	@Test
 	public void pruebaLLamadoFiltrarBancos(){
