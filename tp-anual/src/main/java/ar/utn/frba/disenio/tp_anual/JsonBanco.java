@@ -4,18 +4,18 @@ import java.util.List;
 
 public class JsonBanco {
 	private String banco;
-	private long x;
-	private long y;
+	private Double x;
+	private Double y;
 	private String sucursal;
 	private String gerente;
 	private List<String> servicios;
 	public String getBanco() {
 		return banco;
 	}
-	public long getX() {
+	public Double getX() {
 		return x;
 	}
-	public long getY() {
+	public Double getY() {
 		return y;
 	}
 	public String getSucursal() {

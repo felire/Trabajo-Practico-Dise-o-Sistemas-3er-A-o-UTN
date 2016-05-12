@@ -43,6 +43,7 @@ public class TestJsonTraduccion {
 		assertEquals("Banco de la Plaza", listaBancos.get(1).getBanco());
 		assertEquals("Caballito", listaBancos.get(1).getSucursal());
 		assertEquals("Fabián Fantaguzzi", listaBancos.get(1).getGerente());
+		assertEquals(-35.9338322, listaBancos.get(0).getX(),0.000000001);
 	}
 
 }

@@ -11,8 +11,14 @@ import java.util.stream.Collectors;
 public class BuscadorPOIS
 {
 	private List<POI> listaPOIs;
-	private BuscadorCGP_I buscadorCGP;
-	private BuscadorBancoI buscadorBanco;
+	private BuscadorCGP buscadorCGP;
+	private BuscadorBanco buscadorBanco;
+	public void setBuscadorCGP(BuscadorCGP buscadorCGP) {
+		this.buscadorCGP = buscadorCGP;
+	}
+	public void setBuscadorBanco(BuscadorBanco buscadorBanco) {
+		this.buscadorBanco = buscadorBanco;
+	}
 	public BuscadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
@@ -25,14 +31,16 @@ public class BuscadorPOIS
 	{
 		listaPOIs.add(poi);
 	}
+	
 	public void deletePOI(POI poi)
 	{
 		listaPOIs.remove(poi);
 	}
-	public List<POI> filtrarCGPs(String palabraClave){
+
+	/*public List<POI> filtrarCGPs(String palabraClave){
 		return buscadorCGP.filtrarCGPs(palabraClave);
-	}
-	public List<POI> filtrarBancos(String palabraClave, String servicio){
+	}*/
+	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){
 		return buscadorBanco.filtrarBancos(palabraClave, servicio);
 	}
 }

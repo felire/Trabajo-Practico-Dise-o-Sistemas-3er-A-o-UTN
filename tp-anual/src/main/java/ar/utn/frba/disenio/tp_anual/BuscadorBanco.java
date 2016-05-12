@@ -7,10 +7,17 @@ import java.util.List;
 import java.util.Set;
 
 import org.uqbar.geodds.Point;
-public class BuscadorBanco implements BuscadorBancoI{
+public class BuscadorBanco{
 	private JsonTraduccion jsonTraduccion;
-	public List<POI> filtrarBancos(String palabraClave, String servicio){ //Hardcodeada hasta tener comportamiento real
-		return new ArrayList();
+	private ServicioExternoBanco servicioExterno;
+	
+	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){ //Hardcodeada hasta tener comportamiento real
+		String devolucion = servicioExterno.search(palabraClave, servicio);
+		if(devolucion!=null){
+		List<JsonBanco> listaTraducida = jsonTraduccion.traductor(devolucion);
+		return this.crearPOIS(listaTraducida);
+		}
+		return new ArrayList<SucursalBanco>();
 	}
 	public List<SucursalBanco> crearPOIS(List<JsonBanco> bancos){
 		
@@ -31,14 +38,18 @@ public class BuscadorBanco implements BuscadorBancoI{
 		List<JsonBanco> lista = bancos;
 		List<SucursalBanco> listaPOIS = new ArrayList<SucursalBanco>();		
 		for(i = 0; i < lista.size(); i++){
-			List<String> servicios = lista.get(i).getServicios();
-			SucursalBanco banco = new SucursalBanco(lista.get(i).getBanco(), new Point(lista.get(i).getX(), lista.get(i).getY()));
-			for(int j = 0; j < servicios.size(); j++){
-				Servicio servicio = new Servicio(servicios.get(j), disponibilidades);
-				banco.addServicio(servicio);
-			}
-			listaPOIS.add(banco);			
+			listaPOIS.add(this.crearPOI(lista,i,disponibilidades));	
 		}
 		return listaPOIS;
+	}
+	
+	public SucursalBanco crearPOI(List<JsonBanco> lista, int i, Set<DisponibilidadHoraria> disponibilidades){
+		List<String> servicios = lista.get(i).getServicios();
+		SucursalBanco banco = new SucursalBanco(lista.get(i).getBanco(), new Point(lista.get(i).getX(), lista.get(i).getY()));
+		for(int j = 0; j < servicios.size(); j++){
+		Servicio servicio = new Servicio(servicios.get(j), disponibilidades);
+		banco.addServicio(servicio);
+		}
+		return banco;
 	}
 }
