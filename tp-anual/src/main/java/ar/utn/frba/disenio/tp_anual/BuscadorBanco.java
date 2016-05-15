@@ -1,17 +1,18 @@
 package ar.utn.frba.disenio.tp_anual;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.uqbar.geodds.Point;
+
 public class BuscadorBanco{
 	private JsonTraduccion jsonTraduccion;
 	private ServicioExternoBanco servicioExterno;
 	
-	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){ //Hardcodeada hasta tener comportamiento real
+	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){
 		List<JsonBanco> listaTraducida = jsonTraduccion.traductor(devolucion);
@@ -19,8 +20,8 @@ public class BuscadorBanco{
 		}
 		return new ArrayList<SucursalBanco>();
 	}
-	public List<SucursalBanco> crearPOIS(List<JsonBanco> bancos){
-		
+	
+	public List<SucursalBanco> crearPOIS(List<JsonBanco> bancos){		
 		DisponibilidadHoraria horarioBancario;
 		Set<DisponibilidadHoraria> disponibilidades;
 		ArrayList<DayOfWeek>listaDias=new ArrayList<DayOfWeek>();

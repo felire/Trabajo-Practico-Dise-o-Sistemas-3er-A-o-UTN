@@ -1,15 +1,13 @@
 package ar.utn.frba.disenio.tp_anual;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.geodds.Point;
 
 public abstract class PrestadorDeServicios extends POI{
-	private List<Servicio> servicios;
+	protected List<Servicio> servicios;
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
@@ -19,7 +17,7 @@ public abstract class PrestadorDeServicios extends POI{
 		super(nombre,coordenada);
 		servicios = new ArrayList<Servicio>();
 	}
-	
+
 	public void addServicio(Servicio servicio)
 	{
 		servicios.add(servicio);
