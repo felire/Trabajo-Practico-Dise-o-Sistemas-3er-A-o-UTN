@@ -61,7 +61,7 @@ public class AdapterCGP {
 	public List<Servicio> crearServicios (List<ServicioDTO> servicios){
 		List<Servicio> lista = new ArrayList<Servicio>();
 		int i=0;
-		while (servicios.size()>0){
+		while (i<servicios.size()){
 			lista.add(this.crearServicio(servicios.get(i)));
 			i++;
 		}
