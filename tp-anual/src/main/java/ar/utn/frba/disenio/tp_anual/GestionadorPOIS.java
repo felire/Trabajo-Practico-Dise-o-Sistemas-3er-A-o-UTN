@@ -13,6 +13,7 @@ public class GestionadorPOIS
 	private List<POI> listaPOIs;
 	private BuscadorCGP buscadorCGP;
 	private BuscadorBanco buscadorBanco;
+	private int contadorID=1;
 	
 	//Consulta
 	public List<POI> buscarPOIs(String palabraClave){
@@ -55,7 +56,9 @@ public class GestionadorPOIS
 	}
 	public void addPOI(POI poi)
 	{
+		poi.setID(contadorID);
 		listaPOIs.add(poi);
+		contadorID++;
 	}
 	
 	public void deletePOI(POI poi)
