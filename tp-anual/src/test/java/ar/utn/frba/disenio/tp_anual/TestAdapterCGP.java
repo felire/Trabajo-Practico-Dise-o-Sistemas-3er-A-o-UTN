@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -42,31 +43,30 @@ public class TestAdapterCGP {
 		polygon.add(punto4);
 		//Seteo Primer servicio
 		servicioDTOBicis= new ServicioDTO();
-		servicioDTOBicis.setNombre("Alquiler Bicicletas");
-		servicioDTOBicis.setRango(new ArrayList<RangoServicioDTO>());
+		servicioDTOBicis.setNombre("Alquiler Bicicletas"); 
+		
 		//Su rango de atencion
 		rangoServicioBicis=new RangoServicioDTO();
 		rangoServicioBicis.setDia(6);
 		rangoServicioBicis.setHorarioDesde(9);
 		rangoServicioBicis.setMinutoDesde(0);
-		rangoServicioBicis.setHorarioHasta(19);
+		rangoServicioBicis.setHorarioHasta(17);
 		rangoServicioBicis.setMinutoHasta(30);
-		servicioDTOBicis.getRango().add(rangoServicioBicis);
+		servicioDTOBicis.agregarRango(rangoServicioBicis);
 		
 		//Ahora si, seteo atributos centro DTO
 		centroDTO.setComuna(polygon);
 		centroDTO.setDomicilio("Arana 1551");
-		centroDTO.setTelefono("45318008");
 		centroDTO.setNombreDirector("Tito Lasanta");
+		centroDTO.setTelefono("45318008");
 		centroDTO.setZonasIncluidas("Balvanera, Villa Ortuza");
-		centroDTO.setListaServicios(new ArrayList<ServicioDTO>());
-		centroDTO.getListaServicios().add(servicioDTOBicis);
-	
+		centroDTO.agregarServicioDTO(servicioDTOBicis);
+		
 		//Creo el adapter
 		adapterCGP= new AdapterCGP();
 		
 		//Creo una fecha para probar disponibilidad
-		localDate = LocalDate.of(2016, 5, 29);
+		localDate = LocalDate.of(2016, 5, 28);
 		fecha = localDate.atTime(14, 30);
 		
 	}
@@ -74,20 +74,21 @@ public class TestAdapterCGP {
 	public void creaCGPconComunaCorrecta(){
 		POITraducido=adapterCGP.traducir(centroDTO);
 		assertEquals(centroDTO.getComuna(),POITraducido.getComuna());
-		//assertEquals(true,POITraducido.servicios.stream().findAny(tieneNombreBici));
 	}
 	@Test
 	public void creaCGPconServicio(){
-		POITraducido=adapterCGP.traducir(centroDTO);		Predicate<Servicio> tieneNombreBici =  serv -> serv.toString()=="Alquiler Bicicletas";
+		POITraducido=adapterCGP.traducir(centroDTO);
+		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
 		assertEquals(true,POITraducido.servicios.stream().anyMatch(tieneNombreBici));
 	}
-	/*@Test
-+	public void creaDisponibilidadHoraria(){
-+		POITraducido=adapterCGP.traducir(centroDTO);
-+		Predicate<Servicio> tieneNombreBici =  serv -> serv.nombre=="Alquiler Bicicletas";
-+		Servicio bicicletas =  POITraducido.servicios.stream().filter(tieneNombreBici).findFirst().get();
-+		assertEquals(1,bicicletas.diasDisponibles.size());
-+		
-+	}*/
-	
+	@Test
+	public void creaDisponibilidadHoraria(){
+		POITraducido=adapterCGP.traducir(centroDTO);
+		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
+		Servicio bicicletas =  POITraducido.servicios.stream().filter(tieneNombreBici).findFirst().get();
+		assertEquals(true,bicicletas.estaDisponible(fecha));
+		
+	}
+		
 }
+

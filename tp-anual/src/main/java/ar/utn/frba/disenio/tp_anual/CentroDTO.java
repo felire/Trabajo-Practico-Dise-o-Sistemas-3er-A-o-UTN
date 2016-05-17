@@ -1,5 +1,6 @@
 package ar.utn.frba.disenio.tp_anual;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.uqbar.geodds.Polygon;
 
@@ -11,6 +12,12 @@ public class CentroDTO {
 	private String telefono;
 	private List<ServicioDTO> listaServicios;
 	
+	public CentroDTO(){
+		listaServicios=new ArrayList<ServicioDTO>();
+	}
+	public void agregarServicioDTO(ServicioDTO servicio){
+		this.listaServicios.add(servicio);
+	}
 	public void setComuna(Polygon comuna) {
 		this.comuna = comuna;
 	}

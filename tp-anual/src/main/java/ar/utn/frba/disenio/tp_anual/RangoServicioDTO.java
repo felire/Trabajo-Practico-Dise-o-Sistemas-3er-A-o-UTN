@@ -7,6 +7,8 @@ public class RangoServicioDTO {
 	private int horarioHasta;
 	private int minutoHasta;
 	
+	
+
 	public void setDia(int dia) {
 		this.dia = dia;
 	}

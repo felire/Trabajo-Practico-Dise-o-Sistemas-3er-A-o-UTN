@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Servicio {
+	
+
 	private String nombre;
 	private Set<DisponibilidadHoraria> diasDisponibles;
 	
@@ -16,7 +18,9 @@ public class Servicio {
 	{
 		return diasDisponibles.stream().anyMatch(disponibilidad -> disponibilidad.estaDisponible(fecha));
 	}
-	
+	public String getNombre() {
+		return nombre;
+	}
 	public String toString()
 	{
 		return nombre;

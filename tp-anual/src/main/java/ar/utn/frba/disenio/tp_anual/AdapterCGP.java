@@ -26,31 +26,21 @@ public class AdapterCGP {
 		return DayOfWeek.of(rango.getDia());
 	}
 		
-	public Boolean rangosDeIgualHora (RangoServicioDTO rango1, RangoServicioDTO rango2){
-		return this.traducirHoras(rango1) == this.traducirHoras(rango2);
+	public DisponibilidadHoraria crearDisponibilidad(RangoServicioDTO rango){
+		ArrayList<FranjaHoraria> franja= new ArrayList<FranjaHoraria>();
+		franja.add(this.traducirHoras(rango));
+		ArrayList<DayOfWeek> dia= new ArrayList<DayOfWeek>();
+		dia.add(this.traducirDia(rango));
+		return new DisponibilidadHoraria(franja,dia);
 	}
 	
-	public DisponibilidadHoraria crearDisponibilidad (List<RangoServicioDTO> rango){
-		ArrayList<DayOfWeek> diasSimilares = new ArrayList<DayOfWeek>();
-		RangoServicioDTO primerRango = rango.get(0);
-		List<RangoServicioDTO> lista = new ArrayList<RangoServicioDTO>();
-		lista.addAll(rango.stream().filter(rango1 -> this.rangosDeIgualHora(primerRango,rango1)).collect(Collectors.toList()));
-		int i=0;
-		while (i<lista.size()){
-			diasSimilares.add(this.traducirDia(lista.get(i)));
-			i++;
-		}
-		rango.removeAll(lista);
-		ArrayList<FranjaHoraria> franja = new ArrayList<FranjaHoraria>();
-		franja.add(this.traducirHoras(primerRango));
-		return new DisponibilidadHoraria(franja,diasSimilares);
-	}
 	
 	public Set<DisponibilidadHoraria> crearDisponibilidades(List<RangoServicioDTO> rango){
 		Set<DisponibilidadHoraria> lista = new HashSet<DisponibilidadHoraria>();
 		int i=0;
-		while (i<lista.size()){
-			lista.add(this.crearDisponibilidad(rango));
+		while (i<rango.size()){
+			lista.add(this.crearDisponibilidad(rango.get(i)));
+			i++;
 		}
 		return lista;
 	}
