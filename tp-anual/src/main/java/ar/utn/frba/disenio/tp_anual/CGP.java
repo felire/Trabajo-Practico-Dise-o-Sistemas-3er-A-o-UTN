@@ -6,8 +6,16 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 public class CGP extends PrestadorDeServicios{
-	public Polygon comuna;
+	private Polygon comuna;
 	
+	public Polygon getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(Polygon comuna) {
+		this.comuna = comuna;
+	}
+
 	public CGP(String nombre,Polygon comuna, Point coordenada)
 	{
 		super(nombre,coordenada);
