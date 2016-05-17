@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 public class TestJsonTraduccion {
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBanco> listaBancos;

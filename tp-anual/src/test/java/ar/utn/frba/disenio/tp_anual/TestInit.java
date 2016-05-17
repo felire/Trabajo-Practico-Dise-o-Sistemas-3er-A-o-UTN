@@ -64,7 +64,7 @@ public class TestInit {
 	Point posicionDelOtro55;
 	
 	/* Variables de Programa Principal */
-	BuscadorPOIS buscadorPOIS;
+	GestionadorPOIS buscadorPOIS;
 	List<POI> resultadosDeBusqueda;
 	
 	@Before
@@ -164,7 +164,7 @@ public class TestInit {
 		paradaDe55.addTag("bondi");
 		
 		/* Setup de Buscador POIs*/
-		buscadorPOIS = new BuscadorPOIS();
+		buscadorPOIS = new GestionadorPOIS();
 		buscadorPOIS.addPOI(cGP);
 		buscadorPOIS.addPOI(banco);
 		buscadorPOIS.addPOI(localComercial);

@@ -8,18 +8,44 @@ import java.util.stream.Collectors;
  * Hello world!
  *
  */
-public class BuscadorPOIS
+public class GestionadorPOIS
 {
 	private List<POI> listaPOIs;
 	private BuscadorCGP buscadorCGP;
 	private BuscadorBanco buscadorBanco;
+	
+	//Consulta
+	public List<POI> buscarPOIs(String palabraClave){
+		return this.filtrarPOIs(palabraClave);
+	};
+	
+	//Alta
+	public void altaPOI(POI nuevoPOI){
+		listaPOIs.add(nuevoPOI);
+	}
+
+	
+	//Baja
+	public void bajaPOI(String nombre){
+		POI poi = this.filtrarPOIs(nombre).get(0);
+		listaPOIs.remove(poi);
+	}
+	
+	private POI buscarPOIporNombre() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//Modificación
+	
+	
 	public void setBuscadorCGP(BuscadorCGP buscadorCGP) {
 		this.buscadorCGP = buscadorCGP;
 	}
 	public void setBuscadorBanco(BuscadorBanco buscadorBanco) {
 		this.buscadorBanco = buscadorBanco;
 	}
-	public BuscadorPOIS()
+	public GestionadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
 	}
