@@ -6,7 +6,7 @@ import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
 public class CGP extends PrestadorDeServicios{
-	private Polygon comuna;
+	public Polygon comuna;
 	
 	public CGP(String nombre,Polygon comuna, Point coordenada)
 	{

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class AdapterCGP {
 
-	public POI traductor(CentroDTO centro){
+	public CGP traducir(CentroDTO centro){
 		CGP cgp = new CGP("Nuevo CGP", centro.getComuna(),new Point(1,0)); //hardcodeo todo lo que el centroDTO no me proporciona
 		cgp.setServicios(this.crearServicios(centro.getListaServicios()));
 		return cgp;		
@@ -48,7 +48,8 @@ public class AdapterCGP {
 	
 	public Set<DisponibilidadHoraria> crearDisponibilidades(List<RangoServicioDTO> rango){
 		Set<DisponibilidadHoraria> lista = new HashSet<DisponibilidadHoraria>();
-		while (rango.size()>0){
+		int i=0;
+		while (i<lista.size()){
 			lista.add(this.crearDisponibilidad(rango));
 		}
 		return lista;

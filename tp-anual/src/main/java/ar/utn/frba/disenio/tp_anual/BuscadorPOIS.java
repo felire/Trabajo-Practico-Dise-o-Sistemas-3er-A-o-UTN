@@ -37,9 +37,9 @@ public class BuscadorPOIS
 		listaPOIs.remove(poi);
 	}
 
-	/*public List<POI> filtrarCGPs(String palabraClave){
+	public List<POI> filtrarCGPs(String palabraClave){
 		return buscadorCGP.filtrarCGPs(palabraClave);
-	}*/
+	}
 	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){
 		return buscadorBanco.filtrarBancos(palabraClave, servicio);
 	}

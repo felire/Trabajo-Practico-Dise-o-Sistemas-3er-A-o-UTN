@@ -6,7 +6,7 @@ import org.uqbar.geodds.Polygon;
 public class CentroDTO {
 	Polygon comuna;
 	String zonasIncluidas;
-	String nombreDrirector;
+	String nombreDirector;
 	String domicilio;
 	String telefono;
 	List<ServicioDTO> listaServicios;
@@ -17,8 +17,8 @@ public class CentroDTO {
 	public String getZonasIncluidas() {
 		return zonasIncluidas;
 	}
-	public String getNombreDrirector() {
-		return nombreDrirector;
+	public String getNombreDirector() {
+		return nombreDirector;
 	}
 	public String getDomicilio() {
 		return domicilio;
