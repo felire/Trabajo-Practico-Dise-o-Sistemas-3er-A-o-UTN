@@ -36,7 +36,7 @@ public class AdapterCGP {
 		List<RangoServicioDTO> lista = new ArrayList<RangoServicioDTO>();
 		lista.addAll(rango.stream().filter(rango1 -> this.rangosDeIgualHora(primerRango,rango1)).collect(Collectors.toList()));
 		int i=0;
-		while (lista.size()!= 0){
+		while (i<lista.size()){
 			diasSimilares.add(this.traducirDia(lista.get(i)));
 			i++;
 		}

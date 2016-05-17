@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Servicio {
-	public String nombre;
-	public Set<DisponibilidadHoraria> diasDisponibles;
+	private String nombre;
+	private Set<DisponibilidadHoraria> diasDisponibles;
 	
 	public Servicio(String nombre, Set<DisponibilidadHoraria> diasDisponibles) {
 		this.nombre = nombre;

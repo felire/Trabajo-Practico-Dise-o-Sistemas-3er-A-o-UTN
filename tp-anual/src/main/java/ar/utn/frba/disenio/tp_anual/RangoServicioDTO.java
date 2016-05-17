@@ -1,12 +1,27 @@
 package ar.utn.frba.disenio.tp_anual;
 
 public class RangoServicioDTO {
-	int dia;
-	int horarioDesde;
-	int minutoDesde;
-	int horarioHasta;
-	int minutoHasta;
+	private int dia;
+	private int horarioDesde;
+	private int minutoDesde;
+	private int horarioHasta;
+	private int minutoHasta;
 	
+	public void setDia(int dia) {
+		this.dia = dia;
+	}
+	public void setHorarioDesde(int horarioDesde) {
+		this.horarioDesde = horarioDesde;
+	}
+	public void setMinutoDesde(int minutoDesde) {
+		this.minutoDesde = minutoDesde;
+	}
+	public void setHorarioHasta(int horarioHasta) {
+		this.horarioHasta = horarioHasta;
+	}
+	public void setMinutoHasta(int minutoHasta) {
+		this.minutoHasta = minutoHasta;
+	}
 	public int getDia() {
 		return dia;
 	}
