@@ -53,4 +53,19 @@ public class TestBusqueda extends TestInit{
 		assertEquals(true,(paradaDe55.getID()==4));
 	}
 	
+	@Test
+	public void busquedaYEliminacionDePOIPorID()
+	{
+		//Busqueda por ID
+		assertEquals(true,(buscadorPOIS.buscarPorID(1)==cGP));
+		//Eliminacion por ID
+		assertEquals(true,(buscadorPOIS.buscarPOIs("agip")).contains(cGP));
+		buscadorPOIS.bajaPOI(1);
+		assertEquals(false,(buscadorPOIS.buscarPOIs("agip")).contains(cGP));
+		//Dar de alta al POI viejo le da un nuevo ID
+		buscadorPOIS.altaPOI(cGP);
+		assertEquals(true,(cGP.getID()==5));
+	}
+	
+	
 }

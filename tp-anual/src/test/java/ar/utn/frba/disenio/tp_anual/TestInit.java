@@ -165,10 +165,10 @@ public class TestInit {
 		
 		/* Setup de Buscador POIs*/
 		buscadorPOIS = new GestionadorPOIS();
-		buscadorPOIS.addPOI(cGP);
-		buscadorPOIS.addPOI(banco);
-		buscadorPOIS.addPOI(localComercial);
-		buscadorPOIS.addPOI(paradaDe55);
+		buscadorPOIS.altaPOI(cGP);
+		buscadorPOIS.altaPOI(banco);
+		buscadorPOIS.altaPOI(localComercial);
+		buscadorPOIS.altaPOI(paradaDe55);
 	
 	}
 }

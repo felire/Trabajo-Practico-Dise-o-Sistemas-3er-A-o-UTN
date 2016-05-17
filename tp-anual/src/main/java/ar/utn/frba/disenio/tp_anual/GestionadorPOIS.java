@@ -22,14 +22,20 @@ public class GestionadorPOIS
 	
 	//Alta
 	public void altaPOI(POI nuevoPOI){
+		nuevoPOI.setID(contadorID);
 		listaPOIs.add(nuevoPOI);
+		contadorID++;
 	}
 
 	
 	//Baja
-	public void bajaPOI(String nombre){
-		POI poi = this.filtrarPOIs(nombre).get(0);
-		listaPOIs.remove(poi);
+	public void bajaPOI(int iD){
+		listaPOIs.remove(buscarPorID(iD));
+	}
+	
+	//Buscar POI por ID
+	public POI buscarPorID(int iD){
+		return listaPOIs.stream().filter(poi -> poi.getID()== iD).findFirst().get();
 	}
 	
 	private POI buscarPOIporNombre() {
@@ -53,12 +59,6 @@ public class GestionadorPOIS
 	public List<POI> filtrarPOIs(String palabraClave)
 	{
 		return  listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList());
-	}
-	public void addPOI(POI poi)
-	{
-		poi.setID(contadorID);
-		listaPOIs.add(poi);
-		contadorID++;
 	}
 	
 	public void deletePOI(POI poi)
