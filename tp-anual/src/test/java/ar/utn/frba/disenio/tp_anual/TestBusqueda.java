@@ -34,6 +34,7 @@ public class TestBusqueda extends TestInit{
 		//Busco por servicio
 		assertEquals(true,(buscadorPOIS.filtrarPOIs("Asesoramiento")).contains(banco));
 	}
+	
 	@Test
 	public void buscarCGP()
 	{
@@ -42,4 +43,14 @@ public class TestBusqueda extends TestInit{
 		//Busco por servicio
 		assertEquals(true,(buscadorPOIS.filtrarPOIs("Rentas")).contains(cGP));
 	}
+	
+	@Test
+	public void setteoID()
+	{
+		assertEquals(true,(cGP.getID()==1));
+		assertEquals(true,(banco.getID()==2));
+		assertEquals(true,(localComercial.getID()==3));
+		assertEquals(true,(paradaDe55.getID()==4));
+	}
+	
 }
