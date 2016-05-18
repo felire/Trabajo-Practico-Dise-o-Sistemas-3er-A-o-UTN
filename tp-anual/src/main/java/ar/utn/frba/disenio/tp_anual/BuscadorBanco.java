@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import org.uqbar.geodds.Point;
 
-public class BuscadorBanco{
+public class BuscadorBanco implements BuscadorExterno{
 	private JsonTraduccion jsonTraduccion;
 	private ServicioExternoBanco servicioExterno;
 	
@@ -52,5 +52,10 @@ public class BuscadorBanco{
 		banco.addServicio(servicio);
 		}
 		return banco;
+	}
+
+	@Override
+	public List<SucursalBanco> filtrar(String palabraClave) {
+		return this.filtrarBancos(palabraClave, null);		
 	}
 }

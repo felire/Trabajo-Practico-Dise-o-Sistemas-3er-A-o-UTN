@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Hello world!
- *
- */
+
 public class GestionadorPOIS
 {
 	private List<POI> listaPOIs;
+	private List<BuscadorExterno> buscadoresExternos;
 	private BuscadorCGP buscadorCGP;
 	private BuscadorBanco buscadorBanco;
 	private int contadorID=1;
@@ -39,26 +37,26 @@ public class GestionadorPOIS
 	}
 	
 	private POI buscarPOIporNombre() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	//Modificación
 	
+	public void agregarBuscadorExterno(BuscadorExterno buscador){
+		buscadoresExternos.add(buscador);
+	}
 	
-	public void setBuscadorCGP(BuscadorCGP buscadorCGP) {
-		this.buscadorCGP = buscadorCGP;
-	}
-	public void setBuscadorBanco(BuscadorBanco buscadorBanco) {
-		this.buscadorBanco = buscadorBanco;
-	}
 	public GestionadorPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
+		buscadoresExternos = new ArrayList<BuscadorExterno>();
 	}
 	public List<POI> filtrarPOIs(String palabraClave)
 	{
-		return  listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList());
+		List<POI> resultados=new ArrayList<POI>();
+		resultados.addAll(listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList()));
+		buscadoresExternos.stream().forEach(b->resultados.addAll(b.filtrar(palabraClave)));
+		return resultados;
 	}
 	
 	public void deletePOI(POI poi)
@@ -66,10 +64,4 @@ public class GestionadorPOIS
 		listaPOIs.remove(poi);
 	}
 
-	public List<POI> filtrarCGPs(String palabraClave){
-		return buscadorCGP.filtrarCGPs(palabraClave);
-	}
-	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){
-		return buscadorBanco.filtrarBancos(palabraClave, servicio);
-	}
 }
