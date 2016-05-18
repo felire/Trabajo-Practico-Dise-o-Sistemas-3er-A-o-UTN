@@ -8,7 +8,6 @@ public class BuscadorCGP implements BuscadorExterno{
 	private ServicioExternoCGP servicioExterno;
 	private AdapterCGP adapterCGP;
 	
-	@Override
 	public List<POI> filtrar(String palabraClave){//Hardcodeado hasta tener correcto funcionamiento
 		List<CentroDTO> listaDevolucion = servicioExterno.search(palabraClave);
 		if(listaDevolucion != null){
@@ -29,4 +28,8 @@ public class BuscadorCGP implements BuscadorExterno{
 		this.adapterCGP = adapterCGP;
 	}
 	
+	@Override
+	public List<POI> filtrar(String palabraClave, String nada){
+		return this.filtrar(palabraClave);
+	}
 }

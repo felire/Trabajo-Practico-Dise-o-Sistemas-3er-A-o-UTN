@@ -27,7 +27,9 @@ public class TestFiltrarBancos {
 	@Test
 	public void pruebaLLamadoFiltrarBancos(){
 		buscadorPOIS.filtrarPOIs("Banco 1");
-	    verify(servicioExterno).search("Banco 1", null); // ¿En verdad se llamo a este método?
+		buscadorPOIS.filtrarPOIs("Banco 1", "Servicio 1");
+	    verify(servicioExterno).search("Banco 1", null); // ¿En verdad se llamo a este método?    
+	    verify(servicioExterno).search("Banco 1", "Servicio 1");
 	  }
 	
 

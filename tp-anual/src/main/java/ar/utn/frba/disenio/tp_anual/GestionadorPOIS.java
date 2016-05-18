@@ -54,11 +54,25 @@ public class GestionadorPOIS
 	public List<POI> filtrarPOIs(String palabraClave)
 	{
 		List<POI> resultados=new ArrayList<POI>();
-		resultados.addAll(listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList()));
-		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave)));
+		resultados.addAll(this.filtrarPOIsInterno(palabraClave));
+		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, null)));
 		return resultados;
 	}
 	
+	public List<POI> filtrarPOIs(String palabraClave, String servicio)
+	{
+		List<POI> resultados=new ArrayList<POI>();
+		resultados.addAll(this.filtrarPOIsInterno(palabraClave));
+		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, servicio)));
+		return resultados;
+	}
+	
+	public List<POI> filtrarPOIsInterno(String palabraClave)
+	{
+		List<POI> resultados=new ArrayList<POI>();
+		resultados.addAll(listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList()));
+		return resultados;
+	}
 	public void deletePOI(POI poi)
 	{
 		listaPOIs.remove(poi);

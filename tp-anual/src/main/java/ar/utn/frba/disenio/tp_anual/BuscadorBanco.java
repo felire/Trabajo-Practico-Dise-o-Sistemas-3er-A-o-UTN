@@ -12,7 +12,8 @@ public class BuscadorBanco implements BuscadorExterno{
 	private JsonTraduccion jsonTraduccion;
 	private ServicioExternoBanco servicioExterno;
 	
-	public List<POI> filtrarBancos(String palabraClave, String servicio){
+	@Override
+	public List<POI> filtrar(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){
 		List<JsonBanco> listaTraducida = jsonTraduccion.traductor(devolucion);
@@ -56,8 +57,4 @@ public class BuscadorBanco implements BuscadorExterno{
 		return banco;
 	}
 
-	@Override
-	public List<POI> filtrar(String palabraClave) {
-		return this.filtrarBancos(palabraClave, null);		
-	}
 }
