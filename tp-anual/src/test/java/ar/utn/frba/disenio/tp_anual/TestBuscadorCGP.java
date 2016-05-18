@@ -23,7 +23,7 @@ public class TestBuscadorCGP {
 	LocalDateTime fecha;
 	BuscadorCGP buscadorCGP = new BuscadorCGP();
 	List<CentroDTO> listaCentroDTO = new ArrayList<CentroDTO>();
-	List<POI> listaCGP;
+	List<CGP> listaCGP;
 	@Before
 	public void setUp(){
 		centroDTO=new CentroDTO();

@@ -22,11 +22,11 @@ public class TestFiltrarCgp {
 	
 	@Before
 	public void setUp(){
-		buscadorPOIS.setBuscadorCGP(buscadorCGP);
+		buscadorPOIS.agregarBuscadorExterno(buscadorCGP);
 	}
 	@Test
 	public void TestFiltrarCGP() {
-		buscadorPOIS.filtrarCGPs("palabraClave");
+		buscadorPOIS.filtrarPOIs("palabraClave");
 	    verify(servicioExterno).search("palabraClave");
 	}
 

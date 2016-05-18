@@ -22,12 +22,12 @@ public class TestFiltrarBancos {
 	
 	@Before
 	public void setUp(){
-		buscadorPOIS.setBuscadorBanco(buscadorBanco);
+		buscadorPOIS.agregarBuscadorExterno(buscadorBanco);
 	}
 	@Test
 	public void pruebaLLamadoFiltrarBancos(){
-		buscadorPOIS.filtrarBancos("Banco 1", "Servicio 1");
-	    verify(servicioExterno).search("Banco 1", "Servicio 1"); // ¿En verdad se llamo a este método?
+		buscadorPOIS.filtrarPOIs("Banco 1");
+	    verify(servicioExterno).search("Banco 1", null); // ¿En verdad se llamo a este método?
 	  }
 	
 

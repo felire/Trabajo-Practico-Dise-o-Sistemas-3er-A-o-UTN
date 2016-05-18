@@ -12,13 +12,15 @@ public class BuscadorBanco implements BuscadorExterno{
 	private JsonTraduccion jsonTraduccion;
 	private ServicioExternoBanco servicioExterno;
 	
-	public List<SucursalBanco> filtrarBancos(String palabraClave, String servicio){
+	public List<POI> filtrarBancos(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){
 		List<JsonBanco> listaTraducida = jsonTraduccion.traductor(devolucion);
-		return this.crearPOIS(listaTraducida);
+		List<POI> listaPOIS = new ArrayList<POI>();
+		listaPOIS.addAll(this.crearPOIS(listaTraducida));
+		return listaPOIS;
 		}
-		return new ArrayList<SucursalBanco>();
+		return new ArrayList<POI>();
 	}
 	
 	public List<SucursalBanco> crearPOIS(List<JsonBanco> bancos){		
@@ -55,7 +57,7 @@ public class BuscadorBanco implements BuscadorExterno{
 	}
 
 	@Override
-	public List<SucursalBanco> filtrar(String palabraClave) {
+	public List<POI> filtrar(String palabraClave) {
 		return this.filtrarBancos(palabraClave, null);		
 	}
 }

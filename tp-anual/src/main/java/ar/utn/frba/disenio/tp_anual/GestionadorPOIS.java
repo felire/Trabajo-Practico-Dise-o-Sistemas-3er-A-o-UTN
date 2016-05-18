@@ -55,7 +55,7 @@ public class GestionadorPOIS
 	{
 		List<POI> resultados=new ArrayList<POI>();
 		resultados.addAll(listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList()));
-		buscadoresExternos.stream().forEach(b->resultados.addAll(b.filtrar(palabraClave)));
+		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave)));
 		return resultados;
 	}
 	

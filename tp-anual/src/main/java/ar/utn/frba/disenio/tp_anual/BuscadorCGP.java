@@ -8,13 +8,15 @@ public class BuscadorCGP implements BuscadorExterno{
 	private ServicioExternoCGP servicioExterno;
 	private AdapterCGP adapterCGP;
 	
-	
-	public List<CGP> filtrar(String palabraClave){//Hardcodeado hasta tener correcto funcionamiento
+	@Override
+	public List<POI> filtrar(String palabraClave){//Hardcodeado hasta tener correcto funcionamiento
 		List<CentroDTO> listaDevolucion = servicioExterno.search(palabraClave);
 		if(listaDevolucion != null){
-			return this.crearCGPs(listaDevolucion);
+			List<POI> listaCGPS = new ArrayList<POI>();
+			listaCGPS.addAll(this.crearCGPs(listaDevolucion));
+			return listaCGPS;
 		}
-		return new ArrayList<CGP>();
+		return new ArrayList<POI>();
 	}
 	public List<CGP> crearCGPs(List<CentroDTO> lista){
 		List<CGP> listaCGPS = new ArrayList<CGP>();
