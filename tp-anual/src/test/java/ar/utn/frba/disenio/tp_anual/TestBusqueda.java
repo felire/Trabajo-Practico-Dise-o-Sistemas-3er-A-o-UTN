@@ -10,38 +10,38 @@ public class TestBusqueda extends TestInit{
 	public void buscarLocalComercial()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("papelera")).contains(localComercial));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("papelera")).contains(localComercial));
 		//Busco por nombre de rubro
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Libreria")).contains(localComercial));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("Libreria")).contains(localComercial));
 		//Busco parte de un tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("utile")).contains(localComercial));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("utile")).contains(localComercial));
 	}
 
 	@Test
 	public void buscarParadaColectivo()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("bondi")).contains(paradaDe55));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("bondi")).contains(paradaDe55));
 		//Busco por linea
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("55")).contains(paradaDe55));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("55")).contains(paradaDe55));
 	}
 	
 	@Test
 	public void buscarBanco()
 	{
 		//Busco parte de un tag tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("prestamo")).contains(banco));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("prestamo")).contains(banco));
 		//Busco por servicio
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Asesoramiento")).contains(banco));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("Asesoramiento")).contains(banco));
 	}
 	
 	@Test
 	public void buscarCGP()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("agip")).contains(cGP));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("agip")).contains(cGP));
 		//Busco por servicio
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Rentas")).contains(cGP));
+		assertEquals(true,(buscadorPOIS.buscarPOIs("Rentas")).contains(cGP));
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ public class TestBusqueda extends TestInit{
 		assertEquals(true,(buscadorPOIS.buscarPorID(1)==cGP));
 		//Eliminacion por ID
 		assertEquals(true,(buscadorPOIS.buscarPOIs("agip")).contains(cGP));
-		buscadorPOIS.bajaPOI(1);
+		buscadorPOIS.bajaPOI(cGP);
 		assertEquals(false,(buscadorPOIS.buscarPOIs("agip")).contains(cGP));
 		//Dar de alta al POI viejo le da un nuevo ID
 		buscadorPOIS.altaPOI(cGP);

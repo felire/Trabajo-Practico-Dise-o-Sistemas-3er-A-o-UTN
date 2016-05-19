@@ -1,7 +1,9 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.poi;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+
+import util.DisponibilidadHoraria;
 
 public class Servicio {
 	

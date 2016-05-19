@@ -1,4 +1,4 @@
-package ar.utn.frba.disenio.tp_anual;
+package util;
 
 import java.time.LocalTime;
 

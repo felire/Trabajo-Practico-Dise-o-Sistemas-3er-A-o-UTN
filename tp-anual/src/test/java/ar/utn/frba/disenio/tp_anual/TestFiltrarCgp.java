@@ -7,6 +7,12 @@ import org.junit.Test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
+
+import ar.utn.frba.disenio.tp_anual.externo.ServicioExternoCGP;
+import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
+import ar.utn.frba.disenio.tp_anual.gestion.BuscadorPOIs;
+import ar.utn.frba.disenio.tp_anual.gestion.RepoPOIS;
+
 import org.mockito.runners.MockitoJUnit44Runner;
 import org.mockito.Mock;
 import org.mockito.InjectMocks;
@@ -18,7 +24,7 @@ public class TestFiltrarCgp {
 
 	@Mock ServicioExternoCGP servicioExterno;
 	@InjectMocks BuscadorCGP buscadorCGP = new BuscadorCGP();
-	private GestionadorPOIS buscadorPOIS = new GestionadorPOIS();
+	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
 	
 	@Before
 	public void setUp(){
@@ -26,7 +32,7 @@ public class TestFiltrarCgp {
 	}
 	@Test
 	public void TestFiltrarCGP() {
-		buscadorPOIS.filtrarPOIs("palabraClave");
+		buscadorPOIS.buscarPOIs("palabraClave");
 	    verify(servicioExterno).search("palabraClave");
 	}
 

@@ -17,6 +17,17 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import ar.utn.frba.disenio.tp_anual.gestion.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.poi.CGP;
+import ar.utn.frba.disenio.tp_anual.poi.LocalComercial;
+import ar.utn.frba.disenio.tp_anual.poi.POI;
+import ar.utn.frba.disenio.tp_anual.poi.ParadaDeColectivo;
+import ar.utn.frba.disenio.tp_anual.poi.Rubro;
+import ar.utn.frba.disenio.tp_anual.poi.Servicio;
+import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
+import util.DisponibilidadHoraria;
+import util.FranjaHoraria;
+
 public class TestInit {
 	/* Variables de Local Comercial */
 	LocalComercial localComercial;
@@ -64,7 +75,7 @@ public class TestInit {
 	Point posicionDelOtro55;
 	
 	/* Variables de Programa Principal */
-	GestionadorPOIS buscadorPOIS;
+	RepoPOIS buscadorPOIS;
 	List<POI> resultadosDeBusqueda;
 	
 	@Before
@@ -164,7 +175,7 @@ public class TestInit {
 		paradaDe55.addTag("bondi");
 		
 		/* Setup de Buscador POIs*/
-		buscadorPOIS = new GestionadorPOIS();
+		buscadorPOIS = RepoPOIS.getInstance();
 		buscadorPOIS.altaPOI(cGP);
 		buscadorPOIS.altaPOI(banco);
 		buscadorPOIS.altaPOI(localComercial);

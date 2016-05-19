@@ -16,6 +16,9 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import ar.utn.frba.disenio.tp_anual.poi.CGP;
+import ar.utn.frba.disenio.tp_anual.poi.Servicio;
+
 public class TestAdapterCGP {
 	
 	AdapterCGP adapterCGP;

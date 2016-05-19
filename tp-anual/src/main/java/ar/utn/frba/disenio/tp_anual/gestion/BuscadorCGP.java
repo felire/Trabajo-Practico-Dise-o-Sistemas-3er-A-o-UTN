@@ -1,7 +1,14 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.gestion;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.utn.frba.disenio.tp_anual.AdapterCGP;
+import ar.utn.frba.disenio.tp_anual.CentroDTO;
+import ar.utn.frba.disenio.tp_anual.externo.BuscadorExterno;
+import ar.utn.frba.disenio.tp_anual.externo.ServicioExternoCGP;
+import ar.utn.frba.disenio.tp_anual.poi.CGP;
+import ar.utn.frba.disenio.tp_anual.poi.POI;
 
 public class BuscadorCGP implements BuscadorExterno{
 	

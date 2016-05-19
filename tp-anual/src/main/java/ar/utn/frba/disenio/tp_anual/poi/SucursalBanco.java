@@ -1,10 +1,13 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.poi;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import org.uqbar.geodds.Point;
+
+import util.DisponibilidadHoraria;
+import util.FranjaHoraria;
 
 import java.util.ArrayList;
 
@@ -16,7 +19,7 @@ public class SucursalBanco extends PrestadorDeServicios{
 		super(nombre,coordenada);
 	}
 
-	static void setHorarioBancario() {
+	public static void setHorarioBancario() {
 		ArrayList<DayOfWeek>lista=new ArrayList<DayOfWeek>();
 		ArrayList<FranjaHoraria> franjaBancaria=new ArrayList<FranjaHoraria>();
 		franjaBancaria.add(new FranjaHoraria(LocalTime.of(10,0),LocalTime.of(15,0)));

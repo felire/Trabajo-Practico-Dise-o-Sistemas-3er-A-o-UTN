@@ -1,4 +1,4 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.poi;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.util.Set;
 
 import org.uqbar.geodds.Point;
+
+import util.DisponibilidadHoraria;
 
 public class LocalComercial extends POI{
 	private Rubro rubro;

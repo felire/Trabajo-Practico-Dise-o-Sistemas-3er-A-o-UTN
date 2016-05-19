@@ -1,4 +1,4 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.poi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 import org.uqbar.geodds.Point;
 
 public abstract class PrestadorDeServicios extends POI{
-	protected List<Servicio> servicios;
+	public List<Servicio> servicios;
 	public List<Servicio> getServicios() {
 		return servicios;
 	}

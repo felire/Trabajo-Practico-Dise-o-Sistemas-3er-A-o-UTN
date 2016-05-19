@@ -8,6 +8,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
+import ar.utn.frba.disenio.tp_anual.gestion.BuscadorBanco;
+import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
+
 public class TestPasajeJsonAPOI{
 	
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();

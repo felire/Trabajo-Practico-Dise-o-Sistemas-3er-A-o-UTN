@@ -1,4 +1,4 @@
-package ar.utn.frba.disenio.tp_anual;
+package ar.utn.frba.disenio.tp_anual.poi;
 
 import java.math.BigDecimal;
 

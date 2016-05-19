@@ -12,6 +12,9 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
+import ar.utn.frba.disenio.tp_anual.poi.CGP;
+
 public class TestBuscadorCGP {
 
 	AdapterCGP adapterCGP;

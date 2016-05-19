@@ -2,6 +2,11 @@ package ar.utn.frba.disenio.tp_anual;
 
 import org.uqbar.geodds.Point;
 
+import ar.utn.frba.disenio.tp_anual.poi.CGP;
+import ar.utn.frba.disenio.tp_anual.poi.Servicio;
+import util.DisponibilidadHoraria;
+import util.FranjaHoraria;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
