@@ -12,24 +12,24 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	protected Point coordenada;
 	protected List<String> listaTags;
 	protected BigDecimal radioDeCercania;
-	protected int ID;
+	protected Integer poiID;
 	
 	
 	public POI(String nombre, Point coordenada)
 	{
-		this.ID=0;
+		this.poiID=0;
 		this.nombre=nombre;
 		radioDeCercania = new BigDecimal(0.5);
 		listaTags = new ArrayList<String>();
 		this.coordenada = coordenada;
 	}
 	
-	public int getID() {
-		return ID;
+	public Integer getID() {
+		return poiID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(Integer iD) {
+		poiID = iD;
 	}
 
 	public String getNombre() {

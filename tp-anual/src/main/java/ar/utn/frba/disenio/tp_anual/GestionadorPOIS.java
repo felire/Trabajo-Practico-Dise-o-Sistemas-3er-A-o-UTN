@@ -11,7 +11,7 @@ public class GestionadorPOIS
 	private List<BuscadorExterno> buscadoresExternos;
 	private BuscadorCGP buscadorCGP;
 	private BuscadorBanco buscadorBanco;
-	private int contadorID=1;
+	private GeneradorDeID generadorDeID;
 	
 	//Consulta
 	public List<POI> buscarPOIs(String palabraClave){
@@ -20,12 +20,10 @@ public class GestionadorPOIS
 	
 	//Alta
 	public void altaPOI(POI nuevoPOI){
-		nuevoPOI.setID(contadorID);
+		nuevoPOI.setID(generadorDeID.generarID());
 		listaPOIs.add(nuevoPOI);
-		contadorID++;
 	}
 
-	
 	//Baja
 	public void bajaPOI(int iD){
 		listaPOIs.remove(buscarPorID(iD));
@@ -36,11 +34,11 @@ public class GestionadorPOIS
 		return listaPOIs.stream().filter(poi -> poi.getID()== iD).findFirst().get();
 	}
 	
-	private POI buscarPOIporNombre() {
-		return null;
-	}
-
 	//Modificación
+	public void modificarPOI(POI modificado){
+		this.bajaPOI(modificado.getID());
+		altaPOI(modificado);
+	}
 	
 	public void agregarBuscadorExterno(BuscadorExterno buscador){
 		buscadoresExternos.add(buscador);
@@ -50,6 +48,7 @@ public class GestionadorPOIS
 	{
 		listaPOIs = new ArrayList<POI>();
 		buscadoresExternos = new ArrayList<BuscadorExterno>();
+		generadorDeID = new GeneradorDeID();
 	}
 	public List<POI> filtrarPOIs(String palabraClave)
 	{

@@ -16,8 +16,6 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 public class TestAdapterCGP {
 	
 	AdapterCGP adapterCGP;
