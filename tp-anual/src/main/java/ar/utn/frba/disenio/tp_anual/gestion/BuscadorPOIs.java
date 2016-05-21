@@ -11,6 +11,12 @@ public class BuscadorPOIs {
 	private List<BuscadorExterno> buscadoresExternos;
 	private RepoPOIS repo;
 	
+	public BuscadorPOIs() {
+		super();
+		buscadoresExternos = new ArrayList<>();
+		repo = RepoPOIS.getInstance();
+	}
+
 	//Consulta
 	public List<POI> buscarPOIs(String palabraClave){
 		return this.getResultado(palabraClave, null);
