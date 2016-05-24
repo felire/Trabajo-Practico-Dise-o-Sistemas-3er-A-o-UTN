@@ -48,7 +48,7 @@ public class TestPasajeJsonAPOI{
 		assertEquals("Banco de la Plaza", listaPOIS.get(1).getNombre());
 		assertEquals("depósitos", listaPOIS.get(1).getServicios().get(0).toString());
 		assertEquals("seguros", listaPOIS.get(1).getServicios().get(3).toString());
-		assertEquals(true, listaPOIS.get(0).esCercano(new Point(-35.9338322,72.348353)));
+		assertTrue( listaPOIS.get(0).esCercano(new Point(-35.9338322,72.348353)));
 	}
 
 }

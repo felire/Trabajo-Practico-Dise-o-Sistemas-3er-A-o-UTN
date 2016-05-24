@@ -30,12 +30,12 @@ public class TestFiltrarBancos {
 		buscadorPOIS.agregarBuscadorExterno(buscadorBanco);
 	}
 	@Test
-	public void pruebaLLamadoFiltrarBancos(){
-		buscadorPOIS.buscarPOIs("Banco 1");
+	public void pruebaLLamadoFiltrarBancos(){		
 		buscadorPOIS.buscarPOIs("Banco 1", "Servicio 1");
-	    verify(servicioExterno).search("Banco 1", null); // ¿En verdad se llamo a este método?    
-	    verify(servicioExterno).search("Banco 1", "Servicio 1");
+		verify(servicioExterno).search("Banco 1", "Servicio 1");
+		buscadorPOIS.buscarPOIs("Banco 1");
+		verify(servicioExterno).search("Banco 1", "");
+			    
 	  }
-	
 
 }

@@ -80,14 +80,15 @@ public class TestAdapterCGP {
 	public void creaCGPconServicio(){
 		POITraducido=adapterCGP.traducir(centroDTO);
 		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
-		assertEquals(true,POITraducido.servicios.stream().anyMatch(tieneNombreBici));
+		assertTrue(POITraducido.servicios.stream().anyMatch(tieneNombreBici));
+		
 	}
 	@Test
 	public void creaDisponibilidadHoraria(){
 		POITraducido=adapterCGP.traducir(centroDTO);
 		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
 		Servicio bicicletas =  POITraducido.servicios.stream().filter(tieneNombreBici).findFirst().get();
-		assertEquals(true,bicicletas.estaDisponible(fecha));
+		assertTrue(bicicletas.estaDisponible(fecha));
 		
 	}
 		

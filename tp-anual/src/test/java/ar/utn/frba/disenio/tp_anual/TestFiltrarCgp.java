@@ -19,9 +19,8 @@ import org.mockito.InjectMocks;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class)
-
 public class TestFiltrarCgp {
-
+	
 	@Mock ServicioExternoCGP servicioExterno;
 	@InjectMocks BuscadorCGP buscadorCGP = new BuscadorCGP();
 	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
@@ -31,9 +30,10 @@ public class TestFiltrarCgp {
 		buscadorPOIS.agregarBuscadorExterno(buscadorCGP);
 	}
 	@Test
-	public void TestFiltrarCGP() {
-		buscadorPOIS.buscarPOIs("palabraClave");
-	    verify(servicioExterno).search("palabraClave");
-	}
+	public void pruebaLLamadoFiltrarCGPs(){		
+		buscadorPOIS.buscarPOIs("PalabraClave");
+		verify(servicioExterno).search("PalabraClave");
+			    
+	  }
 
 }

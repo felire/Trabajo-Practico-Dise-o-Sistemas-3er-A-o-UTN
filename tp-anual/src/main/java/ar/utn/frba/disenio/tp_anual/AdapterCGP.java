@@ -42,11 +42,7 @@ public class AdapterCGP {
 	
 	public Set<DisponibilidadHoraria> crearDisponibilidades(List<RangoServicioDTO> rango){
 		Set<DisponibilidadHoraria> lista = new HashSet<DisponibilidadHoraria>();
-		int i=0;
-		while (i<rango.size()){
-			lista.add(this.crearDisponibilidad(rango.get(i)));
-			i++;
-		}
+		rango.stream().forEach(r->lista.add(this.crearDisponibilidad(r)));
 		return lista;
 	}
 	
@@ -56,11 +52,7 @@ public class AdapterCGP {
 	
 	public List<Servicio> crearServicios (List<ServicioDTO> servicios){
 		List<Servicio> lista = new ArrayList<Servicio>();
-		int i=0;
-		while (i<servicios.size()){
-			lista.add(this.crearServicio(servicios.get(i)));
-			i++;
-		}
+		servicios.stream().forEach(s->lista.add(this.crearServicio(s)));
 		return lista;
 	}
 }

@@ -19,7 +19,7 @@ public class BuscadorPOIs {
 
 	//Consulta
 	public List<POI> buscarPOIs(String palabraClave){
-		return this.getResultado(palabraClave, null);
+		return this.getResultado(palabraClave, "");
 	};
 
 	public List<POI> buscarPOIs(String palabraClave, String servicio){

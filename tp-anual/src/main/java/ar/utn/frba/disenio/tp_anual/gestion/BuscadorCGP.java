@@ -15,7 +15,7 @@ public class BuscadorCGP implements BuscadorExterno{
 	private ServicioExternoCGP servicioExterno;
 	private AdapterCGP adapterCGP;
 	
-	public List<POI> filtrar(String palabraClave){//Hardcodeado hasta tener correcto funcionamiento
+	public List<POI> filtrar(String palabraClave){
 		List<CentroDTO> listaDevolucion = servicioExterno.search(palabraClave);
 		if(listaDevolucion != null){
 			List<POI> listaCGPS = new ArrayList<POI>();

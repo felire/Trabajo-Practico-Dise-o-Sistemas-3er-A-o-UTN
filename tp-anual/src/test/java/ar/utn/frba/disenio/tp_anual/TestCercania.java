@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,7 +24,7 @@ public class TestCercania extends TestInit{
 	
 	@Test
 	public void testPuntoCercanoLocalComercial(){
-		assertEquals(true, localComercial.esCercano(new Point(-34.806537, -58.447796)));
+		assertTrue( localComercial.esCercano(new Point(-34.806537, -58.447796)));
 	}
 	
 /* Tests de CGP */
@@ -29,22 +32,22 @@ public class TestCercania extends TestInit{
     @Test
     public void testPuntosCercanosACGP()
     {
-    	assertEquals(true, cGP.esCercano(puntoEnLaComuna));
-    	assertEquals(false, cGP.esCercano(puntoFueraDeLaComuna));
+    	assertTrue( cGP.esCercano(puntoEnLaComuna));
+    	assertFalse( cGP.esCercano(puntoFueraDeLaComuna));
     }
     /*Tests de Banco */
     
     @Test
     public void testPuntoCercanoBanco(){
-    	assertEquals(true, banco.esCercano(new Point(-34.603690, -58.416492)));
-    	assertEquals(false,banco.esCercano(new Point(-34.603214, -58.421003)));
+    	assertTrue( banco.esCercano(new Point(-34.603690, -58.416492)));
+    	assertFalse(banco.esCercano(new Point(-34.603214, -58.421003)));
     }
     
     /*Tests de Parada De Colectivo */
     
     @Test
     public void testPuntoCercanoParadaColectivo(){
-    	assertEquals(true, paradaDe55.esCercano(new Point(-34.598384, -58.420269)));
-    	assertEquals(false, paradaDe55.esCercano(new Point(-34.599647, -58.420462)));
+    	assertTrue( paradaDe55.esCercano(new Point(-34.598384, -58.420269)));
+    	assertFalse( paradaDe55.esCercano(new Point(-34.599647, -58.420462)));
     }
 }
