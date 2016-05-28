@@ -20,7 +20,9 @@ public class Reporte {
 		this.servicioBuscado = servicioBuscado;
 		this.tiempoDemorado = demora;
 	}
-	
+	public Integer cantidadBusquedas(){
+		return buscados.size();
+	}
 	public Boolean mismaFecha(LocalDateTime otraFecha){
 		return this.fecha.equals(otraFecha);
 	}
