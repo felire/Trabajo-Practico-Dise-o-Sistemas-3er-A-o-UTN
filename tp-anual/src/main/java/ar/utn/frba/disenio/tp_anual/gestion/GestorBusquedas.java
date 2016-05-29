@@ -59,6 +59,8 @@ public class GestorBusquedas {
 		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, demorado);
 		busquedas.add(busqueda);
 	}
+	
+	//Las parciales podria ser una lista, con el resultado de parciales de cada usuario
 	public List<Integer> busquedasParcialesPorUsuario(String usuario){ //Retornamos una lista con la cantidad de busquedas por separado de cada terminal o usuario
 		return busquedas.stream().filter(busqueda -> busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList());
 	}
