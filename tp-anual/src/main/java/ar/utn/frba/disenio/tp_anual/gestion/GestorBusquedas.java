@@ -3,8 +3,10 @@ package ar.utn.frba.disenio.tp_anual.gestion;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ar.utn.frba.disenio.tp_anual.poi.POI;
+import util.Busqueda;
 import util.Reporte;
 
 public class GestorBusquedas {
@@ -13,7 +15,7 @@ public class GestorBusquedas {
 	BigDecimal tiempoMaximoEspera;
 	BigDecimal demorado;
 	BuscadorPOIs buscadorPOIS;
-	List<Reporte> reportes;
+	List<Busqueda> busquedas;
 	public GestorBusquedas(BigDecimal tiempoMaximoEspera, BuscadorPOIs buscadorPOIS){
 		this.tiempoMaximoEspera = tiempoMaximoEspera;
 	}
@@ -38,23 +40,28 @@ public class GestorBusquedas {
 	}
 	
 	public void buscarPOIs(String palabraClave){
-		this.aniadirReporte(palabraClave, null);
+		this.aniadirBusqueda(palabraClave, null);
 		
 	}
 
 	public void buscarPOIs(String palabraClave, String servicio){
-		this.aniadirReporte(palabraClave, servicio);
+		this.aniadirBusqueda(palabraClave, servicio);
 	}
 	
-	public void aniadirReporte(String palabraClave, String servicio){
+	public void aniadirBusqueda(String palabraClave, String servicio){
 		this.medirTiempoInicioTarea();
 		List<POI> listaPOIBusqueda = buscadorPOIS.buscarPOIs(palabraClave);
 		this.medirTiempoFinTarea();
-		Reporte reporte = new Reporte(buscadorPOIS.buscarPOIs(palabraClave), palabraClave, servicio, demorado);
-		reportes.add(reporte);
+		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, demorado);
+		busquedas.add(busqueda);
 	}
-	
+	public List<Integer> busquedasParcialesPorUsuario(String usuario){ //Retornamos una lista con la cantidad de busquedas por separado de cada terminal o usuario
+		return busquedas.stream().filter(busqueda -> busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadBusquedas()).collect(Collectors.toList());
+	}
+	public List<Reporte> busquedasPorUsuario(){
+		
+	}
 	public BigDecimal busquedasPorFecha(LocalDateTime fecha){
-		return new BigDecimal(reportes.stream().filter(reporte->reporte.mismaFecha(fecha)).count());
+		return new BigDecimal(busquedas.stream().filter(busqueda->busqueda.mismaFecha(fecha)).count());
 	}
 }
