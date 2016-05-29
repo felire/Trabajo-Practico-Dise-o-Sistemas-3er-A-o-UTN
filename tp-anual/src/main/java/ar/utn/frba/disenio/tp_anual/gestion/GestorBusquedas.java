@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import ar.utn.frba.disenio.tp_anual.poi.POI;
 import util.Busqueda;
+import util.ReporteParcialPorUsuario;
 import util.ReportePorFecha;
 import util.ReportePorUsuario;
 
@@ -63,6 +64,25 @@ public class GestorBusquedas {
 	//Las parciales podria ser una lista, con el resultado de parciales de cada usuario
 	public List<Integer> busquedasParcialesPorUsuario(String usuario){ //Retornamos una lista con la cantidad de busquedas por separado de cada terminal o usuario
 		return busquedas.stream().filter(busqueda -> busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList());
+	}
+	
+	
+	
+	//Esta es otra solucion a busquedasParcialesPorUsuario, hay que ver si quedarse con la de arriba o con esta, yo me inclino por esta de aca abajo.
+	public List<ReporteParcialPorUsuario> busquedasParcialesPorUsuario(){
+		Set<String> usuariosSinRepetir = new HashSet<>();
+		List<ReporteParcialPorUsuario> reportesParcialesPorUsuario = new ArrayList<ReporteParcialPorUsuario>();
+		busquedas.stream().forEach(busqueda->usuariosSinRepetir.add(busqueda.getUsuario()));
+		usuariosSinRepetir.stream().forEach(usuario->
+		
+		//Aca generamos los reportesParcialesPorUsuario, por cada usuario, tiene su lista de Integer, con cada integer
+		// marcando la cantidad de resultados
+		reportesParcialesPorUsuario.add(new ReporteParcialPorUsuario(usuario,  busquedas.stream().filter(busqueda->busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList())))
+		
+		
+		);
+		return reportesParcialesPorUsuario;
+		
 	}
 	public List<ReportePorUsuario> busquedasPorUsuario(){
 		Set<String> usuariosSinRepetir = new HashSet<>();
