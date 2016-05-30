@@ -16,9 +16,7 @@ import util.ReportePorUsuario;
 
 public class GestorBusquedas {
 	private BigDecimal tiempoInicio;
-	private BigDecimal tiempoFin;
 	private BigDecimal tiempoMaximoEspera;
-	private BigDecimal demorado;
 	private BuscadorPOIs buscadorPOIS;
 	private List<Busqueda> busquedas;
 	public GestorBusquedas(BigDecimal tiempoMaximoEspera, BuscadorPOIs buscadorPOIS){
@@ -30,12 +28,11 @@ public class GestorBusquedas {
 	public void medirTiempoInicioTarea(){
 		tiempoInicio = new BigDecimal(System.currentTimeMillis());
 	}
-	public void medirTiempoFinTarea(){
-		tiempoFin = new BigDecimal(System.currentTimeMillis());
-		demorado = (tiempoFin.add(tiempoInicio.negate())).divide(new BigDecimal(1000));
+	public BigDecimal medirTiempoFinTarea(){
+		BigDecimal tiempoFin = new BigDecimal(System.currentTimeMillis());
+		return (tiempoFin.add(tiempoInicio.negate())).divide(new BigDecimal(1000));
 		
-		//Ver que conviene aca, si dejar la variable demorado o pasar todo por las funciones
-		this.avisarPorMail(demorado);//Dividimos por 1000 para tener el resultado en segundos
+		//Dividimos por 1000 para tener el resultado en segundos
 		//Aca solo hacemos (tiempoFin - tiempoInicio)/1000 se ve mas raro xq usamos BigDecimal
 	}
 	public void avisarPorMail(BigDecimal tiempoDemorado){
@@ -56,7 +53,8 @@ public class GestorBusquedas {
 	public void aniadirBusqueda(String palabraClave, String servicio){
 		this.medirTiempoInicioTarea();
 		List<POI> listaPOIBusqueda = buscadorPOIS.buscarPOIs(palabraClave);
-		this.medirTiempoFinTarea();
+		BigDecimal demorado = this.medirTiempoFinTarea();
+		this.avisarPorMail(demorado); //Cambiamos y hacemos el aviso por mail aca.
 		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, demorado);
 		busquedas.add(busqueda);
 	}
