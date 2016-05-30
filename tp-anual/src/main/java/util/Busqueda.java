@@ -11,15 +11,15 @@ public class Busqueda {
 	private LocalDateTime fecha;
 	private String fraseBuscada;
 	private String servicioBuscado;
-	private BigDecimal tiempoDemorado;
+	private double tiempoDemorado;
 	private String usuario; //El reporte o Busqueda (habria que cambiar el nombre) conoce el nombre de la terminal en la que fue buscado
 	//La terminal la tratamos como usuario
-	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, BigDecimal demora){
+	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, double d){
 		this.resultados = buscados;
 		this.fecha = LocalDateTime.now(); //Lo seteamos con la fecha actual
 		this.fraseBuscada = fraseBuscada;
 		this.servicioBuscado = servicioBuscado;
-		this.tiempoDemorado = demora;
+		this.tiempoDemorado = d;
 	}
 	public Integer cantidadResultados(){
 		return resultados.size();

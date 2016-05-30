@@ -1,5 +1,7 @@
 package ar.utn.frba.disenio.tp_anual.gestion;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +10,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.swing.Timer;
+
+import ar.utn.frba.disenio.tp_anual.externo.ServicioMail;
 import ar.utn.frba.disenio.tp_anual.poi.POI;
 import util.Busqueda;
 import util.ReporteParcialPorUsuario;
@@ -15,29 +20,30 @@ import util.ReportePorFecha;
 import util.ReportePorUsuario;
 
 public class GestorBusquedas {
-	private BigDecimal tiempoMaximoEspera;
+	
 	private BuscadorPOIs buscadorPOIS;
-	private List<Busqueda> busquedas;
-	public GestorBusquedas(BigDecimal tiempoMaximoEspera, BuscadorPOIs buscadorPOIS){
-		this.tiempoMaximoEspera = tiempoMaximoEspera;
+	private List<Busqueda> busquedas;	
+	private ServicioMail servicioMail;
+	private Timer timer;
+	
+	ActionListener TardanzaBusqueda = new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+			avisarPorMail((float)timer.getDelay()/1000);
+		}		
+    };
+	
+	public GestorBusquedas(int tiempoMaximoEspera, BuscadorPOIs buscadorPOIS){
+		this.buscadorPOIS=buscadorPOIS;
+		this.timer=new Timer(tiempoMaximoEspera*1000,TardanzaBusqueda);//Le doy el tiempo en milisegundos y que hacer si se supera ese tiempo
+		this.timer.setRepeats(false);
 	}
-	public void modificarTiempoMaximo(BigDecimal tiempoMaximo){
-		this.tiempoMaximoEspera = tiempoMaximo;
+	
+	public void modificarTiempoMaximo(int tiempoMaximo){
+		this.timer.setDelay(tiempoMaximo*1000);
 	}
-	public BigDecimal medirTiempoInicioTarea(){
-		return new BigDecimal(System.currentTimeMillis());
-	}
-	public BigDecimal medirTiempoFinTarea(BigDecimal tiempoInicio){
-		BigDecimal tiempoFin = new BigDecimal(System.currentTimeMillis());
-		return (tiempoFin.add(tiempoInicio.negate())).divide(new BigDecimal(1000));
-		
-		//Dividimos por 1000 para tener el resultado en segundos
-		//Aca solo hacemos (tiempoFin - tiempoInicio)/1000 se ve mas raro xq usamos BigDecimal
-	}
-	public void avisarPorMail(BigDecimal tiempoDemorado){
-		if(tiempoDemorado.doubleValue() > tiempoMaximoEspera.doubleValue()){
-			//Aca mandamos el mail, me suena a mockito.
-		}
+	
+	public void avisarPorMail(double tardanza){
+		servicioMail.reportarTardanza(tardanza);
 	}
 	
 	public void buscarPOIs(String palabraClave){
@@ -50,12 +56,12 @@ public class GestorBusquedas {
 	}
 	
 	public void aniadirBusqueda(String palabraClave, String servicio){
-		BigDecimal tiempoInicio = this.medirTiempoInicioTarea();
+		timer.start();
 		List<POI> listaPOIBusqueda = buscadorPOIS.buscarPOIs(palabraClave);
-		BigDecimal demorado = this.medirTiempoFinTarea(tiempoInicio);
-		this.avisarPorMail(demorado); //Cambiamos y hacemos el aviso por mail aca.
-		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, demorado);
+		timer.stop();
+		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, (double)timer.getDelay()/1000);//Divido para devolver segundos
 		busquedas.add(busqueda);
+		timer.restart();
 	}
 	
 	//Las parciales podria ser una lista, con el resultado de parciales de cada usuario
