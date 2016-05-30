@@ -15,7 +15,6 @@ import util.ReportePorFecha;
 import util.ReportePorUsuario;
 
 public class GestorBusquedas {
-	private BigDecimal tiempoInicio;
 	private BigDecimal tiempoMaximoEspera;
 	private BuscadorPOIs buscadorPOIS;
 	private List<Busqueda> busquedas;
@@ -25,10 +24,10 @@ public class GestorBusquedas {
 	public void modificarTiempoMaximo(BigDecimal tiempoMaximo){
 		this.tiempoMaximoEspera = tiempoMaximo;
 	}
-	public void medirTiempoInicioTarea(){
-		tiempoInicio = new BigDecimal(System.currentTimeMillis());
+	public BigDecimal medirTiempoInicioTarea(){
+		return new BigDecimal(System.currentTimeMillis());
 	}
-	public BigDecimal medirTiempoFinTarea(){
+	public BigDecimal medirTiempoFinTarea(BigDecimal tiempoInicio){
 		BigDecimal tiempoFin = new BigDecimal(System.currentTimeMillis());
 		return (tiempoFin.add(tiempoInicio.negate())).divide(new BigDecimal(1000));
 		
@@ -51,9 +50,9 @@ public class GestorBusquedas {
 	}
 	
 	public void aniadirBusqueda(String palabraClave, String servicio){
-		this.medirTiempoInicioTarea();
+		BigDecimal tiempoInicio = this.medirTiempoInicioTarea();
 		List<POI> listaPOIBusqueda = buscadorPOIS.buscarPOIs(palabraClave);
-		BigDecimal demorado = this.medirTiempoFinTarea();
+		BigDecimal demorado = this.medirTiempoFinTarea(tiempoInicio);
 		this.avisarPorMail(demorado); //Cambiamos y hacemos el aviso por mail aca.
 		Busqueda busqueda = new Busqueda(listaPOIBusqueda, palabraClave, servicio, demorado);
 		busquedas.add(busqueda);
