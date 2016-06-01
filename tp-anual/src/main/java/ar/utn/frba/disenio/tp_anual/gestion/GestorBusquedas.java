@@ -25,6 +25,7 @@ public class GestorBusquedas {
 	private List<Busqueda> busquedas;	
 	private ServicioMail servicioMail;
 	private Timer timer;
+	private Set<String> usuariosDesactivados; //Agrego lista de usuarios desactivados
 	
 	ActionListener TardanzaBusqueda = new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -36,6 +37,19 @@ public class GestorBusquedas {
 		this.buscadorPOIS=buscadorPOIS;
 		this.timer=new Timer(tiempoMaximoEspera*1000,TardanzaBusqueda);//Le doy el tiempo en milisegundos y que hacer si se supera ese tiempo
 		this.timer.setRepeats(false);
+		this.usuariosDesactivados=new HashSet<>();
+	}
+	
+	public void desactivarAccionesDeUsuario(String usuario){
+		if(!usuariosDesactivados.contains(usuario)){
+			usuariosDesactivados.add(usuario);
+		}
+	}
+	
+	public void reactivarAccionesDeUsuario(String usuario){
+		if(usuariosDesactivados.contains(usuario)){
+			usuariosDesactivados.remove(usuario);
+		}
 	}
 	
 	public void modificarTiempoMaximo(int tiempoMaximo){
@@ -48,7 +62,6 @@ public class GestorBusquedas {
 	
 	public void buscarPOIs(String palabraClave){
 		this.aniadirBusqueda(palabraClave, null);
-		
 	}
 
 	public void buscarPOIs(String palabraClave, String servicio){
@@ -64,11 +77,15 @@ public class GestorBusquedas {
 		timer.restart();
 	}
 	
+	//Agrego este metodo porque la linea que genera los reportes por usuario ya era demasiado dificil de leer
+	private Set<String> filtrarUsuariosDesactivados(Set<String> usuariosSinRepetir){
+		return usuariosSinRepetir.stream().filter(usuario->!usuariosDesactivados.contains(usuario)).collect(Collectors.toSet());
+	}
+	
 	//Las parciales podria ser una lista, con el resultado de parciales de cada usuario
 	public List<Integer> busquedasParcialesPorUsuario(String usuario){ //Retornamos una lista con la cantidad de busquedas por separado de cada terminal o usuario
 		return busquedas.stream().filter(busqueda -> busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList());
 	}
-	
 	
 	
 	//Esta es otra solucion a busquedasParcialesPorUsuario, hay que ver si quedarse con la de arriba o con esta, yo me inclino por esta de aca abajo.
@@ -91,11 +108,12 @@ public class GestorBusquedas {
 		Set<String> usuariosSinRepetir = new HashSet<>();
 		List<ReportePorUsuario> reportesPorUsuario = new ArrayList<ReportePorUsuario>();
 		busquedas.stream().forEach(busqueda->usuariosSinRepetir.add(busqueda.getUsuario()));
-		usuariosSinRepetir.stream().forEach(usuario->   //Separamos para que quede mas entendible lo que se hace por cada usuario diferente
+		filtrarUsuariosDesactivados(usuariosSinRepetir).stream().forEach(usuario-> 
+			//Separamos para que quede mas entendible lo que se hace por cada usuario diferente
 			//cantidadBusquedas = busquedas.stream().filter(busqueda->busqueda.mismoUsuario(usuario)).mapToInt(busqueda->busqueda.cantidadResultados()).sum()
 		
 			// Esta linea quedo muy larga, pero nose como separar varias cosas distintas en un forEach y java me tira errores de sintaxis
-			// Esto genera un reporte por usuario, con la cantidad d eresultados de busquedas totales por ese usuario.
+			// Esto genera un reporte por usuario, con la cantidad de resultados de busquedas totales por ese usuario.
 			reportesPorUsuario.add(new ReportePorUsuario(usuario, busquedas.stream().filter(busqueda->busqueda.mismoUsuario(usuario)).mapToInt(busqueda->busqueda.cantidadResultados()).sum()))
 		
 		
