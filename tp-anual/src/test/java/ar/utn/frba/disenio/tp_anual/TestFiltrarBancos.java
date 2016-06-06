@@ -23,10 +23,12 @@ public class TestFiltrarBancos {
 	
 	@Mock ServicioExternoBanco servicioExterno;
 	@InjectMocks BuscadorBanco buscadorBanco = new BuscadorBanco();
+	private CreadorDeBancos creador = new CreadorDeBancos();
 	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
 	
 	@Before
 	public void setUp(){
+		buscadorBanco.setCreadorDeBancos(creador);
 		buscadorPOIS.agregarBuscadorExterno(buscadorBanco);
 	}
 	@Test

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class AdapterCGP {
+public class CreadorDeCGP {
 
 	public CGP traducir(CentroDTO centro){
 		CGP cgp = new CGP("Nuevo CGP", centro.getComuna(),new Point(1,0)); //hardcodeo todo lo que el centroDTO no me proporciona
@@ -55,4 +55,13 @@ public class AdapterCGP {
 		servicios.stream().forEach(s->lista.add(this.crearServicio(s)));
 		return lista;
 	}
+	
+	public List<CGP> crearCGPs(List<CentroDTO> lista){
+		List<CGP> listaCGPS = new ArrayList<CGP>();
+		for(int i = 0; i< lista.size(); i++){
+			listaCGPS.add(this.traducir(lista.get(i)));
+		}
+		return listaCGPS;
+	}
+	
 }

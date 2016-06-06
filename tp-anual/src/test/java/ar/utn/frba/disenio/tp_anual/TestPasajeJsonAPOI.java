@@ -17,6 +17,7 @@ public class TestPasajeJsonAPOI{
 	private List<JsonBanco> listaBancos;
 	private BuscadorBanco buscadorBanco = new BuscadorBanco();
 	private List<SucursalBanco> listaPOIS;
+	private CreadorDeBancos creadorDeBancos;
 	private String jSonBancos = "["
 	                             + "{ \"banco\": \"Banco de la Plaza\","
 	                             + "\"x\": -35.9338322,"
@@ -37,7 +38,9 @@ public class TestPasajeJsonAPOI{
 	@Before
 	public void setUp(){
 		listaBancos = jsonTraductor.traductor(jSonBancos);
-		listaPOIS = buscadorBanco.crearPOIS(listaBancos);
+		creadorDeBancos = new CreadorDeBancos();
+		listaPOIS = creadorDeBancos.crearPOIS(listaBancos);
+		
 	}
 	
 	

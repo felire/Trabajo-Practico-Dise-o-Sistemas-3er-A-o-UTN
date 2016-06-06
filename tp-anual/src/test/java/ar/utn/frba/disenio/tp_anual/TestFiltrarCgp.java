@@ -28,6 +28,7 @@ public class TestFiltrarCgp {
 	@Before
 	public void setUp(){
 		buscadorPOIS.agregarBuscadorExterno(buscadorCGP);
+		buscadorCGP.setCreadorDeCGP(new CreadorDeCGP());
 	}
 	@Test
 	public void pruebaLLamadoFiltrarCGPs(){		

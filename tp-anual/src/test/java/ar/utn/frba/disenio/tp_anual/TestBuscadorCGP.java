@@ -12,12 +12,13 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
+
 import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
 import ar.utn.frba.disenio.tp_anual.poi.CGP;
 
 public class TestBuscadorCGP {
 
-	AdapterCGP adapterCGP;
+	CreadorDeCGP creadorDeCGP;
 	CentroDTO centroDTO;
 	ServicioDTO servicioDTOBicis;
 	RangoServicioDTO rangoServicioBicis;
@@ -62,18 +63,18 @@ public class TestBuscadorCGP {
 		centroDTO.agregarServicioDTO(servicioDTOBicis);
 		
 		//Creo el adapter
-		adapterCGP= new AdapterCGP();
+		creadorDeCGP= new CreadorDeCGP();
 		
 		//Creo una fecha para probar disponibilidad
 		localDate = LocalDate.of(2016, 5, 28);
 		fecha = localDate.atTime(14, 30);
 		listaCentroDTO.add(centroDTO);
-		buscadorCGP.setAdapterCGP(adapterCGP);
+		buscadorCGP.setCreadorDeCGP(creadorDeCGP);
 	}
 	
 	@Test
 	public void TestArmarListaCGP(){
-		listaCGP = buscadorCGP.crearCGPs(listaCentroDTO);
+		listaCGP = creadorDeCGP.crearCGPs(listaCentroDTO);
 		assertEquals("Nuevo CGP",listaCGP.get(0).getNombre());
 	}
 

@@ -21,7 +21,7 @@ import ar.utn.frba.disenio.tp_anual.poi.Servicio;
 
 public class TestAdapterCGP {
 	
-	AdapterCGP adapterCGP;
+	CreadorDeCGP creadorDeCGP;
 	CentroDTO centroDTO;
 	ServicioDTO servicioDTOBicis;
 	RangoServicioDTO rangoServicioBicis;
@@ -64,7 +64,7 @@ public class TestAdapterCGP {
 		centroDTO.agregarServicioDTO(servicioDTOBicis);
 		
 		//Creo el adapter
-		adapterCGP= new AdapterCGP();
+		creadorDeCGP= new CreadorDeCGP();
 		
 		//Creo una fecha para probar disponibilidad
 		localDate = LocalDate.of(2016, 5, 28);
@@ -73,19 +73,19 @@ public class TestAdapterCGP {
 	}
 	@Test
 	public void creaCGPconComunaCorrecta(){
-		POITraducido=adapterCGP.traducir(centroDTO);
+		POITraducido=creadorDeCGP.traducir(centroDTO);
 		assertEquals(centroDTO.getComuna(),POITraducido.getComuna());
 	}
 	@Test
 	public void creaCGPconServicio(){
-		POITraducido=adapterCGP.traducir(centroDTO);
+		POITraducido=creadorDeCGP.traducir(centroDTO);
 		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
 		assertTrue(POITraducido.servicios.stream().anyMatch(tieneNombreBici));
 		
 	}
 	@Test
 	public void creaDisponibilidadHoraria(){
-		POITraducido=adapterCGP.traducir(centroDTO);
+		POITraducido=creadorDeCGP.traducir(centroDTO);
 		Predicate<Servicio> tieneNombreBici =  serv -> serv.getNombre()=="Alquiler Bicicletas";
 		Servicio bicicletas =  POITraducido.servicios.stream().filter(tieneNombreBici).findFirst().get();
 		assertTrue(bicicletas.estaDisponible(fecha));

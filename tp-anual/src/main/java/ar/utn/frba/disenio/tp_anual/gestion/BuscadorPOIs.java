@@ -16,7 +16,6 @@ public class BuscadorPOIs {
 	
 	
 	public BuscadorPOIs() {
-		super();
 		buscadoresExternos = new ArrayList<>();
 		repo = RepoPOIS.getInstance();	
 	}
