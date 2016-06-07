@@ -7,4 +7,16 @@ public class ReportePorUsuario {
 		this.usuario = usuario;
 		this.busquedas = busquedas;
 	}
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	public Integer getBusquedas() {
+		return busquedas;
+	}
+	public void setBusquedas(Integer busquedas) {
+		this.busquedas = busquedas;
+	}
 }

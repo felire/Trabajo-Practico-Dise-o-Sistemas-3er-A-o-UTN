@@ -11,4 +11,22 @@ public class ReportePorFecha {
 		this.fecha = fecha;
 		this.busquedas = busquedas;
 	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public Integer getBusquedas() {
+		return busquedas;
+	}
+
+	public void setBusquedas(Integer busquedas) {
+		this.busquedas = busquedas;
+	}
+	
+	
 }

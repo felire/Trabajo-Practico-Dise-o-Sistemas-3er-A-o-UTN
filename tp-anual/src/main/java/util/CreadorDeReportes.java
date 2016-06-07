@@ -12,9 +12,12 @@ public class CreadorDeReportes {
 	
 	public List<ReporteParcialPorUsuario> busquedasParcialesPorTerminal(List<Busqueda> busquedas){
 		List<ReporteParcialPorUsuario> reportesParcialesPorUsuario = new ArrayList<ReporteParcialPorUsuario>();
-		this.terminalesSinRepetir(busquedas).stream().forEach(usuario->
-		reportesParcialesPorUsuario.add(new ReporteParcialPorUsuario(usuario,  busquedas.stream().filter(busqueda->busqueda.mismoUsuario(usuario)).map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList())))
-		);
+		this.terminalesSinRepetir(busquedas)
+		.stream()
+		.forEach(usuario->reportesParcialesPorUsuario
+		.add(new ReporteParcialPorUsuario(usuario,busquedas.stream()
+		.filter(busqueda->busqueda.mismoUsuario(usuario))
+		.map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList()))));
 		return reportesParcialesPorUsuario;		
 	}
 	

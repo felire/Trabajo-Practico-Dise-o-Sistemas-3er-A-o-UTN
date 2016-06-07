@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ReporteParcialPorUsuario {
 	String usuario;
-	List<Integer> resultadosParciales;
+	public List<Integer> resultadosParciales;
 	public ReporteParcialPorUsuario(String usuario, List<Integer> resultadosParciales){
 		this.usuario = usuario;
 		this.resultadosParciales = new ArrayList<Integer>();
