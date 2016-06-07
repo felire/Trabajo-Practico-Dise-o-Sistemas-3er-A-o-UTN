@@ -11,4 +11,12 @@ public class ReporteParcialPorUsuario {
 		this.resultadosParciales = new ArrayList<Integer>();
 		this.resultadosParciales.addAll(resultadosParciales);
 	}
+	
+	public String getUsuario(){
+		return this.usuario;
+	}
+	
+	public Integer totalResultados(){
+		return this.resultadosParciales.stream().mapToInt(valor -> valor.intValue()).sum();
+	}
 }

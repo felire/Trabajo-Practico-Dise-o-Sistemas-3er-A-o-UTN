@@ -20,11 +20,7 @@ public class BuscadorPOIs {
 		repo = RepoPOIS.getInstance();	
 	}
 
-	//Consulta
-	public List<POI> buscarPOIs(String palabraClave){
-		return this.getResultado(palabraClave, "");
-	};
-
+	
 	public List<POI> buscarPOIs(String palabraClave, String servicio){
 		return this.getResultado(palabraClave, servicio);
 	};
@@ -32,9 +28,7 @@ public class BuscadorPOIs {
 	private List<POI> getResultado(String palabraClave, String servicio) {
 		List<POI> resultados=new ArrayList<POI>();
 		resultados.addAll(repo.buscarPOIs(palabraClave)); //locales
-		if(servicio!=null){ //buscar tambien externos
-			buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, servicio)));
-		}
+		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, servicio)));
 		return resultados;
 	}
 	

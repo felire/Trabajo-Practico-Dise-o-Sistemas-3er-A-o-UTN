@@ -35,8 +35,8 @@ public class TestFiltrarBancos {
 	public void pruebaLLamadoFiltrarBancos(){		
 		buscadorPOIS.buscarPOIs("Banco 1", "Servicio 1");
 		verify(servicioExterno).search("Banco 1", "Servicio 1");
-		buscadorPOIS.buscarPOIs("Banco 1");
-		verify(servicioExterno).search("Banco 1", "");
+		buscadorPOIS.buscarPOIs("Banco 1",null);
+		verify(servicioExterno).search("Banco 1", null);
 			    
 	  }
 

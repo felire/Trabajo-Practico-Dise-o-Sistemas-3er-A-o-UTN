@@ -32,7 +32,7 @@ public class TestFiltrarCgp {
 	}
 	@Test
 	public void pruebaLLamadoFiltrarCGPs(){		
-		buscadorPOIS.buscarPOIs("PalabraClave");
+		buscadorPOIS.buscarPOIs("PalabraClave",null);
 		verify(servicioExterno).search("PalabraClave");
 			    
 	  }

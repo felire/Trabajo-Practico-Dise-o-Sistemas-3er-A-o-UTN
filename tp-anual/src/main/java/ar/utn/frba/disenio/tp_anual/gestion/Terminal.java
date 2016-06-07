@@ -11,56 +11,51 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
-import ar.utn.frba.disenio.tp_anual.externo.InterfazTerminal;
+import ar.utn.frba.disenio.tp_anual.externo.ObserverTerminal;
 import ar.utn.frba.disenio.tp_anual.externo.ServicioMail;
 import ar.utn.frba.disenio.tp_anual.poi.POI;
 import util.Busqueda;
 import util.ReportePorFecha;
 
-public class Terminal implements InterfazTerminal{
+public class Terminal {
 	private String nombre;
 	private BuscadorPOIs buscadorPOIS;
-	private List<Busqueda> busquedas;
-
+	private List<ObserverTerminal> listaObservers;
+	private double tiempoMaximo;
 	
-	public Terminal(int tiempoMaximoEspera, BuscadorPOIs buscadorPOIS, String nombre){
+	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
 		this.buscadorPOIS=buscadorPOIS;
 		this.nombre = nombre;
+		this.tiempoMaximo = tiempoMaximo;
+		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
 	
-	public List<Busqueda> getBusquedas(){
-		return busquedas;
-	}
 	public String getNombre(){
 		return nombre;
 	}
 	
-    
-    public List<POI> buscarPOIs(String palabraClave){
-		return this.buscar(palabraClave, null);
+	public void setTiempoMaximo(double tiempoMaximo){
+		this.tiempoMaximo = tiempoMaximo;
+	}
+	
+	public void addObserver(ObserverTerminal observer){
+		this.listaObservers.add(observer);
+	}
+	
+	public void deleteObserver(ObserverTerminal observer){
+		this.listaObservers.remove(observer);
 	}
     
-	public List<POI> buscarPOIs(String palabraClave, String servicio){
-		return this.buscar(palabraClave, servicio);
-	}
 	public List<POI> buscar(String palabraClave, String servicio){
-		return buscadorPOIS.buscarPOIs(palabraClave);
+		double inicio = System.currentTimeMillis();
+		List<POI> buscados= buscadorPOIS.buscarPOIs(palabraClave,servicio);
+		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, (double) (System.currentTimeMillis() - inicio)/1000, this.getNombre());
+		this.notificarObservers(busqueda);
+		return buscados;
 	}
 	
-	
-	public Integer cantidadBusquedas(){
-		return busquedas.size();
-	}
-	
-	public long busquedasEnFecha(LocalDateTime fecha){
-		return busquedas.stream().filter(busqueda-> busqueda.mismaFecha(fecha)).count();
-	}
-	public List<Integer> resultadosPorBusqueda(){
-		return busquedas.stream().map(busqueda->busqueda.cantidadResultados()).collect(Collectors.toList());
-	}
-	
-	public Integer totalResultadosTerminal(){
-		return this.resultadosPorBusqueda().stream().mapToInt(integer -> integer.intValue()).sum();
+	public void notificarObservers(Busqueda busqueda){
+		listaObservers.stream().forEach(observer->observer.notificar(busqueda, this.tiempoMaximo));
 	}
 	
 }
