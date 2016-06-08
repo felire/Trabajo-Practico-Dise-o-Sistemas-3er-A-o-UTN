@@ -61,12 +61,24 @@ public class TestTerminalObservers extends TestInit{
 	
 	@Test
 	public void testBusquedasParcialesPorTerminal(){
-		alberdi.buscar("cGP", null);
-		alberdi.buscar("banco", null);
-		rivadavia.buscar("localComercial", null);
+		alberdi.buscar("bondi", null);
+		alberdi.buscar("agip", null);
+		rivadavia.buscar("prestamos", null);
 		assertEquals(2, gestorBusquedas.busquedasParcialesPorTerminal().size());
 		assertEquals("Rivadavia", gestorBusquedas.busquedasParcialesPorTerminal().get(0).getUsuario());
 		assertEquals("Alberdi", gestorBusquedas.busquedasParcialesPorTerminal().get(1).getUsuario());
+	}
+	
+	@Test
+	public void testBusquedasPorTerminal(){
+		alberdi.buscar("bondi", null);
+		alberdi.buscar("agip", null);
+		rivadavia.buscar("a", null);
+		assertEquals(2, gestorBusquedas.busquedasPorTerminal().size());
+		assertEquals("Rivadavia", gestorBusquedas.busquedasPorTerminal().get(0).getUsuario());
+		assertEquals("Alberdi", gestorBusquedas.busquedasPorTerminal().get(1).getUsuario());
+		assertEquals(0, (int) gestorBusquedas.busquedasPorTerminal().get(0).getBusquedas());
+		assertEquals(0, (int) gestorBusquedas.busquedasPorTerminal().get(1).getBusquedas());
 	}
 	
 }
