@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class)
 
 
-public class TestMail {
+public class TestMail extends Init{
 	
 	@Mock ServicioMail servicioMail;
 	@InjectMocks ObserverMail observer = new ObserverMail();

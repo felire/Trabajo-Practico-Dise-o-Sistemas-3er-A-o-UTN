@@ -19,7 +19,7 @@ import org.mockito.InjectMocks;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class)
-public class TestFiltrarBancos {
+public class TestFiltrarBancos extends Init {
 	
 	@Mock ServicioExternoBanco servicioExterno;
 	@InjectMocks BuscadorBanco buscadorBanco = new BuscadorBanco();

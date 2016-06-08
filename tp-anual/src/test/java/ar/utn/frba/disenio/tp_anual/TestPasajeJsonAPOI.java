@@ -11,7 +11,7 @@ import org.uqbar.geodds.Point;
 import ar.utn.frba.disenio.tp_anual.gestion.BuscadorBanco;
 import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
 
-public class TestPasajeJsonAPOI{
+public class TestPasajeJsonAPOI extends Init{
 	
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBanco> listaBancos;

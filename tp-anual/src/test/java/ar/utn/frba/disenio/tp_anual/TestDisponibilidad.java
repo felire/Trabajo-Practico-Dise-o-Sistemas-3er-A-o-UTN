@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
-public class TestDisponibilidad extends TestInit{
+public class TestDisponibilidad extends Init{
 	
-/* Tests Disponibilidad de Banco */
+	/* Tests Disponibilidad de Banco */
     
     @Test
     public void testDisponibilidadSucursalBanco()
@@ -24,7 +24,7 @@ public class TestDisponibilidad extends TestInit{
     	assertTrue( banco.estaDisponible(fechaBanco, "Asesoramiento Financiero"));
     }
     
-/* Tests Disponibilidad de Local Comercial */
+    /* Tests Disponibilidad de Local Comercial */
 	
     @Test
     public void testDisponibilidadLocalComercial()

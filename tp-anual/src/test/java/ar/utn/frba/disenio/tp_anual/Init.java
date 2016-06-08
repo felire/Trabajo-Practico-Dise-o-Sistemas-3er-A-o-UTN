@@ -1,5 +1,7 @@
 package ar.utn.frba.disenio.tp_anual;
 
+import static org.junit.Assert.*;
+
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -10,9 +12,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+
+import org.junit.FixMethodOrder;
 
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
@@ -28,7 +33,8 @@ import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
 
-public class TestInit {
+@RunWith(DescriptionSorterRunner.class)
+public class Init {
 	/* Variables de Local Comercial */
 	LocalComercial localComercial;
 	Rubro rubro;
@@ -79,7 +85,7 @@ public class TestInit {
 	List<POI> resultadosDeBusqueda;
 	
 	@Before
-	public void init()
+	public void t01_init()
 	{
 		/* Setup de Local Comercial */
 		ArrayList<DayOfWeek> dias = new ArrayList<DayOfWeek>();
@@ -181,5 +187,9 @@ public class TestInit {
 		buscadorPOIS.altaPOI(localComercial);
 		buscadorPOIS.altaPOI(paradaDe55);
 	
+	}
+	@Test
+	public void inicie(){
+		assertTrue(true);
 	}
 }

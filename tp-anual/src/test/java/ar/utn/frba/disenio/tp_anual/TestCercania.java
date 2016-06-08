@@ -18,7 +18,7 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-public class TestCercania extends TestInit{
+public class TestCercania extends Init{
 	
 	/* Tests de Local Comercial */
 	
@@ -27,7 +27,7 @@ public class TestCercania extends TestInit{
 		assertTrue( localComercial.esCercano(new Point(-34.806537, -58.447796)));
 	}
 	
-/* Tests de CGP */
+	/* Tests de CGP */
 	
     @Test
     public void testPuntosCercanosACGP()
@@ -50,4 +50,5 @@ public class TestCercania extends TestInit{
     	assertTrue( paradaDe55.esCercano(new Point(-34.598384, -58.420269)));
     	assertFalse( paradaDe55.esCercano(new Point(-34.599647, -58.420462)));
     }
+    
 }

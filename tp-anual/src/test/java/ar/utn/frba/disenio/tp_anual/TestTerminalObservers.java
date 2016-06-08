@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 import java.time.LocalDate;
 @RunWith(MockitoJUnit44Runner.class)
 
-public class TestTerminalObservers extends TestInit{
+public class TestTerminalObservers extends Init{
 	@Mock ServicioMail servicioMail;
 	@InjectMocks ObserverMail observerMail = new ObserverMail();
 	GestorBusquedas gestorBusquedas = new GestorBusquedas(new CreadorDeReportes());
@@ -77,8 +77,8 @@ public class TestTerminalObservers extends TestInit{
 		assertEquals(2, gestorBusquedas.busquedasPorTerminal().size());
 		assertEquals("Rivadavia", gestorBusquedas.busquedasPorTerminal().get(0).getUsuario());
 		assertEquals("Alberdi", gestorBusquedas.busquedasPorTerminal().get(1).getUsuario());
-		assertEquals(0, (int) gestorBusquedas.busquedasPorTerminal().get(0).getBusquedas());
-		assertEquals(0, (int) gestorBusquedas.busquedasPorTerminal().get(1).getBusquedas());
+		assertEquals(6, (int) gestorBusquedas.busquedasPorTerminal().get(0).getBusquedas());
+		assertEquals(4, (int) gestorBusquedas.busquedasPorTerminal().get(1).getBusquedas());
 	}
 	
 }

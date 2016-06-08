@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestJsonTraduccion {
+public class TestJsonTraduccion extends Init{
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBanco> listaBancos;
 	private String jSonBancos = "["

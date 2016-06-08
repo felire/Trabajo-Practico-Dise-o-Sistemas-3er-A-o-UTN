@@ -19,7 +19,7 @@ import org.mockito.InjectMocks;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnit44Runner.class)
-public class TestFiltrarCgp {
+public class TestFiltrarCgp extends Init{
 	
 	@Mock ServicioExternoCGP servicioExterno;
 	@InjectMocks BuscadorCGP buscadorCGP = new BuscadorCGP();

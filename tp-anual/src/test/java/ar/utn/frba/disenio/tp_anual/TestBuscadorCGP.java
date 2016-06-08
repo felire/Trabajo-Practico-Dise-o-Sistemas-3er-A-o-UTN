@@ -16,7 +16,7 @@ import org.uqbar.geodds.Polygon;
 import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
 import ar.utn.frba.disenio.tp_anual.poi.CGP;
 
-public class TestBuscadorCGP {
+public class TestBuscadorCGP extends Init {
 
 	CreadorDeCGP creadorDeCGP;
 	CentroDTO centroDTO;

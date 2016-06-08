@@ -19,7 +19,7 @@ import org.uqbar.geodds.Polygon;
 import ar.utn.frba.disenio.tp_anual.poi.CGP;
 import ar.utn.frba.disenio.tp_anual.poi.Servicio;
 
-public class TestAdapterCGP {
+public class TestAdapterCGP extends Init {
 	
 	CreadorDeCGP creadorDeCGP;
 	CentroDTO centroDTO;

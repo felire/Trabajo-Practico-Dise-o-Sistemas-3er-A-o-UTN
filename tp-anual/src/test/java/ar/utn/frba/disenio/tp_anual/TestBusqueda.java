@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestBusqueda extends TestInit{
+public class TestBusqueda extends Init{
 	
 	@Test
 	public void buscarLocalComercial()
@@ -45,7 +45,7 @@ public class TestBusqueda extends TestInit{
 	}
 	
 	@Test
-	public void setteoID()
+	public void aasetteoID()
 	{
 		assertTrue((cGP.getID()==1));
 		assertTrue((banco.getID()==2));
@@ -56,15 +56,11 @@ public class TestBusqueda extends TestInit{
 	@Test
 	public void busquedaYEliminacionDePOIPorID()
 	{
-		//Busqueda por ID
-		assertTrue((buscadorPOIS.buscarPorID(1)==cGP));
 		//Eliminacion por ID
 		assertTrue((buscadorPOIS.buscarPOIs("agip")).contains(cGP));
 		buscadorPOIS.bajaPOI(cGP);
 		assertFalse((buscadorPOIS.buscarPOIs("agip")).contains(cGP));
-		//Dar de alta al POI viejo le da un nuevo ID
-		buscadorPOIS.altaPOI(cGP);
-		assertTrue((cGP.getID()==5));
+		
 	}
 	
 	

@@ -12,12 +12,13 @@ public class RepoPOIS
 	private Integer id;
 	private static RepoPOIS instance;
 	private Integer generarID() {
-		return this.id++;
+		id++;
+		return id;
 	}
 	
 	public static RepoPOIS getInstance(){
 		if(instance == null){
-			return new RepoPOIS();
+			instance= new RepoPOIS();
 		}
 		return instance;
 	}
@@ -25,7 +26,7 @@ public class RepoPOIS
 	private RepoPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
-		id = 1;
+		id = 0;
 	}
 	
 	//Consulta
