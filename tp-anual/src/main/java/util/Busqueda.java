@@ -15,13 +15,15 @@ public class Busqueda {
 	private double tiempoDemorado;
 	private String terminal; //El reporte o Busqueda (habria que cambiar el nombre) conoce el nombre de la terminal en la que fue buscado
 	//La terminal la tratamos como usuario
-	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, double d, String terminal){
+	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, String terminal){
 		this.resultados = buscados;
 		this.fecha = LocalDate.now(); //Lo seteamos con la fecha actual
 		this.fraseBuscada = fraseBuscada;
 		this.servicioBuscado = servicioBuscado;
-		this.tiempoDemorado = d;
 		this.terminal = terminal;
+	}
+	public void setDemora(Double demora){
+		this.tiempoDemorado = demora;
 	}
 	public double getTiempoDemorado(){
 		return this.tiempoDemorado;

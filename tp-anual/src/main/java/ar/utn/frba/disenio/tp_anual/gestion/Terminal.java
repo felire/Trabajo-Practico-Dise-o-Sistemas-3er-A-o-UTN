@@ -21,21 +21,15 @@ public class Terminal {
 	private String nombre;
 	private BuscadorPOIs buscadorPOIS;
 	private List<ObserverTerminal> listaObservers;
-	private double tiempoMaximo;
 	
 	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
 		this.buscadorPOIS=buscadorPOIS;
 		this.nombre = nombre;
-		this.tiempoMaximo = tiempoMaximo;
 		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
 	
 	public String getNombre(){
 		return nombre;
-	}
-	
-	public void setTiempoMaximo(double tiempoMaximo){
-		this.tiempoMaximo = tiempoMaximo;
 	}
 	
 	public void addObserver(ObserverTerminal observer){
@@ -47,15 +41,18 @@ public class Terminal {
 	}
     
 	public List<POI> buscar(String palabraClave, String servicio){
-		double inicio = System.currentTimeMillis();
+		this.preNotificarObservers(); //Podriamos hacer que notifique solo a los que necesitan el pre
 		List<POI> buscados= buscadorPOIS.buscarPOIs(palabraClave,servicio);
-		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, (double) (System.currentTimeMillis() - inicio)/1000, this.getNombre());
+		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
 		this.notificarObservers(busqueda);
 		return buscados;
 	}
 	
 	public void notificarObservers(Busqueda busqueda){
-		listaObservers.stream().forEach(observer->observer.notificar(busqueda, this.tiempoMaximo));
+		listaObservers.stream().forEach(observer->observer.notificar(busqueda));
+	}
+	public void preNotificarObservers(){
+		listaObservers.stream().forEach(observer->observer.preNotificar());
 	}
 	
 }
