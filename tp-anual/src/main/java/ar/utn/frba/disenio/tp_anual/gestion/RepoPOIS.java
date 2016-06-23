@@ -16,6 +16,9 @@ public class RepoPOIS
 		return id;
 	}
 	
+	public List<POI> getListaPOIS(){
+		return listaPOIs;
+	}
 	public static RepoPOIS getInstance(){
 		if(instance == null){
 			instance= new RepoPOIS();
