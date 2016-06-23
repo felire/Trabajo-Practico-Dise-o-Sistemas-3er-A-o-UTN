@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 import javax.swing.Timer;
 
+import org.uqbar.geodds.Polygon;
+
 import ar.utn.frba.disenio.tp_anual.externo.ObserverTerminal;
 import ar.utn.frba.disenio.tp_anual.externo.ServicioMail;
 import ar.utn.frba.disenio.tp_anual.poi.POI;
@@ -21,6 +23,7 @@ public class Terminal {
 	private String nombre;
 	private BuscadorPOIs buscadorPOIS;
 	private List<ObserverTerminal> listaObservers;
+	private Polygon comuna;
 	
 	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
 		this.buscadorPOIS=buscadorPOIS;
@@ -53,6 +56,13 @@ public class Terminal {
 	}
 	public void preNotificarObservers(){
 		listaObservers.stream().forEach(observer->observer.preNotificar());
+	}
+	public Polygon getComuna() {
+		return comuna;
+	}
+
+	public void setComuna(Polygon comuna) {
+		this.comuna = comuna;
 	}
 	
 }

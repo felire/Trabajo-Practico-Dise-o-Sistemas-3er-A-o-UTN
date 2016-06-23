@@ -35,7 +35,6 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void addTag(String tag)
 	{
 		listaTags.add(tag);

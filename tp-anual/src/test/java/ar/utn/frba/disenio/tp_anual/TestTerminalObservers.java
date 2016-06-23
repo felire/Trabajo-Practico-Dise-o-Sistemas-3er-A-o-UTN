@@ -2,6 +2,7 @@ package ar.utn.frba.disenio.tp_anual;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Test;
@@ -42,8 +43,10 @@ public class TestTerminalObservers extends Init{
 		alberdi.addObserver(gestorBusquedas);
 		rivadavia.addObserver(gestorBusquedas);
 	}
+
 	
 	/*@Test
+
 	public void testObserverMail(){
 		terminal.buscar("Banco Santander", null);
 		verify(servicioMail).reportarTardanza(gestorBusquedas.getBusquedas().get(0).getTiempoDemorado());
@@ -80,5 +83,13 @@ public class TestTerminalObservers extends Init{
 		assertEquals(6, (int) gestorBusquedas.busquedasPorTerminal().get(0).getBusquedas());
 		assertEquals(4, (int) gestorBusquedas.busquedasPorTerminal().get(1).getBusquedas());
 	}
+
 	*/
+
+	
+	@After
+	public void tearDown(){
+		gestorBusquedas = new GestorBusquedas(new CreadorDeReportes());
+	}
+
 }
