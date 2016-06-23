@@ -1,7 +1,6 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 

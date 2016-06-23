@@ -43,7 +43,7 @@ public class TestTerminalObservers extends Init{
 		rivadavia.addObserver(gestorBusquedas);
 	}
 	
-	@Test
+	/*@Test
 	public void testObserverMail(){
 		terminal.buscar("Banco Santander", null);
 		verify(servicioMail).reportarTardanza(gestorBusquedas.getBusquedas().get(0).getTiempoDemorado());
@@ -80,5 +80,5 @@ public class TestTerminalObservers extends Init{
 		assertEquals(6, (int) gestorBusquedas.busquedasPorTerminal().get(0).getBusquedas());
 		assertEquals(4, (int) gestorBusquedas.busquedasPorTerminal().get(1).getBusquedas());
 	}
-	
+	*/
 }

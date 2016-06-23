@@ -21,7 +21,25 @@ public class JsonTraduccion {
 			return bancos;
 			
 		} catch (IOException e) {
-			throw new RuntimeException("Error reading a json", e);
+			throw new RuntimeException("Error al leer el Json", e);
 		}
 	}
+	
+	public List<JsonBaja> traductorBajaPOIs(String json){
+		try {
+			
+			ArrayList<JsonBaja> pois = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, JsonBaja.class));
+			return pois;
+			
+		} catch (IOException e) {
+			throw new RuntimeException("Error al leer el Json", e);
+		}
+	}
+	
+	public List<JsonBajaFecha> traductorBaja(String json){
+		List<JsonBajaFecha> lista = new ArrayList<JsonBajaFecha>();
+		this.traductorBajaPOIs(json).stream().forEach(poi -> lista.add(new JsonBajaFecha(poi)));
+		return lista;
+	}
+	
 }
