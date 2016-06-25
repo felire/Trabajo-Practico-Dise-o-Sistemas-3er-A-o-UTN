@@ -42,5 +42,10 @@ public class SeleccionComuna implements TipoSeleccionTerminal{
 		return repo.getListaTerminales().stream().filter(terminal->terminal.getComuna().equals(comuna)).collect(Collectors.toList());
 	}
 	
+	@Override
+	public Integer numeroDeTerminalesAfectadas() {
+		return repo.getListaTerminales().size();
+	}
+	
 	
 }

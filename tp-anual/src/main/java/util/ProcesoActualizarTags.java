@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import ar.utn.frba.disenio.tp_anual.AdapterActualizacionLocalComercial;
 import ar.utn.frba.disenio.tp_anual.gestion.BuscadorPOIs;
@@ -20,6 +22,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	private AdapterActualizacionLocalComercial adapter;
 	private Map<String, List<String>> mapa = new HashMap<String, List<String>>();
 	private List<POI> POIsAActualizar;
+	private boolean errorCatcher=false;//agrego boolean para catchear errores
 	
 	public LocalDateTime getFecha(){
 		return fecha;
@@ -32,21 +35,30 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	public void obtencionDeActualizaciones(){
 		mapa=adapter.traducirArchivo();
 	}
-	/*public void execute(){
-		
-	}*/
+	
+	
 	@Override
 	public void run() {
 		List<LocalComercial> listaLocales = new ArrayList<LocalComercial>();
-		listaLocales = (List<LocalComercial>) POIsAActualizar.stream().filter(poi -> poi.getClass().equals(LocalComercial.class));
-		listaLocales.stream().filter(local -> mapa.containsKey(local.getNombre())).forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
-		ResultadoProceso resultado = new ResultadoProceso();
+		listaLocales = (List<LocalComercial>) POIsAActualizar
+				.stream()
+				.filter(poi -> poi
+					.getClass()
+					.equals(LocalComercial.class));
+		List<LocalComercial> localesAfectados = listaLocales
+				.stream()
+				.filter(local -> mapa
+					.containsKey(local.getNombre()))
+				.collect(Collectors.toList());
+		localesAfectados.forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
+		ResultadoProceso resultado = new ResultadoProceso(localesAfectados.size(),fecha,!errorCatcher);
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 		
 	}
+	
 	@Override
 	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
 		this.gestionadorDeProcesos = gestionador;
-		
 	}
+	
 }

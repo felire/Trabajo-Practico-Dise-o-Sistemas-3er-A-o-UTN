@@ -23,4 +23,9 @@ public class SeleccionAdministrados implements TipoSeleccionTerminal{
 	public void quitarAcciones(List<ObserverTerminal> acciones){
 		terminalesSeleccionadas.stream().forEach(terminal->acciones.stream().forEach(accion->terminal.deleteObserver(accion)));
 	}
+	
+	@Override
+	public Integer numeroDeTerminalesAfectadas() {
+		return terminalesSeleccionadas.size();
+	}
 }

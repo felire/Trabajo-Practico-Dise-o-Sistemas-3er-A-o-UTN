@@ -23,4 +23,10 @@ public class SeleccionTodos implements TipoSeleccionTerminal{
 		repo.getListaTerminales().stream().forEach(terminal->acciones.stream().
 				forEach(accion->terminal.deleteObserver(accion)));
 	}
+	
+	@Override
+	public Integer numeroDeTerminalesAfectadas() {
+		return repo.getListaTerminales().size();
+	}
+	
 }

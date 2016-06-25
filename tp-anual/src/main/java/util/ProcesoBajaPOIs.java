@@ -13,6 +13,7 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	private JsonTraduccion traductor;
 	private String json;
 	private LocalDateTime fecha;
+	private boolean errorCatcher=false;//agrego boolean para cachear errores
 	
 	public ProcesoBajaPOIs(RepoPOIS repo, JsonTraduccion traductor, String json){
 		this.repo = repo;
@@ -26,8 +27,12 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	
 	@Override
 	public void run(){
-		this.obtenerPOIsABorrar().stream().forEach(poi -> this.repo.bajaPOI(this.repo.buscarPorID(poi.getId())));
-		ResultadoProceso resultado = new ResultadoProceso();
+		this.obtenerPOIsABorrar()
+			.stream()
+			.forEach(poi -> this.repo
+					.bajaPOI(this.repo
+							.buscarPorID(poi.getId())));
+		ResultadoProceso resultado = new ResultadoProceso(this.obtenerPOIsABorrar().size(),fecha,!errorCatcher);
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 	}
 	
