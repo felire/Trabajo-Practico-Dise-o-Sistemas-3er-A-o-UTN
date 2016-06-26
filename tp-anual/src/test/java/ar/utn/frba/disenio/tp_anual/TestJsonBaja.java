@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import util.ProcesoBajaPOIs;
+
 public class TestJsonBaja {
 
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();

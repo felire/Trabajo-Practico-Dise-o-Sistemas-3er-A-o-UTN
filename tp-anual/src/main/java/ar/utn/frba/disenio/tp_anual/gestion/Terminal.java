@@ -39,6 +39,10 @@ public class Terminal {
 		this.listaObservers.add(observer);
 	}
 	
+	public boolean tieneObserver(ObserverTerminal observer){
+		return this.listaObservers.contains(observer);
+	}
+	
 	public void deleteObserver(ObserverTerminal observer){
 		this.listaObservers.remove(observer);
 	}
@@ -61,6 +65,10 @@ public class Terminal {
 		return comuna;
 	}
 
+	public List<ObserverTerminal> getListaObservers(){
+		return listaObservers;
+	}
+	
 	public void setComuna(Polygon comuna) {
 		this.comuna = comuna;
 	}

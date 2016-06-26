@@ -13,6 +13,7 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	private JsonTraduccion traductor;
 	private String json;
 	private LocalDateTime fecha;
+	private List<JsonBajaFecha> poisABorrar;
 	private boolean errorCatcher=false;//agrego boolean para cachear errores
 	
 	public ProcesoBajaPOIs(RepoPOIS repo, JsonTraduccion traductor, String json){
@@ -22,17 +23,36 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	}
 	
 	public List<JsonBajaFecha> obtenerPOIsABorrar(){
-		return traductor.traductorBaja(this.json);
+		this.poisABorrar = traductor.traductorBaja(this.json);
+		return poisABorrar;
+	}
+	
+	static void todosLosPOISExisten(RepoPOIS repo, List<JsonBajaFecha> poisABorrar) throws POINoExisteException{
+		if(repo.getListaPOIS().containsAll(poisABorrar)){
+			throw new POINoExisteException("Error: Uno o mas de los POIS a borrar no se encuentra en el repositorio");
+		}
+	}
+	
+	private void borradoDePOIs(){
+		try{
+			todosLosPOISExisten(repo, poisABorrar);	
+			this.obtenerPOIsABorrar()
+				.stream()
+				.forEach(poi -> this.repo
+					.bajaPOI(this.repo
+						.buscarPorID(poi.getId())));
+		}
+		catch(POINoExisteException excepcion){
+			System.out.println(excepcion);
+			errorCatcher = true;
+		}
 	}
 	
 	@Override
 	public void run(){
-		this.obtenerPOIsABorrar()
-			.stream()
-			.forEach(poi -> this.repo
-					.bajaPOI(this.repo
-							.buscarPorID(poi.getId())));
+		this.borradoDePOIs();
 		ResultadoProceso resultado = new ResultadoProceso(this.obtenerPOIsABorrar().size(),fecha,!errorCatcher);
+		errorCatcher = false;
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 	}
 	

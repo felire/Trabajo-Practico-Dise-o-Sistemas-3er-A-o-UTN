@@ -34,6 +34,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 		this.adapter = adapter;
 		this.gestionadorDeProcesos = gestionador;
 	}
+	
 	public void obtencionDeActualizaciones(){
 		mapa=adapter.traducirArchivo();
 	}

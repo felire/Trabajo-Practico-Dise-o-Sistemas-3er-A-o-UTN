@@ -18,10 +18,21 @@ public class SeleccionAdministrados implements TipoSeleccionTerminal{
 		terminalesSeleccionadas.remove(terminal);
 	}
 	public void agregarAcciones(List<ObserverTerminal> acciones) {
-		terminalesSeleccionadas.stream().forEach(terminal->acciones.stream().forEach(accion->terminal.addObserver(accion)));
+		terminalesSeleccionadas
+			.stream()
+			.forEach(terminal->acciones
+					.stream()
+					.forEach(accion->terminal
+							.addObserver(accion)));
 	}
+	
 	public void quitarAcciones(List<ObserverTerminal> acciones){
-		terminalesSeleccionadas.stream().forEach(terminal->acciones.stream().forEach(accion->terminal.deleteObserver(accion)));
+		terminalesSeleccionadas
+			.stream()
+			.forEach(terminal->acciones
+					.stream()
+					.forEach(accion->terminal
+							.deleteObserver(accion)));
 	}
 	
 	@Override

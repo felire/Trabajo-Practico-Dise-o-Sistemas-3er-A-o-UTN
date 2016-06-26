@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import util.ProcesoBajaPOIs;
+
 public class JsonTraduccion {
 	private ObjectMapper objectMapper;
 	
