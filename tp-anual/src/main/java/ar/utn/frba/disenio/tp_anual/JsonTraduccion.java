@@ -27,20 +27,21 @@ public class JsonTraduccion {
 		}
 	}
 	
-	public List<JsonBaja> traductorBajaPOIs(String json){
+	public List<JsonBaja> traductorBajaPOIs(ProcesoBajaPOIs proceso){
 		try {
 			
-			ArrayList<JsonBaja> pois = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, JsonBaja.class));
+			ArrayList<JsonBaja> pois = objectMapper.readValue(proceso.getJson(), objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, JsonBaja.class));
 			return pois;
 			
 		} catch (IOException e) {
+			proceso.informarError();
 			throw new RuntimeException("Error al leer el Json", e);
 		}
 	}
 	
-	public List<JsonBajaFecha> traductorBaja(String json){
+	public List<JsonBajaFecha> traductorBaja(ProcesoBajaPOIs proceso){
 		List<JsonBajaFecha> lista = new ArrayList<JsonBajaFecha>();
-		this.traductorBajaPOIs(json).stream().forEach(poi -> lista.add(new JsonBajaFecha(poi)));
+		this.traductorBajaPOIs(proceso).stream().forEach(poi -> lista.add(new JsonBajaFecha(poi)));
 		return lista;
 	}
 	

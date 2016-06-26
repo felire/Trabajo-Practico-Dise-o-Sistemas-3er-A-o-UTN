@@ -23,14 +23,22 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	}
 	
 	public List<JsonBajaFecha> obtenerPOIsABorrar(){
-		this.poisABorrar = traductor.traductorBaja(this.json);
+		this.poisABorrar = traductor.traductorBaja(this);
 		return poisABorrar;
+	}
+	
+	public String getJson(){
+		return json;
 	}
 	
 	static void todosLosPOISExisten(RepoPOIS repo, List<JsonBajaFecha> poisABorrar) throws POINoExisteException{
 		if(repo.getListaPOIS().containsAll(poisABorrar)){
 			throw new POINoExisteException("Error: Uno o mas de los POIS a borrar no se encuentra en el repositorio");
 		}
+	}
+	
+	public void informarError(){
+		errorCatcher = true;
 	}
 	
 	private void borradoDePOIs(){
