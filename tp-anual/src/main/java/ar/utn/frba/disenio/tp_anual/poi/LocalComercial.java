@@ -34,7 +34,4 @@ public class LocalComercial extends POI{
 	public Boolean soyBuscado(String palabraClave){
 	    return this.rubro.getNombre().equals(palabraClave);
 	}
-	public void actualizarTags(List<String> listaTags){
-		listaTags.removeAll(listaTags);
-	}
 }

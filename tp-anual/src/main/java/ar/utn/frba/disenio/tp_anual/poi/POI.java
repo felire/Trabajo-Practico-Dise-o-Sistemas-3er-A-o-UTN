@@ -60,7 +60,9 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	{
 		return this.coordenada.distance(coordenada) <= this.radioDeCercania.doubleValue();
 	}
-	
+	public void actualizarTags(List<String> listaTags){
+		listaTags.removeAll(listaTags);
+	}
 	
 	public Boolean esValido(){
 		return (this.coordenada != null && this.nombre != null);

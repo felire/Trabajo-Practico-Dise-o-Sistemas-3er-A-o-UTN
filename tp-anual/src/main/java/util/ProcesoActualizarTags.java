@@ -39,13 +39,13 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	
 	@Override
 	public void run() {
-		List<LocalComercial> listaLocales = new ArrayList<LocalComercial>();
-		listaLocales = (List<LocalComercial>) POIsAActualizar
+		List<POI> listaLocales = new ArrayList<POI>();
+		listaLocales =  POIsAActualizar
 				.stream()
 				.filter(poi -> poi
 					.getClass()
-					.equals(LocalComercial.class));
-		List<LocalComercial> localesAfectados = listaLocales
+					.equals(LocalComercial.class)).collect(Collectors.toList());
+		List<POI> localesAfectados = listaLocales
 				.stream()
 				.filter(local -> mapa
 					.containsKey(local.getNombre()))
