@@ -27,10 +27,12 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	public LocalDateTime getFecha(){
 		return fecha;
 	}
-	public ProcesoActualizarTags(LocalDateTime fecha){
+	public ProcesoActualizarTags(LocalDateTime fecha,AdapterActualizacionLocalComercial adapter, GestionadorProcesos gestionador){
 		repo = RepoPOIS.getInstance();
 		POIsAActualizar = repo.getListaPOIS();
 		this.fecha = fecha;
+		this.adapter = adapter;
+		this.gestionadorDeProcesos = gestionador;
 	}
 	public void obtencionDeActualizaciones(){
 		mapa=adapter.traducirArchivo();
@@ -39,6 +41,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	
 	@Override
 	public void run() {
+		this.obtencionDeActualizaciones();
 		List<POI> listaLocales = new ArrayList<POI>();
 		listaLocales =  POIsAActualizar
 				.stream()

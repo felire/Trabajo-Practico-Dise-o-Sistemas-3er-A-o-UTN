@@ -11,20 +11,14 @@ import java.util.Scanner;
 
 public class AdapterActualizacionLocalComercial{
 	private Scanner scanner;
-	/*public AdapterActualizacionLocalComercial(String pathArchivo){
+	public AdapterActualizacionLocalComercial(String pathArchivo) throws FileNotFoundException{
 			File file = new File(pathArchivo);
-			try {
-				this.scanner = new Scanner(file).useDelimiter(";");
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}*/
+			this.scanner = new Scanner(file);
+			scanner.useDelimiter("\n");
+	}
 	
 	public Map<String, List<String>> traducirArchivo(){
 		Map<String, List<String>> mapa = new HashMap<String, List<String>>();
-		String input = "nombre;tag1 tag2 tag3 \nnombre2;tag4 tag5 tag6 \nnombre3;tag7 tag8 tag9";
-		scanner = new Scanner(input).useDelimiter("\n");
 		String nombreFantasia;
 		String tags;
 		String linea;
@@ -40,10 +34,7 @@ public class AdapterActualizacionLocalComercial{
 			}
 			mapa.putIfAbsent(nombreFantasia, listaTags);
 		}
-			
 		
-		//System.out.println(mapa.get(nombreFantasia));
-		mapa.get("nombre3").stream().forEach(palabra -> System.out.println(palabra + "\n"));
 		return mapa;
 	}
 }
