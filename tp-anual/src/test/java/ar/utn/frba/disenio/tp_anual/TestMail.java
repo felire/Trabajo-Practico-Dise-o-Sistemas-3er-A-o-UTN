@@ -8,12 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
 
-import ar.utn.frba.disenio.tp_anual.externo.ServicioMail;
-import ar.utn.frba.disenio.tp_anual.gestion.BuscadorPOIs;
-import ar.utn.frba.disenio.tp_anual.gestion.GestorBusquedas;
-import ar.utn.frba.disenio.tp_anual.gestion.ObserverMail;
-import ar.utn.frba.disenio.tp_anual.gestion.Terminal;
-
+import ar.utn.frba.disenio.tp_anual.model.Terminal;
+import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
+import ar.utn.frba.disenio.tp_anual.servicios.ServicioMail;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas;
 
 import org.mockito.runners.MockitoJUnit44Runner;
 import org.mockito.Mock;

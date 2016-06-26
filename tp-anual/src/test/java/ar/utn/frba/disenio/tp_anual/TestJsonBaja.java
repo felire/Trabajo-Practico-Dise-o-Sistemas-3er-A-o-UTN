@@ -7,8 +7,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.utn.frba.disenio.tp_anual.gestion.RepoPOIS;
-import util.ProcesoBajaPOIs;
+import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
+import ar.utn.frba.disenio.tp_anual.json.JsonBaja;
+import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoBajaPOIs;
 
 public class TestJsonBaja {
 

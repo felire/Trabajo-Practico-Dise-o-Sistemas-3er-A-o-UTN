@@ -22,14 +22,14 @@ import org.junit.FixMethodOrder;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-import ar.utn.frba.disenio.tp_anual.gestion.RepoPOIS;
-import ar.utn.frba.disenio.tp_anual.poi.CGP;
-import ar.utn.frba.disenio.tp_anual.poi.LocalComercial;
-import ar.utn.frba.disenio.tp_anual.poi.POI;
-import ar.utn.frba.disenio.tp_anual.poi.ParadaDeColectivo;
-import ar.utn.frba.disenio.tp_anual.poi.Rubro;
-import ar.utn.frba.disenio.tp_anual.poi.Servicio;
-import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
+import ar.utn.frba.disenio.tp_anual.model.CGP;
+import ar.utn.frba.disenio.tp_anual.model.LocalComercial;
+import ar.utn.frba.disenio.tp_anual.model.POI;
+import ar.utn.frba.disenio.tp_anual.model.ParadaDeColectivo;
+import ar.utn.frba.disenio.tp_anual.model.Rubro;
+import ar.utn.frba.disenio.tp_anual.model.Servicio;
+import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
+import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
 

@@ -8,8 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
 
-import ar.utn.frba.disenio.tp_anual.gestion.BuscadorBanco;
-import ar.utn.frba.disenio.tp_anual.poi.SucursalBanco;
+import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeBancos;
+import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
+import ar.utn.frba.disenio.tp_anual.json.JsonBanco;
+import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorBanco;
 
 public class TestPasajeJsonAPOI extends Init{
 	

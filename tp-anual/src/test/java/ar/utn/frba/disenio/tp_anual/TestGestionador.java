@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.utn.frba.disenio.tp_anual.gestion.GestionadorProcesos;
-import util.ProcesoActualizarTags;
-import util.ProcesoGeneral;
-import ar.utn.frba.disenio.tp_anual.AdapterActualizacionLocalComercial;
+import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
+import ar.utn.frba.disenio.tp_anual.schedule.process.GestionadorProcesos;
+import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoActualizarTags;
+import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoGeneral;
 
 public class TestGestionador {
 

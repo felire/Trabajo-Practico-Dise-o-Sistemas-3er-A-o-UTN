@@ -14,6 +14,8 @@ import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
+
 public class testAdapterActualizacion {
 	
 	AdapterActualizacionLocalComercial adapter;

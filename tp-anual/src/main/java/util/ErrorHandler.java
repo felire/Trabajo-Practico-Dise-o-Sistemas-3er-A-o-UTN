@@ -1,5 +1,8 @@
 package util;
 
+import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoGeneral;
+import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoStatus;
+
 public class ErrorHandler {
 
 	private static Boolean enviarMail = false;

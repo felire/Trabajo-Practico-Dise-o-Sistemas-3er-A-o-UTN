@@ -8,10 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
 
-import ar.utn.frba.disenio.tp_anual.externo.ServicioExternoCGP;
-import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
-import ar.utn.frba.disenio.tp_anual.gestion.BuscadorPOIs;
-import ar.utn.frba.disenio.tp_anual.gestion.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeCGP;
+import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoCGP;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorCGP;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 
 import org.mockito.runners.MockitoJUnit44Runner;
 import org.mockito.Mock;

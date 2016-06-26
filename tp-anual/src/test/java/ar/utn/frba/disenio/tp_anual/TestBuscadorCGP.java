@@ -12,9 +12,12 @@ import org.junit.Test;
 import org.uqbar.geodds.Point;
 import org.uqbar.geodds.Polygon;
 
-
-import ar.utn.frba.disenio.tp_anual.gestion.BuscadorCGP;
-import ar.utn.frba.disenio.tp_anual.poi.CGP;
+import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeCGP;
+import ar.utn.frba.disenio.tp_anual.dto.CentroDTO;
+import ar.utn.frba.disenio.tp_anual.dto.RangoServicioDTO;
+import ar.utn.frba.disenio.tp_anual.dto.ServicioDTO;
+import ar.utn.frba.disenio.tp_anual.model.CGP;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorCGP;
 
 public class TestBuscadorCGP extends Init {
 

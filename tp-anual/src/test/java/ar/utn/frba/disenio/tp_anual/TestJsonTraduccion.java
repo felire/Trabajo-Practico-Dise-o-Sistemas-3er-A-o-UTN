@@ -7,6 +7,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
+import ar.utn.frba.disenio.tp_anual.json.JsonBanco;
+
 public class TestJsonTraduccion extends Init{
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBanco> listaBancos;
