@@ -27,24 +27,25 @@ public class SeleccionComuna implements TipoSeleccionTerminal{
 	}
 	
 	public void agregarAcciones( List<ObserverTerminal> acciones) {
-		comunasSeleccionadas.stream().
-		forEach(comuna->this.terminalesFiltradas(comuna).stream().
-				forEach(terminal-> acciones.stream().
-						forEach(accion->terminal.addObserver(accion))));
+		this.terminalesAfectadas().stream().forEach(terminal-> acciones.stream().
+				forEach(accion->terminal.addObserver(accion)));
 	}
 	public void quitarAcciones(List<ObserverTerminal> acciones){
-		comunasSeleccionadas.stream().
-		forEach(comuna->this.terminalesFiltradas(comuna).stream().
-				forEach(terminal-> acciones.stream().
-						forEach(accion->terminal.deleteObserver(accion))));
+		this.terminalesAfectadas().stream().forEach(terminal-> acciones.stream().
+				forEach(accion->terminal.deleteObserver(accion)));
 	}
 	public List<Terminal> terminalesFiltradas(Polygon comuna){
 		return repo.getListaTerminales().stream().filter(terminal->terminal.getComuna().equals(comuna)).collect(Collectors.toList());
 	}
-
+	public List<Terminal> terminalesAfectadas(){
+		List<Terminal> terminalesAfectadas = new ArrayList<Terminal>();
+		comunasSeleccionadas.stream().
+		forEach(comuna->terminalesAfectadas.addAll(this.terminalesFiltradas(comuna)));
+		return terminalesAfectadas;
+	}
 	@Override
 	public Integer numeroDeTerminalesAfectadas(){
-		return comunasSeleccionadas.size();//esta mal, despues alguien arreglelo
+		return this.terminalesAfectadas().size();
 	}
 	
 
