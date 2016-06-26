@@ -16,7 +16,6 @@ public class ProcesoActualizarAccionesTerminales extends ProcesoGeneral{
 	private TipoSeleccionTerminal seleccion;
 	private List<ObserverTerminal> listaAccionesAAgregar;
 	private List<ObserverTerminal> listaAccionesAQuitar;
-	private boolean errorCatcher = false;//agrego boolean para cachear errores
 	
 	public ProcesoActualizarAccionesTerminales(LocalDateTime fecha){
 		listaAccionesAAgregar = new ArrayList<ObserverTerminal>();
@@ -42,17 +41,17 @@ public class ProcesoActualizarAccionesTerminales extends ProcesoGeneral{
 	public void quitarAcciones(){
 		seleccion.quitarAcciones(listaAccionesAQuitar);
 	}
-	
-	public void informarError(){
-		errorCatcher = true;
-	}
 
 	@Override
 	public void run() {
-		this.agregarAcciones();
-		this.quitarAcciones();	
-		ResultadoProceso resultado = new ResultadoProceso(seleccion.numeroDeTerminalesAfectadas(),fecha,!errorCatcher);
-		errorCatcher = false;
+		
+		try {
+			this.accion();
+		} catch (Exception e) {
+			handleError();
+		}
+		
+		ResultadoProceso resultado = new ResultadoProceso(seleccion.numeroDeTerminalesAfectadas(),fecha, estado);
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 	}
 
@@ -65,5 +64,11 @@ public class ProcesoActualizarAccionesTerminales extends ProcesoGeneral{
 	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
 		this.gestionadorDeProcesos = gestionador;
 		
+	}
+
+	@Override
+	public void accion() throws Exception {
+		this.agregarAcciones();
+		this.quitarAcciones();	
 	}
 }

@@ -34,7 +34,6 @@ public class JsonTraduccion {
 			return pois;
 			
 		} catch (IOException e) {
-			proceso.informarError();
 			throw new RuntimeException("Error al leer el Json", e);
 		}
 	}

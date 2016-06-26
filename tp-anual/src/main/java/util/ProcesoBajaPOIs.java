@@ -1,9 +1,11 @@
 package util;
 
 import ar.utn.frba.disenio.tp_anual.gestion.*;
+import ar.utn.frba.disenio.tp_anual.poi.POI;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import ar.utn.frba.disenio.tp_anual.*;
 
 public class ProcesoBajaPOIs extends ProcesoGeneral{
@@ -14,7 +16,6 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	private String json;
 	private LocalDateTime fecha;
 	private List<JsonBajaFecha> poisABorrar;
-	private boolean errorCatcher=false;//agrego boolean para cachear errores
 	
 	public ProcesoBajaPOIs(RepoPOIS repo, JsonTraduccion traductor, String json){
 		this.repo = repo;
@@ -37,30 +38,26 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 		}
 	}
 	
-	public void informarError(){
-		errorCatcher = true;
-	}
+	private void borradoDePOIs() throws POINoExisteException{
+		
+		todosLosPOISExisten(repo, poisABorrar);	
+		this.obtenerPOIsABorrar()
+			.stream()
+			.forEach(
+					poi -> this.repo.bajaPOI(this.repo.buscarPorID(poi.getId())));
 	
-	private void borradoDePOIs(){
-		try{
-			todosLosPOISExisten(repo, poisABorrar);	
-			this.obtenerPOIsABorrar()
-				.stream()
-				.forEach(poi -> this.repo
-					.bajaPOI(this.repo
-						.buscarPorID(poi.getId())));
-		}
-		catch(POINoExisteException excepcion){
-			System.out.println(excepcion);
-			errorCatcher = true;
-		}
 	}
 	
 	@Override
 	public void run(){
-		this.borradoDePOIs();
-		ResultadoProceso resultado = new ResultadoProceso(this.obtenerPOIsABorrar().size(),fecha,!errorCatcher);
-		errorCatcher = false;
+		
+		try {
+			this.accion();
+		} catch (Exception e) {
+			handleError();
+		}
+		
+		ResultadoProceso resultado = new ResultadoProceso(this.obtenerPOIsABorrar().size(),fecha, estado);
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 	}
 	
@@ -74,4 +71,10 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 		this.gestionadorDeProcesos = gestionador;
 		
 	}
+
+	@Override
+	public void accion() throws Exception {
+		this.borradoDePOIs();
+	}
+
 }

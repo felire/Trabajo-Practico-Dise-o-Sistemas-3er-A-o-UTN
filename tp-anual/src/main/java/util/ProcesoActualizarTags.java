@@ -22,7 +22,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	private AdapterActualizacionLocalComercial adapter;
 	private Map<String, List<String>> mapa = new HashMap<String, List<String>>();
 	private List<POI> POIsAActualizar;
-	private boolean errorCatcher=false;//agrego boolean para catchear errores
+	List<POI> localesAfectados;
 	
 	public LocalDateTime getFecha(){
 		return fecha;
@@ -43,29 +43,14 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	@Override
 	public void run() {
 		System.out.println("ejecutando");
-		this.obtencionDeActualizaciones();
 		
-		List<POI> listaLocales = new ArrayList<POI>();
-		listaLocales =  POIsAActualizar
-				.stream()
-				.filter(poi -> poi
-					.getClass()
-					.equals(LocalComercial.class)).collect(Collectors.toList());
-		List<POI> localesAfectados = listaLocales
-				.stream()
-				.filter(local -> mapa
-					.containsKey(local.getNombre()))
-				.collect(Collectors.toList());
-		try{
-			checkDeTags(mapa);
-			localesAfectados.stream().forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
+		try {
+			this.accion();
+		} catch (Exception e) {
+			handleError();
 		}
-		catch(TagsVaciosException excepcion){
-			System.out.println(excepcion);
-			errorCatcher=true;
-		}
-		ResultadoProceso resultado = new ResultadoProceso(localesAfectados.size(),fecha,!errorCatcher);
-		errorCatcher=false;
+		
+		ResultadoProceso resultado = new ResultadoProceso(localesAfectados.size(),fecha, estado);
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 		
 	}
@@ -79,6 +64,29 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	@Override
 	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
 		this.gestionadorDeProcesos = gestionador;
+	}
+	@Override
+	public void accion() throws Exception {
+		this.obtencionDeActualizaciones();
+		
+		List<POI> listaLocales = new ArrayList<POI>();
+		listaLocales =  POIsAActualizar
+				.stream()
+				.filter(poi -> poi
+					.getClass()
+					.equals(LocalComercial.class)).collect(Collectors.toList());
+		localesAfectados = listaLocales
+				.stream()
+				.filter(local -> mapa
+					.containsKey(local.getNombre()))
+				.collect(Collectors.toList());
+		try{
+			checkDeTags(mapa);
+			localesAfectados.stream().forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
+		}
+		catch(TagsVaciosException excepcion){
+			System.out.println(excepcion);
+		}
 	}
 	
 }
