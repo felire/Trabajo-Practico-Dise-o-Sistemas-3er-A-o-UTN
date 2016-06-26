@@ -50,12 +50,26 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 				.filter(local -> mapa
 					.containsKey(local.getNombre()))
 				.collect(Collectors.toList());
-		localesAfectados.forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
+		try{
+			checkDeTags(mapa);
+			localesAfectados.stream().forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
+		}
+		catch(TagsVaciosException excepcion){
+			System.out.println(excepcion);
+			errorCatcher=true;
+		}
 		ResultadoProceso resultado = new ResultadoProceso(localesAfectados.size(),fecha,!errorCatcher);
+		errorCatcher=false;
 		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
 		
 	}
-	
+		
+	static void checkDeTags(Map<String, List<String>> mapa) throws TagsVaciosException{
+		if(mapa.values().stream().anyMatch(listaTags -> listaTags.isEmpty())){
+			throw new TagsVaciosException("Error: Se ingreso un Local Comercial sin palabras claves./n");
+		}
+		
+	}
 	@Override
 	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
 		this.gestionadorDeProcesos = gestionador;

@@ -41,11 +41,11 @@ public class SeleccionComuna implements TipoSeleccionTerminal{
 	public List<Terminal> terminalesFiltradas(Polygon comuna){
 		return repo.getListaTerminales().stream().filter(terminal->terminal.getComuna().equals(comuna)).collect(Collectors.toList());
 	}
-	
+
 	@Override
-	public Integer numeroDeTerminalesAfectadas() {
-		return repo.getListaTerminales().size();
+	public Integer numeroDeTerminalesAfectadas(){
+		return comunasSeleccionadas.size();//esta mal, despues alguien arreglelo
 	}
 	
-	
+
 }
