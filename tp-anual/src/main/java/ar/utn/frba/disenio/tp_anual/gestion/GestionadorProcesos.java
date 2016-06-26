@@ -19,7 +19,9 @@ public class GestionadorProcesos{
 		listaResultados = new ArrayList<ResultadoProceso>();
 		executor = Executors.newSingleThreadScheduledExecutor();
 	}
-	
+	public List<ResultadoProceso> getListaResultados(){
+		return listaResultados;
+	}
 	public void addResultado(ResultadoProceso resultado){
 		listaResultados.add(resultado);
 	}

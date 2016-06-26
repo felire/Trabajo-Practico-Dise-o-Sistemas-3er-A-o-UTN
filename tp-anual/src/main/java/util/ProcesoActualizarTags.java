@@ -41,7 +41,9 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	
 	@Override
 	public void run() {
+		System.out.println("ejecutando");
 		this.obtencionDeActualizaciones();
+		
 		List<POI> listaLocales = new ArrayList<POI>();
 		listaLocales =  POIsAActualizar
 				.stream()

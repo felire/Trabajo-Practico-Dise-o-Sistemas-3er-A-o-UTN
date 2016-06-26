@@ -11,9 +11,14 @@ import java.util.Scanner;
 
 public class AdapterActualizacionLocalComercial{
 	private Scanner scanner;
-	public AdapterActualizacionLocalComercial(String pathArchivo) throws FileNotFoundException{
+	public AdapterActualizacionLocalComercial(String pathArchivo){
 			File file = new File(pathArchivo);
-			this.scanner = new Scanner(file);
+			try {
+				this.scanner = new Scanner(file);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			scanner.useDelimiter("\n");
 	}
 	
@@ -26,15 +31,22 @@ public class AdapterActualizacionLocalComercial{
 			linea = scanner.nextLine();
 			String[] separador = linea.split(";");
 			nombreFantasia = separador[0];
-			tags = separador[1];
+			if(separador.length == 1){ //Verifico si hub tags o no
+				tags = "";
+			}
+			else{
+				tags = separador[1];
+			}			
 			String[] arrayTags = tags.split(" ");
 			List<String> listaTags = new ArrayList<String>(); 
-			for(int i = 0; i < arrayTags.length; i++){ // El metodo split devuelve un array, por lo que me veo obligado a usar un for
-				listaTags.add(arrayTags[i]);
-			}
+			if(!tags.equals("")){ //Si no hay tags, le paso una lista vacia al mapa
+				for(int i = 0; i < arrayTags.length; i++){ // El metodo split devuelve un array, por lo que me veo obligado a usar un for
+					listaTags.add(arrayTags[i]);
+				}
+			}		
 			mapa.putIfAbsent(nombreFantasia, listaTags);
 		}
-		
+		System.out.println("\nTraducido");
 		return mapa;
 	}
 }

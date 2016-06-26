@@ -29,9 +29,9 @@ public class testAdapterActualizacion {
 	}
 	@Test
 	public void test() {
-		assertEquals("tag1", mapa.get("nombre").get(0));
+		/*assertEquals("tag1", mapa.get("nombre").get(0));
 		assertEquals("tag2", mapa.get("nombre").get(1));
-		assertEquals("tag3", mapa.get("nombre").get(2));
+		assertEquals("tag3", mapa.get("nombre").get(2));*/
 		assertEquals("tag4", mapa.get("nombre2").get(0));
 		assertEquals("tag5", mapa.get("nombre2").get(1));
 		assertEquals("tag6", mapa.get("nombre2").get(2));

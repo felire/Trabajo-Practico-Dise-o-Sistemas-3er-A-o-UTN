@@ -12,4 +12,7 @@ public class ResultadoProceso {
 		this.fechaEjecucion = fechaEjecucion;
 		this.resultadoDelProceso = resultadoDelProceso;		
 	}	
+	public Integer getCantidadAfectados(){
+		return cantidadAfectados;
+	}
 }
