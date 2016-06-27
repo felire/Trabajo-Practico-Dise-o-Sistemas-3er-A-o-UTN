@@ -12,8 +12,9 @@ import ar.utn.frba.disenio.tp_anual.json.JsonBaja;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoBajaPOIs;
 
-public class TestJsonBaja {
+public class TestJsonBaja{
 
+	private RepoPOIS repo;
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBaja> listaABorrar;
 	private String jsonPois = "["
@@ -25,10 +26,11 @@ public class TestJsonBaja {
 	                           + "}"
 	                           +"]";
 	private ProcesoBajaPOIs proceso;
-	/*
+	
 	@Before
 	public void setUp(){
-		proceso = new ProcesoBajaPOIs( ,jsonTraductor,jsonPois);
+		repo = RepoPOIS.getInstance();
+		proceso = new ProcesoBajaPOIs(repo,jsonTraductor,jsonPois);
 		listaABorrar = jsonTraductor.traductorBajaPOIs(proceso);
 	}
 	
@@ -39,6 +41,6 @@ public class TestJsonBaja {
 		assertEquals("2016-07-23-14-30", listaABorrar.get(0).getFecha());
 		assertEquals((Object)2, listaABorrar.get(1).getId());
 		assertEquals("2016-07-23-14-31", listaABorrar.get(1).getFecha());
-	}*/
+	}
 
 }
