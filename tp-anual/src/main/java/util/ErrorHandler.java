@@ -12,7 +12,7 @@ public class ErrorHandler {
 	
 	public static ErrorHandler getInstance(){
 		if(instance == null){
-			return new ErrorHandler();
+			instance = new ErrorHandler();
 		}
 		return instance;
 	}
