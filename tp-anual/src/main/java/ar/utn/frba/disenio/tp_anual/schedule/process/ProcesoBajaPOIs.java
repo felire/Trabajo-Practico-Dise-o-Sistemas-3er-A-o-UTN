@@ -28,7 +28,7 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	}
 	
 	public List<JsonBajaFecha> obtenerPOIsABorrar(){
-		this.poisABorrar = traductor.traductorBaja(this);
+		this.poisABorrar = traductor.traductorBaja(this.getJson());
 		return poisABorrar;
 	}
 	

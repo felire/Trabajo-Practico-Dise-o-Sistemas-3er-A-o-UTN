@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
 import ar.utn.frba.disenio.tp_anual.json.JsonBaja;
 import ar.utn.frba.disenio.tp_anual.json.JsonBajaFecha;
 
@@ -12,13 +13,16 @@ public class TestTraduccionFecha {
 
 	private JsonBaja poi;
 	private JsonBajaFecha poiConFecha;
+	private JsonTraduccion traductor;
 	
 	@Before
 	public void setUp(){
+		
+		traductor = new JsonTraduccion();
 		poi = new JsonBaja();
 		poi.setId(1);
 		poi.setFecha("2016-07-23-14-30");		
-		poiConFecha = new JsonBajaFecha(poi);		
+		poiConFecha = new JsonBajaFecha(poi.getId(),traductor.sacarFecha(poi.getFecha()));		
 	}
 	
 	@Test

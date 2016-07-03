@@ -1,6 +1,7 @@
 package ar.utn.frba.disenio.tp_anual.adapter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -30,10 +31,10 @@ public class JsonTraduccion {
 		}
 	}
 	
-	public List<JsonBaja> traductorBajaPOIs(ProcesoBajaPOIs proceso){
+	public List<JsonBaja> traductorBajaPOIs(String json){
 		try {
 			
-			ArrayList<JsonBaja> pois = objectMapper.readValue(proceso.getJson(), objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, JsonBaja.class));
+			ArrayList<JsonBaja> pois = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, JsonBaja.class));
 			return pois;
 			
 		} catch (IOException e) {
@@ -41,9 +42,15 @@ public class JsonTraduccion {
 		}
 	}
 	
-	public List<JsonBajaFecha> traductorBaja(ProcesoBajaPOIs proceso){
+	public LocalDateTime sacarFecha(String fechaParametro){//asumimos que fecha viene como anio-mes-dia-hora-minutos
+		String[] listaCosas = fechaParametro.split("-");
+		LocalDateTime fecha = LocalDateTime.of(Integer.parseInt(listaCosas[0]),Integer.parseInt(listaCosas[1]),Integer.parseInt(listaCosas[2]),Integer.parseInt(listaCosas[3]),Integer.parseInt(listaCosas[4]));
+		return fecha;
+	}
+	
+	public List<JsonBajaFecha> traductorBaja(String json){
 		List<JsonBajaFecha> lista = new ArrayList<JsonBajaFecha>();
-		this.traductorBajaPOIs(proceso).stream().forEach(poi -> lista.add(new JsonBajaFecha(poi)));
+		this.traductorBajaPOIs(json).stream().forEach(poi -> lista.add(new JsonBajaFecha(poi.getId(),this.sacarFecha(poi.getFecha()))));
 		return lista;
 	}
 	

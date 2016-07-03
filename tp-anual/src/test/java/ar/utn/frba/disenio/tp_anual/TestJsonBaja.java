@@ -31,7 +31,7 @@ public class TestJsonBaja{
 	public void setUp(){
 		repo = RepoPOIS.getInstance();
 		proceso = new ProcesoBajaPOIs(repo,jsonTraductor,jsonPois);
-		listaABorrar = jsonTraductor.traductorBajaPOIs(proceso);
+		listaABorrar = jsonTraductor.traductorBajaPOIs(proceso.getJson());
 	}
 	
 	
