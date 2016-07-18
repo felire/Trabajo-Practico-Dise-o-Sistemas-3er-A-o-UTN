@@ -36,12 +36,6 @@ public class ProcesoActualizarAccionesTerminales extends ProcesoGeneral{
 	public void removeAccionAQuitar(ObserverTerminal accion){
 		listaAccionesAQuitar.remove(accion);
 	}
-	public void agregarAcciones(){
-		seleccion.agregarAcciones(listaAccionesAAgregar);
-	}
-	public void quitarAcciones(){
-		seleccion.quitarAcciones(listaAccionesAQuitar);
-	}
 
 	@Override
 	public void run() {
@@ -63,13 +57,12 @@ public class ProcesoActualizarAccionesTerminales extends ProcesoGeneral{
 
 	@Override
 	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
-		this.gestionadorDeProcesos = gestionador;
-		
+		this.gestionadorDeProcesos = gestionador;		
 	}
 
 	@Override
 	public void accion() throws Exception {
-		this.agregarAcciones();
-		this.quitarAcciones();	
+		seleccion.agregarAcciones(listaAccionesAAgregar);
+		seleccion.quitarAcciones(listaAccionesAQuitar);	
 	}
 }

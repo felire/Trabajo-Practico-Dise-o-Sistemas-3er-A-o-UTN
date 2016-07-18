@@ -5,8 +5,26 @@ import java.util.List;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 
-public interface TipoSeleccionTerminal {
-	public abstract void agregarAcciones(List<ObserverTerminal> acciones);
-	public abstract void quitarAcciones(List<ObserverTerminal> acciones);
-	public abstract Integer numeroDeTerminalesAfectadas();
+public abstract class TipoSeleccionTerminal {
+	public void agregarAcciones(List<ObserverTerminal> acciones) {
+		this.terminalesSeleccionadas()
+			.stream()
+			.forEach(terminal->acciones
+					.stream()
+					.forEach(accion->terminal
+							.addObserver(accion)));
+	}
+	
+	public void quitarAcciones(List<ObserverTerminal> acciones){
+		this.terminalesSeleccionadas()
+			.stream()
+			.forEach(terminal->acciones
+					.stream()
+					.forEach(accion->terminal
+							.deleteObserver(accion)));
+	}
+	public Integer numeroDeTerminalesAfectadas(){
+		return this.terminalesSeleccionadas().size();
+	}
+	public abstract List<Terminal> terminalesSeleccionadas();
 }
