@@ -14,15 +14,13 @@ import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
 
 public class ProcesoBajaPOIs extends ProcesoGeneral{
 
-	private RepoPOIS repo;
 	private GestionadorProcesos gestionadorDeProcesos;
 	private JsonTraduccion traductor;
 	private String json;
 	private LocalDateTime fecha;
 	private List<JsonBajaFecha> poisABorrar;
 	
-	public ProcesoBajaPOIs(RepoPOIS repo, JsonTraduccion traductor, String json){
-		this.repo = repo;
+	public ProcesoBajaPOIs(JsonTraduccion traductor, String json){
 		this.traductor = traductor;
 		this.json = json;
 	}
@@ -36,19 +34,19 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 		return json;
 	}
 	
-	static void todosLosPOISExisten(RepoPOIS repo, List<JsonBajaFecha> poisABorrar) throws POINoExisteException{
-		if(repo.getListaPOIS().containsAll(poisABorrar)){
+	public void todosLosPOISExisten( List<JsonBajaFecha> poisABorrar) throws POINoExisteException{
+		if(RepoPOIS.getInstance().getListaPOIS().containsAll(poisABorrar)){
 			throw new POINoExisteException("Error: Uno o mas de los POIS a borrar no se encuentra en el repositorio");
 		}
 	}
 	
-	private void borradoDePOIs() throws POINoExisteException{
+	public void borradoDePOIs() throws POINoExisteException{
 		
-		todosLosPOISExisten(repo, poisABorrar);	
+		todosLosPOISExisten(poisABorrar);	
 		this.obtenerPOIsABorrar()
 			.stream()
 			.forEach(
-					poi -> this.repo.bajaPOI(this.repo.buscarPorID(poi.getId())));
+					poi -> RepoPOIS.getInstance().bajaPOI(RepoPOIS.getInstance().buscarPorID(poi.getId())));
 	
 	}
 	

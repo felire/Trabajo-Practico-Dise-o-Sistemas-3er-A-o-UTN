@@ -20,26 +20,17 @@ import exception.TagsVaciosException;
 
 public class ProcesoActualizarTags extends ProcesoGeneral{
 	private GestionadorProcesos gestionadorDeProcesos;
-	private RepoPOIS repo;
 	private LocalDateTime fecha;
 	private AdapterActualizacionLocalComercial adapter;
-	private Map<String, List<String>> mapa = new HashMap<String, List<String>>();
-	private List<POI> POIsAActualizar;
 	List<POI> localesAfectados;
 	
 	public LocalDateTime getFecha(){
 		return fecha;
 	}
 	public ProcesoActualizarTags(LocalDateTime fecha,AdapterActualizacionLocalComercial adapter, GestionadorProcesos gestionador){
-		repo = RepoPOIS.getInstance();
-		POIsAActualizar = repo.getListaPOIS();
 		this.fecha = fecha;
 		this.adapter = adapter;
 		this.gestionadorDeProcesos = gestionador;
-	}
-	
-	public void obtencionDeActualizaciones() throws IOException{
-		mapa=adapter.traducirArchivo();
 	}
 	
 	
@@ -70,10 +61,10 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 	}
 	@Override
 	public void accion() throws Exception {
-		this.obtencionDeActualizaciones();
+		Map<String, List<String>> mapa=adapter.traducirArchivo();
 		
 		List<POI> listaLocales = new ArrayList<POI>();
-		listaLocales =  POIsAActualizar
+		listaLocales =  RepoPOIS.getInstance().getListaPOIS()
 				.stream()
 				.filter(poi -> poi
 					.getClass()
