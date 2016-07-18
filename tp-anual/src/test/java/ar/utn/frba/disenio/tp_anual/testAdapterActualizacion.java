@@ -15,19 +15,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
+import ar.utn.frba.disenio.tp_anual.adapter.TraductorStringLocalCom;
 
 public class testAdapterActualizacion {
 	
-	AdapterActualizacionLocalComercial adapter;
-	File file ;
-	Scanner scanner;
+	TraductorStringLocalCom traductor;
 	Map<String, List<String>> mapa;
 	@Before
 	public void setUp() throws IOException{
-		file = new File("TextoLocalComercial.txt");
-		
-		adapter = new AdapterActualizacionLocalComercial("TextoLocalComercial.txt");
-		mapa = adapter.traducirArchivo();
+		traductor = new TraductorStringLocalCom();
+		mapa = traductor.traducirArchivo("nombre;\nnombre2;tag4 tag5 tag6\nnombre3;tag7 tag8 tag9");
 	}
 	@Test
 	public void test() {

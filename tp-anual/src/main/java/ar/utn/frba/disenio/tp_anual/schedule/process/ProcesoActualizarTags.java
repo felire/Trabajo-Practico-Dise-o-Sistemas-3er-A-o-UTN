@@ -1,5 +1,7 @@
 package ar.utn.frba.disenio.tp_anual.schedule.process;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +38,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 		this.gestionadorDeProcesos = gestionador;
 	}
 	
-	public void obtencionDeActualizaciones(){
+	public void obtencionDeActualizaciones() throws IOException{
 		mapa=adapter.traducirArchivo();
 	}
 	

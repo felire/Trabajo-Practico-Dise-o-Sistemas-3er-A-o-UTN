@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
+import ar.utn.frba.disenio.tp_anual.adapter.TraductorStringLocalCom;
 import ar.utn.frba.disenio.tp_anual.schedule.process.GestionadorProcesos;
 import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoActualizarTags;
 import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoGeneral;
@@ -15,10 +16,14 @@ import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoGeneral;
 public class TestGestionador {
 
 	GestionadorProcesos gestionador = new GestionadorProcesos();
-	AdapterActualizacionLocalComercial adapter = new AdapterActualizacionLocalComercial("TextoLocalComercial.txt");
+	TraductorStringLocalCom traductor;
+	AdapterActualizacionLocalComercial adapter = new AdapterActualizacionLocalComercial();
 	ProcesoGeneral proceso = new ProcesoActualizarTags(LocalDateTime.now(),adapter,gestionador);
 	@Before
 	public void setUp(){
+		adapter.setPathArchivo("TextoLocalComercial.txt");
+		traductor = new TraductorStringLocalCom();
+		adapter.setTraductor(traductor);
 		gestionador.agregarTarea(proceso);
 		try {
 			Thread.sleep(5000);
