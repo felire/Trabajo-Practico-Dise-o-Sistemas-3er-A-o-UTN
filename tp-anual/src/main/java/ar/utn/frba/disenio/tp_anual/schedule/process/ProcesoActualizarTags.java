@@ -19,45 +19,23 @@ import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import exception.TagsVaciosException;
 
 public class ProcesoActualizarTags extends ProcesoGeneral{
-	private GestionadorProcesos gestionadorDeProcesos;
-	private LocalDateTime fecha;
 	private AdapterActualizacionLocalComercial adapter;
 	List<POI> localesAfectados;
 	
-	public LocalDateTime getFecha(){
-		return fecha;
-	}
 	public ProcesoActualizarTags(LocalDateTime fecha,AdapterActualizacionLocalComercial adapter, GestionadorProcesos gestionador){
-		this.fecha = fecha;
+		this.setFecha(fecha);
 		this.adapter = adapter;
-		this.gestionadorDeProcesos = gestionador;
 	}
 	
-	
-	@Override
-	public void run() {
-		System.out.println("ejecutando");
-		
-		try {
-			this.accion();
-		} catch (Exception e) {
-			handleError();
-		}
-		
-		ResultadoProceso resultado = new ResultadoProceso(localesAfectados.size(),fecha, estado);
-		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
-		
-	}
-		
 	static void checkDeTags(Map<String, List<String>> mapa) throws TagsVaciosException{
 		if(mapa.values().stream().anyMatch(listaTags -> listaTags.isEmpty())){
-			throw new TagsVaciosException("Error: Se ingreso un Local Comercial sin palabras claves./n");
+			throw new TagsVaciosException("Error: Se ingreso un Local Comercial sin palabras claves.\n");
 		}
 		
 	}
 	@Override
-	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
-		this.gestionadorDeProcesos = gestionador;
+	public Integer elementosAfectados(){
+		return localesAfectados.size();
 	}
 	@Override
 	public void accion() throws Exception {

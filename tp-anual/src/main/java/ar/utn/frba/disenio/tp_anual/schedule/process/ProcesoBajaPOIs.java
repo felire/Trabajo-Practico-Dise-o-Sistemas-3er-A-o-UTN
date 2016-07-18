@@ -14,13 +14,12 @@ import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
 
 public class ProcesoBajaPOIs extends ProcesoGeneral{
 
-	private GestionadorProcesos gestionadorDeProcesos;
 	private JsonTraduccion traductor;
 	private String json;
-	private LocalDateTime fecha;
 	private List<JsonBajaFecha> poisABorrar;
 	
-	public ProcesoBajaPOIs(JsonTraduccion traductor, String json){
+	public ProcesoBajaPOIs(JsonTraduccion traductor, String json, LocalDateTime fecha){
+		this.setFecha(fecha);
 		this.traductor = traductor;
 		this.json = json;
 	}
@@ -51,27 +50,8 @@ public class ProcesoBajaPOIs extends ProcesoGeneral{
 	}
 	
 	@Override
-	public void run(){
-		
-		try {
-			this.accion();
-		} catch (Exception e) {
-			handleError();
-		}
-		
-		ResultadoProceso resultado = new ResultadoProceso(this.obtenerPOIsABorrar().size(),fecha, estado);
-		gestionadorDeProcesos.addResultado(resultado);//Aca hay que mandar el resultado cargado, volo o martin haganlo.
-	}
-	
-	@Override
-	public LocalDateTime getFecha(){
-		return fecha;
-	}
-	
-	@Override
-	public void setGestionadorProcesos(GestionadorProcesos gestionador) {
-		this.gestionadorDeProcesos = gestionador;
-		
+	public Integer elementosAfectados(){
+		return this.obtenerPOIsABorrar().size();
 	}
 
 	@Override

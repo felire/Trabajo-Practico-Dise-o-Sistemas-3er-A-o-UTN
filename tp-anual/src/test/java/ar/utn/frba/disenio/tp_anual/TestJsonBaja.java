@@ -2,6 +2,7 @@ package ar.utn.frba.disenio.tp_anual;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.Before;
@@ -14,7 +15,6 @@ import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoBajaPOIs;
 
 public class TestJsonBaja{
 
-	private RepoPOIS repo;
 	private JsonTraduccion jsonTraductor = new JsonTraduccion();
 	private List<JsonBaja> listaABorrar;
 	private String jsonPois = "["
@@ -29,8 +29,7 @@ public class TestJsonBaja{
 	
 	@Before
 	public void setUp(){
-		repo = RepoPOIS.getInstance();
-		proceso = new ProcesoBajaPOIs(repo,jsonTraductor,jsonPois);
+		proceso = new ProcesoBajaPOIs(jsonTraductor,jsonPois, LocalDateTime.now());
 		listaABorrar = jsonTraductor.traductorBajaPOIs(proceso.getJson());
 	}
 	
