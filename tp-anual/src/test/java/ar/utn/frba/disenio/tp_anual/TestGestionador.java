@@ -42,9 +42,8 @@ public class TestGestionador {
 		adapter.setTraductor(traductor);
 		proceso.addTrata(errorMail);
 		proceso2.addTrata(errorR);
-		//gestionador.agregarTarea(proceso);
 		gestionador.agregarTarea(proceso);
-		gestionador.agregarTarea(proceso2);
+		//gestionador.agregarTarea(proceso2);
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {

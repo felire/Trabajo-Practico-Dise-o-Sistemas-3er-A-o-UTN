@@ -30,9 +30,13 @@ public class TraductorStringLocalCom implements TraductorGeneral{
 				for(int i = 0; i < arrayTags.length; i++){ // El metodo split devuelve un array, por lo que me veo obligado a usar un for
 					listaTags.add(arrayTags[i]);
 				}
-			}		
-			mapa.putIfAbsent(nombreFantasia, listaTags);
+			}
+			if(!nombreFantasia.equals("")){
+				mapa.putIfAbsent(nombreFantasia, listaTags);
+			}
+			
 		}
+		//mapa.get("nombre").stream().forEach(tag -> System.out.println(tag));
 		return mapa;
 	}
 }
