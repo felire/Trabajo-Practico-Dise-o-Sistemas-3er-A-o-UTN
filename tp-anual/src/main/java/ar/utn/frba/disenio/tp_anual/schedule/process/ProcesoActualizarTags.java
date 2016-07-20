@@ -38,7 +38,7 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 		return localesAfectados.size();
 	}
 	@Override
-	public void accion() throws Exception {
+	public void accion() throws IOException, TagsVaciosException{
 		Map<String, List<String>> mapa=adapter.traducirArchivo();
 		
 		List<POI> listaLocales = new ArrayList<POI>();
@@ -52,13 +52,8 @@ public class ProcesoActualizarTags extends ProcesoGeneral{
 				.filter(local -> mapa
 					.containsKey(local.getNombre()))
 				.collect(Collectors.toList());
-		try{
 			checkDeTags(mapa);
 			localesAfectados.stream().forEach(local->local.actualizarTags(mapa.get(local.getNombre())));
-		}
-		catch(TagsVaciosException excepcion){
-			System.out.println(excepcion);
-		}
 	}
 	
 }
