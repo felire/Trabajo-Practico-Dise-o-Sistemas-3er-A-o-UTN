@@ -44,14 +44,14 @@ public class TestBusqueda extends Init{
 		assertTrue((buscadorPOIS.buscarPOIs("Rentas")).contains(cGP));
 	}
 	
-	@Test
+	/*@Test
 	public void aasetteoID()
 	{
 		assertTrue((cGP.getID()==1));
 		assertTrue((banco.getID()==2));
 		assertTrue((localComercial.getID()==3));
 		assertTrue((paradaDe55.getID()==4));
-	}
+	}*/
 	
 	@Test
 	public void busquedaYEliminacionDePOIPorID()
