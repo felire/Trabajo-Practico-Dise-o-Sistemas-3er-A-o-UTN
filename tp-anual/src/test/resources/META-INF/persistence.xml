@@ -8,7 +8,7 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-      		<class>ar.utn.frba.disenio.tp_anual.model.Terminal</class>
+      		<!--  <class>ar.utn.frba.disenio.tp_anual.model.Terminal</class>-->
     	 
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        

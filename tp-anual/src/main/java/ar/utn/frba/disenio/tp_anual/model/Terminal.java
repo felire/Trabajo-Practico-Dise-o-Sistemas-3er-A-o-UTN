@@ -23,7 +23,7 @@ import util.reportes.ReportePorFecha;
 
 public class Terminal {
 	
-	private long id;
+	//private long id;
 	private String nombre;
 	private BuscadorPOIs buscadorPOIS;
 	private List<ObserverTerminal> listaObservers;
