@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.swing.Timer;
 
 import org.uqbar.geodds.Polygon;
@@ -19,6 +22,8 @@ import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.reportes.ReportePorFecha;
 
 public class Terminal {
+	
+	private long id;
 	private String nombre;
 	private BuscadorPOIs buscadorPOIS;
 	private List<ObserverTerminal> listaObservers;

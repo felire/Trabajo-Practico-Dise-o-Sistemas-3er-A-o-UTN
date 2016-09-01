@@ -4,7 +4,11 @@ package ar.utn.frba.disenio.tp_anual.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Entity;
+
 import org.uqbar.geodds.Point;
+
 
 public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
 	
