@@ -22,9 +22,8 @@ public class LocalComercial extends POI{
 	@JoinColumn(name = "rubro_id")
 	private Rubro rubro;
 	
-	/*@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "poi_id")*/
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "poi_id")
 	private Set<DisponibilidadHoraria> disponibilidades;
 	
 			
