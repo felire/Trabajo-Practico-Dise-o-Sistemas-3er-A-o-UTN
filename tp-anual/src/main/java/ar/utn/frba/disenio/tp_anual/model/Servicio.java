@@ -16,7 +16,8 @@ public class Servicio {
 	
 	private String nombre;
 	
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "servicio_id")
 	private Set<DisponibilidadHoraria> diasDisponibles;
 	
 	public Servicio(String nombre, Set<DisponibilidadHoraria> diasDisponibles) {

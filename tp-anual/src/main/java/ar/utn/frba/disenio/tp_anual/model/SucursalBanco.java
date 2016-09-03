@@ -11,8 +11,11 @@ import util.Point;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 
@@ -20,7 +23,8 @@ import javax.persistence.Transient;
 @Entity
 public class SucursalBanco extends PrestadorDeServicios{
 	
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "horario_id")
 	private static DisponibilidadHoraria horarioBancario;
 	
 	
