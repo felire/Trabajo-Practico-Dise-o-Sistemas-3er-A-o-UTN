@@ -2,22 +2,16 @@ package ar.utn.frba.disenio.tp_anual.model;
 
 import java.util.List;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import util.Point;
 import util.Polygon;
 
-
-
-
-
 @Entity
-@DiscriminatorValue(value = "cgp")
 public class CGP extends PrestadorDeServicios{
 	
-	@Transient
+	@OneToOne (cascade = CascadeType.ALL)
+	@JoinColumn (name = "comuna")
 	private Polygon comuna;
 	
 	public Polygon getComuna() {

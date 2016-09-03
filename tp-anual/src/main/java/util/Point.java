@@ -1,6 +1,12 @@
 package util;
 
+import javax.persistence.*;
+
+@Entity
 public class Point extends org.uqbar.geodds.Point{
+	
+	@Id @GeneratedValue
+	private Integer id;
 	
 	private double latitud;
 	private double longitud;

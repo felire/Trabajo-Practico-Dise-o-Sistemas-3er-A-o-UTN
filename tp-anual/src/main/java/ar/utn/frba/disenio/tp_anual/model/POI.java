@@ -9,8 +9,6 @@ import javax.persistence.*;
 
 import util.Point;
 
-
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
@@ -20,7 +18,8 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	protected Integer poiID;
 	protected String nombre;
 	
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "coordenada_id")
 	protected Point coordenada;
 
 	

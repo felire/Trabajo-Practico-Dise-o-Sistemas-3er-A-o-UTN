@@ -11,8 +11,7 @@ import util.Point;
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PrestadorDeServicios extends POI{
 	
 	@OneToMany(cascade = CascadeType.ALL)

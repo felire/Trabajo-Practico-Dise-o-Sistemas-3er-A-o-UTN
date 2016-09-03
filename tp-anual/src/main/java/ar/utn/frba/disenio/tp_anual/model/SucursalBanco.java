@@ -18,7 +18,6 @@ import javax.persistence.Transient;
 
 
 @Entity
-@DiscriminatorValue(value = "banco")
 public class SucursalBanco extends PrestadorDeServicios{
 	
 	@Transient

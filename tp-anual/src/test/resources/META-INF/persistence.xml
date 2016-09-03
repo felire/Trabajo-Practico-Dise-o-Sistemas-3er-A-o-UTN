@@ -27,7 +27,9 @@
     	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorCGP</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.BuscadorExterno</class>
     	 	  <class>util.reportes.CreadorDeReportes</class>
-    	 	  <class>ar.utn.frba.disenio.tp_anual.model.ResultadoProceso</class> 
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.ResultadoProceso</class>
+    	 	  <class>util.Point</class>
+    	 	  <class>util.Polygon</class> 
     	 	   
     	 	   
         <properties> 
