@@ -2,7 +2,8 @@ package ar.utn.frba.disenio.tp_anual.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 public class CentroDTO {
 	private Polygon comuna;

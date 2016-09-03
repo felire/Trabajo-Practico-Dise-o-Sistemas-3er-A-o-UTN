@@ -3,7 +3,8 @@ package ar.utn.frba.disenio.tp_anual.servicios.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;

@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.uqbar.geodds.Point;
 
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeBancos;
 import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
 import ar.utn.frba.disenio.tp_anual.json.JsonBanco;

@@ -2,23 +2,21 @@ package util;
 
 public class Point extends org.uqbar.geodds.Point{
 	
-	private double aX;
-	private double aY;
-	//private org.uqbar.geodds.Point punto;
+	private double latitud;
+	private double longitud;
 	
-	public double aY(){
-		return this.aY;
+	public double getLatitud() {
+		return latitud;
 	}
-	
-	public double aX(){
-		return this.aX;
+
+	public double getLongitud() {
+		return longitud;
 	}
-	
+
 	public Point(double aX, double aY) {
 		super(aX, aY);
-		this.aX = aX;
-		this.aY = aY;
-		//punto = new org.uqbar.geodds.Point(aX,aY);
+		this.latitud = aX;
+		this.longitud = aY;
 	}
 	
 }

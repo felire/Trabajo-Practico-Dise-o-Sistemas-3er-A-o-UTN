@@ -6,8 +6,10 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
+
+
 
 
 

@@ -10,9 +10,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import org.uqbar.geodds.Point;
+
 
 import util.DisponibilidadHoraria;
+import util.Point;
 
 @Entity
 public class LocalComercial extends POI{
@@ -26,6 +27,7 @@ public class LocalComercial extends POI{
 	@Transient
 	private Set<DisponibilidadHoraria> disponibilidades;
 	
+			
 	public void addDisponibilidad(DisponibilidadHoraria disponibilidad){
 		disponibilidades.add(disponibilidad);
 	}

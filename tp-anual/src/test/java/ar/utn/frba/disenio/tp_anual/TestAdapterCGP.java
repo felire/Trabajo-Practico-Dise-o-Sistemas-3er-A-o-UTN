@@ -13,8 +13,8 @@ import java.util.function.Predicate;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeCGP;
 import ar.utn.frba.disenio.tp_anual.dto.CentroDTO;

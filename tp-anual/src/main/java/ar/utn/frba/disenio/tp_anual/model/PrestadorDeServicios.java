@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.uqbar.geodds.Point;
+import util.Point;
+
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -20,7 +22,8 @@ public abstract class PrestadorDeServicios extends POI{
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
-
+	
+	
 	public PrestadorDeServicios(String nombre,Point coordenada)
 	{
 		super(nombre,coordenada);

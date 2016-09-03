@@ -19,6 +19,9 @@ import org.mockito.Mock;
 import org.mockito.InjectMocks;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import util.Point;
+import util.Polygon;
+
 @RunWith(MockitoJUnit44Runner.class)
 public class TestFiltrarBancos extends Init {
 	

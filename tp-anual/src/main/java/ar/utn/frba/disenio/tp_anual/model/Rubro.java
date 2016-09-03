@@ -13,6 +13,11 @@ public class Rubro {
 	private long id;
 	private BigDecimal radioCercania;
 	private String nombreRubro;
+	
+	
+	@SuppressWarnings("unused")
+	private Rubro(){};
+	
 	public Rubro(String nombre, BigDecimal radioCercania){
 		this.radioCercania = radioCercania;
 		this.nombreRubro = nombre;

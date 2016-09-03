@@ -7,7 +7,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import org.uqbar.geodds.Point;
+import util.Point;
+
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -30,7 +32,8 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	protected BigDecimal radioDeCercania;
 	
-	
+	@SuppressWarnings("unused")
+	private POI(){};
 	
 	public POI(String nombre, Point coordenada)
 	{

@@ -8,7 +8,8 @@ import org.junit.Test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
-
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;

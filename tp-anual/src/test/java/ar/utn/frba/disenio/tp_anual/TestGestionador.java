@@ -11,7 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnit44Runner;
-
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
 import ar.utn.frba.disenio.tp_anual.adapter.TraductorStringLocalCom;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;

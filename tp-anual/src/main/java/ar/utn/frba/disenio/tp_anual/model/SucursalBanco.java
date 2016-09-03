@@ -4,10 +4,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import org.uqbar.geodds.Point;
 
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
+import util.Point;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,7 @@ public class SucursalBanco extends PrestadorDeServicios{
 	
 	@Transient
 	private static DisponibilidadHoraria horarioBancario;
+	
 	
 	public SucursalBanco(String nombre,Point coordenada){
 		super(nombre,coordenada);

@@ -15,8 +15,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 public class TestCercania extends Init{
 	

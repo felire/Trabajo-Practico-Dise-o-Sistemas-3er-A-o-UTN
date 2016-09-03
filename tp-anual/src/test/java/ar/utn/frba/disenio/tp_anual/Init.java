@@ -19,8 +19,8 @@ import org.junit.runners.MethodSorters;
 
 import org.junit.FixMethodOrder;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 import ar.utn.frba.disenio.tp_anual.model.CGP;
 import ar.utn.frba.disenio.tp_anual.model.LocalComercial;

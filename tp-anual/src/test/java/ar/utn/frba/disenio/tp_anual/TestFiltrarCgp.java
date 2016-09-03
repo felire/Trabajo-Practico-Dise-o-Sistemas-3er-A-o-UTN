@@ -7,7 +7,8 @@ import org.junit.Test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
-
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeCGP;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoCGP;

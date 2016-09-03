@@ -3,7 +3,9 @@ package ar.utn.frba.disenio.tp_anual.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import org.uqbar.geodds.Point;
+import util.Point;
+
+
 
 public class ParadaDeColectivo extends POI{
 	public ParadaDeColectivo(String lineaColectivo, Point coordenada)
