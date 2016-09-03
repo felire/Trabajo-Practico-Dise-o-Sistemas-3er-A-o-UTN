@@ -4,10 +4,22 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.*;
 
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+
+@Entity
 public class Busqueda {
+	
+	@Id @GeneratedValue
+	private Integer id;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn (name="busqueda_id")
 	private List<POI> resultados;
+	@Convert (converter = LocalDateConverter.class)
 	private LocalDate fecha;
+	
 	private String fraseBuscada;
 	private String servicioBuscado;
 	private double tiempoDemorado;

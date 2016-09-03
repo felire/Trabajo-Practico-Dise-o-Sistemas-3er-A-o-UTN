@@ -4,10 +4,19 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
 import org.uqbar.geodds.Point;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class PrestadorDeServicios extends POI{
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "poi_id")
 	public List<Servicio> servicios;
+	
 	public List<Servicio> getServicios() {
 		return servicios;
 	}

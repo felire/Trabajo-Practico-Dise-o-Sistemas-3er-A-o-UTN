@@ -5,8 +5,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
 public class DisponibilidadHoraria {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "disponibilidad_id")
 	private List<FranjaHoraria> franjas;
+	
+	@ElementCollection
+	@CollectionTable(name="DiasSemana", joinColumns=@JoinColumn(name="disponibilidad_id"))
+	@Column(name="dias")
 	private List<DayOfWeek> dias;
 	
 	public DisponibilidadHoraria(ArrayList<FranjaHoraria> franjas, ArrayList<DayOfWeek>  dias){

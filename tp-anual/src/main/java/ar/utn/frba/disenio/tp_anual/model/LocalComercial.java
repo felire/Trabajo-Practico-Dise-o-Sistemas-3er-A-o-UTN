@@ -7,12 +7,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
+import javax.persistence.*;
+
 import org.uqbar.geodds.Point;
 
 import util.DisponibilidadHoraria;
 
+@Entity
 public class LocalComercial extends POI{
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "rubro_id")
 	private Rubro rubro;
+	
+	/*@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "poi_id")*/
+	@Transient
 	private Set<DisponibilidadHoraria> disponibilidades;
 	
 	public void addDisponibilidad(DisponibilidadHoraria disponibilidad){

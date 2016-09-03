@@ -4,6 +4,15 @@ import java.util.List;
 
 import ar.utn.frba.disenio.tp_anual.model.POI;
 
-public interface BuscadorExterno {
-	public List<POI> filtrar(String palabraClave, String Servicio);
+import javax.persistence.*;
+
+@Entity
+@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn (name = "tipo")
+public abstract class BuscadorExterno {
+	
+	@Id @GeneratedValue
+	private Integer id;
+	
+	public abstract List<POI> filtrar(String palabraClave, String Servicio);
 }

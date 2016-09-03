@@ -11,8 +11,17 @@ import util.FranjaHoraria;
 
 import java.util.ArrayList;
 
-public class SucursalBanco extends PrestadorDeServicios{
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
+
+
+@Entity
+@DiscriminatorValue(value = "banco")
+public class SucursalBanco extends PrestadorDeServicios{
+	
+	@Transient
 	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(String nombre,Point coordenada){

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.swing.Timer;
 
 import org.uqbar.geodds.Polygon;
@@ -21,12 +22,19 @@ import ar.utn.frba.disenio.tp_anual.servicios.ServicioMail;
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.reportes.ReportePorFecha;
 
+
+@Entity
 public class Terminal {
 	
-	//private long id;
+	@Id
+	@GeneratedValue
+	private long id;
 	private String nombre;
+	@Transient
 	private BuscadorPOIs buscadorPOIS;
+	@Transient
 	private List<ObserverTerminal> listaObservers;
+	@Transient
 	private Polygon comuna;
 	
 	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){

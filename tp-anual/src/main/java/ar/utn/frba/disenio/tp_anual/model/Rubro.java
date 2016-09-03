@@ -2,7 +2,15 @@ package ar.utn.frba.disenio.tp_anual.model;
 
 import java.math.BigDecimal;
 
+
+import javax.persistence.*;
+
+@Entity
 public class Rubro {
+	
+	@Id
+	@GeneratedValue
+	private long id;
 	private BigDecimal radioCercania;
 	private String nombreRubro;
 	public Rubro(String nombre, BigDecimal radioCercania){

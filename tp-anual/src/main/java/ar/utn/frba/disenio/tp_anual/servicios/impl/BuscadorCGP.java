@@ -10,9 +10,15 @@ import ar.utn.frba.disenio.tp_anual.model.POI;
 import ar.utn.frba.disenio.tp_anual.servicios.BuscadorExterno;
 import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoCGP;
 
-public class BuscadorCGP implements BuscadorExterno{
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue (value = "buscador_cgp")
+public class BuscadorCGP extends BuscadorExterno{
 	
+	@Transient
 	private ServicioExternoCGP servicioExterno;
+	@Transient
 	private CreadorDeCGP creadorDeCGP;
 	
 	public List<POI> filtrar(String palabraClave){
@@ -29,7 +35,7 @@ public class BuscadorCGP implements BuscadorExterno{
 		this.creadorDeCGP = creadorDeCGP;
 	}
 	
-	@Override
+	
 	public List<POI> filtrar(String palabraClave, String nada){
 		return this.filtrar(palabraClave);
 	}

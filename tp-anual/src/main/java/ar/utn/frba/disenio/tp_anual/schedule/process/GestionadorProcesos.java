@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import ar.utn.frba.disenio.tp_anual.model.ResultadoProceso;
 
+
 public class GestionadorProcesos{
 	
 	private List<ResultadoProceso> listaResultados;

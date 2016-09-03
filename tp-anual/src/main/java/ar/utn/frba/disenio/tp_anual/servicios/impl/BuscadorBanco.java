@@ -19,11 +19,19 @@ import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoBanco;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
 
-public class BuscadorBanco implements BuscadorExterno{
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue (value= "buscador_banco")
+public class BuscadorBanco extends BuscadorExterno{
+	
+	@Transient
 	private JsonTraduccion jsonTraduccion;
+	@Transient
 	private ServicioExternoBanco servicioExterno;
+	@Transient
 	private CreadorDeBancos creadorDeBancos;
-	@Override
+	
 	public List<POI> filtrar(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){

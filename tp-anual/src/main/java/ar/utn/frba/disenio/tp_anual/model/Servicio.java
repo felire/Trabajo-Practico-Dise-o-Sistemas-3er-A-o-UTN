@@ -3,12 +3,20 @@ package ar.utn.frba.disenio.tp_anual.model;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import javax.persistence.*;
+
 import util.DisponibilidadHoraria;
 
+@Entity
 public class Servicio {
 	
-
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
 	private String nombre;
+	
+	@Transient
 	private Set<DisponibilidadHoraria> diasDisponibles;
 	
 	public Servicio(String nombre, Set<DisponibilidadHoraria> diasDisponibles) {

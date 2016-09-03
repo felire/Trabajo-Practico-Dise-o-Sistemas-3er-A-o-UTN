@@ -5,18 +5,31 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import org.uqbar.geodds.Point;
 
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
 	
-	protected String nombre;
-	protected Point coordenada;
-	protected List<String> listaTags;
-	protected BigDecimal radioDeCercania;
+	@Id
+	@GeneratedValue
 	protected Integer poiID;
+	protected String nombre;
+	
+	@Transient
+	protected Point coordenada;
+
+	
+	@ElementCollection
+	@CollectionTable(name="Tags", joinColumns=@JoinColumn(name="poi_id"))
+	@Column(name="tag")
+	protected List<String> listaTags;
+
+	
+	protected BigDecimal radioDeCercania;
+	
 	
 	
 	public POI(String nombre, Point coordenada)

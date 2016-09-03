@@ -8,8 +8,28 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
-      		<!--  <class>ar.utn.frba.disenio.tp_anual.model.Terminal</class>-->
-    	 
+      		  <class>ar.utn.frba.disenio.tp_anual.model.POI</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.LocalComercial</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.Rubro</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.Terminal</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.SucursalBanco</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.CGP</class>
+       	      <class>ar.utn.frba.disenio.tp_anual.model.PrestadorDeServicios</class>
+    		  <class>ar.utn.frba.disenio.tp_anual.model.Servicio</class>
+     	      <class>util.DisponibilidadHoraria</class>
+    	 	  <class>util.FranjaHoraria</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.observer.ObserverMail</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.Busqueda</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIS</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorBanco</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorCGP</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.BuscadorExterno</class>
+    	 	  <class>util.reportes.CreadorDeReportes</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.ResultadoProceso</class> 
+    	 	   
+    	 	   
         <properties> 
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         

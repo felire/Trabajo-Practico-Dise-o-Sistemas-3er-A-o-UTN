@@ -2,9 +2,19 @@ package util;
 
 import java.time.LocalTime;
 
-public class FranjaHoraria {
+import javax.persistence.*;
 
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
+@Entity
+public class FranjaHoraria {
+	
+	@Id
+	@GeneratedValue
+	private Integer id;
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalTime desdeHorario;
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalTime hastaHorario;
 	
 	public Boolean contiene(LocalTime hora){
