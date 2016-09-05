@@ -22,15 +22,13 @@ import util.FranjaHoraria;
 
 import javax.persistence.*;
 
-@Entity
-@DiscriminatorValue (value= "buscador_banco")
-public class BuscadorBanco extends BuscadorExterno{
+public class BuscadorBanco implements BuscadorExterno{
 	
-	@Transient
+
 	private JsonTraduccion jsonTraduccion;
-	@Transient
+
 	private ServicioExternoBanco servicioExterno;
-	@Transient
+
 	private CreadorDeBancos creadorDeBancos;
 	
 	public List<POI> filtrar(String palabraClave, String servicio){

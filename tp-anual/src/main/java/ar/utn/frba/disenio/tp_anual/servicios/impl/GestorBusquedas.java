@@ -16,8 +16,7 @@ public class GestorBusquedas extends ObserverTerminal{
 	@Transient
 	private Timer timer;
 	
-	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name = "creador_reportes_id")
+	@Transient
 	private CreadorDeReportes creadorDeReportes;
 	
 	public GestorBusquedas(CreadorDeReportes creador){

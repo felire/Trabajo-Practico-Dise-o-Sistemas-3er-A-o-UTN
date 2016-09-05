@@ -12,13 +12,11 @@ import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoCGP;
 
 import javax.persistence.*;
 
-@Entity
-@DiscriminatorValue (value = "buscador_cgp")
-public class BuscadorCGP extends BuscadorExterno{
+public class BuscadorCGP implements BuscadorExterno{
 	
-	@Transient
+
 	private ServicioExternoCGP servicioExterno;
-	@Transient
+
 	private CreadorDeCGP creadorDeCGP;
 	
 	public List<POI> filtrar(String palabraClave){

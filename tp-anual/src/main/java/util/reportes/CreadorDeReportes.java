@@ -10,16 +10,10 @@ import java.util.stream.Collectors;
 
 import ar.utn.frba.disenio.tp_anual.model.Busqueda;
 
-import javax.persistence.*;
 
-@Entity
 public class CreadorDeReportes {
 	
-	@Id @GeneratedValue
-	private Integer id;
 	
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn (name = "creador_reportes_id")
 	private List<Busqueda> busquedas;
 	
 	public CreadorDeReportes(){

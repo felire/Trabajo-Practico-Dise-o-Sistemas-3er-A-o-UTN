@@ -9,13 +9,7 @@ import ar.utn.frba.disenio.tp_anual.model.POI;
 public class RepoPOIS
 {
 	private List<POI> listaPOIs;
-	private Integer id;
 	private static RepoPOIS instance;
-	private Integer generarID() {
-		id++;
-		return id;
-	}
-	
 	public List<POI> getListaPOIS(){
 		return listaPOIs;
 	}
@@ -29,7 +23,6 @@ public class RepoPOIS
 	private RepoPOIS()
 	{
 		listaPOIs = new ArrayList<POI>();
-		id = 0;
 	}
 	
 	//Consulta
@@ -39,7 +32,6 @@ public class RepoPOIS
 	
 	//Alta
 	public void altaPOI(POI nuevoPOI){
-		nuevoPOI.setID(this.generarID());
 		listaPOIs.add(nuevoPOI);
 	}
 

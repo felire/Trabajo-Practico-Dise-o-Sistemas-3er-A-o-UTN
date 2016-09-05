@@ -13,11 +13,8 @@ import javax.swing.Timer;
 
 import javax.persistence.*;
 
-@Entity 
 public class BuscadorPOIs {
 
-	@OneToMany (cascade = CascadeType.ALL)
-	@JoinColumn(name = "buscador_pois_id")
 	private List<BuscadorExterno> buscadoresExternos;
 	private RepoPOIS repo;
 	

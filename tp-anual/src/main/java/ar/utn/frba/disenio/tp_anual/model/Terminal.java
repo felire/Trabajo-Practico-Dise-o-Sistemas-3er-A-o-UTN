@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.swing.Timer;
 
@@ -31,11 +34,16 @@ public class Terminal {
 	@GeneratedValue
 	private long id;
 	private String nombre;
+	
 	@Transient
 	private BuscadorPOIs buscadorPOIS;
-	@Transient
+	
+	@OneToMany
+	@JoinColumn(name = "terminal_id")
 	private List<ObserverTerminal> listaObservers;
-	@Transient
+	
+	@OneToOne
+	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	
 	@SuppressWarnings("unused")

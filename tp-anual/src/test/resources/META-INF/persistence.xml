@@ -22,11 +22,6 @@
     	 	  <class>ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.Busqueda</class>
-    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIS</class>
-    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorBanco</class>
-    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorCGP</class>
-    	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.BuscadorExterno</class>
-    	 	  <class>util.reportes.CreadorDeReportes</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.ResultadoProceso</class>
     	 	  <class>util.Point</class>
     	 	  <class>util.Polygon</class> 
@@ -36,18 +31,18 @@
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
          
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
+<!--             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_anual" /> 
             <property name="hibernate.connection.username" value="root" /> 
-            <property name="hibernate.connection.password" value="" /> 
+            <property name="hibernate.connection.password" value="" /> --> 
 
- <!--
+ 
             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
- -->
+ 
                             
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
