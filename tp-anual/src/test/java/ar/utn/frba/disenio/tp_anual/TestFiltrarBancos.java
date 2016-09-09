@@ -28,7 +28,7 @@ public class TestFiltrarBancos extends Init {
 	@Mock ServicioExternoBanco servicioExterno;
 	@InjectMocks BuscadorBanco buscadorBanco = new BuscadorBanco();
 	private CreadorDeBancos creador = new CreadorDeBancos();
-	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
+	private BuscadorPOIs buscadorPOIS = BuscadorPOIs.getInstance();
 	
 	@Before
 	public void setUp(){

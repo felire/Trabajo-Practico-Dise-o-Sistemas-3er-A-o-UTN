@@ -31,6 +31,11 @@ public class BuscadorBanco implements BuscadorExterno{
 
 	private CreadorDeBancos creadorDeBancos;
 	
+	public BuscadorBanco(){
+		this.jsonTraduccion = new JsonTraduccion();
+		this.creadorDeBancos = new CreadorDeBancos();
+	}
+	
 	public List<POI> filtrar(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){

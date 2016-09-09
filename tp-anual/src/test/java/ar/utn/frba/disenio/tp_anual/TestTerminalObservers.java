@@ -33,9 +33,9 @@ public class TestTerminalObservers extends Init{
 	@Mock ServicioMail servicioMail;
 	@InjectMocks ObserverMail observerMail = new ObserverMail();
 	GestorBusquedas gestorBusquedas = new GestorBusquedas(new CreadorDeReportes());
-	Terminal terminal = new Terminal(new BuscadorPOIs(), "Terminus", 0);
-	Terminal alberdi = new Terminal(new BuscadorPOIs(), "Alberdi", 0);
-	Terminal rivadavia = new Terminal(new BuscadorPOIs(), "Rivadavia", 0);
+	Terminal terminal = new Terminal(BuscadorPOIs.getInstance(), "Terminus", 0);
+	Terminal alberdi = new Terminal(BuscadorPOIs.getInstance(), "Alberdi", 0);
+	Terminal rivadavia = new Terminal(BuscadorPOIs.getInstance(), "Rivadavia", 0);
 	
 	@Before
 	public void setUp(){

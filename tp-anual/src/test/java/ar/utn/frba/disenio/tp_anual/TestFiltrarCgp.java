@@ -25,7 +25,7 @@ public class TestFiltrarCgp extends Init{
 	
 	@Mock ServicioExternoCGP servicioExterno;
 	@InjectMocks BuscadorCGP buscadorCGP = new BuscadorCGP();
-	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
+	private BuscadorPOIs buscadorPOIS = BuscadorPOIs.getInstance();
 	
 	@Before
 	public void setUp(){

@@ -18,12 +18,19 @@ public class BuscadorPOIs {
 	private List<BuscadorExterno> buscadoresExternos;
 	private RepoPOIS repo;
 	
+	private static BuscadorPOIs instance = null;
 	
-	public BuscadorPOIs() {
-		buscadoresExternos = new ArrayList<>();
-		repo = RepoPOIS.getInstance();	
+	public static BuscadorPOIs getInstance(){
+		if(instance == null){
+			instance = new BuscadorPOIs();
+		}
+		return instance;
 	}
-
+	
+	private BuscadorPOIs() {
+		buscadoresExternos = new ArrayList<>();	
+		repo = RepoPOIS.getInstance();
+	}
 	
 	public List<POI> buscarPOIs(String palabraClave, String servicio){
 		return this.getResultado(palabraClave, servicio);
