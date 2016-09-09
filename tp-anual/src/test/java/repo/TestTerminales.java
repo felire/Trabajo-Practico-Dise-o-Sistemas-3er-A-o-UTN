@@ -5,28 +5,20 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import ar.utn.frba.disenio.tp_anual.model.POI;
-import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
-import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
-import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
-import util.Point;
 
 public class TestTerminales {
 	
 	private RepoTerminales repo;
 	private Terminal terminal1;
 	private Terminal terminal2;
-	private BuscadorPOIs buscador;
 	
 	@Before
 	public void setUp(){
-		terminal1 = new Terminal(buscador,"Terminal 1", 5000);
-		terminal2 = new Terminal(buscador,"Terminal 2", 5000);
+		terminal1 = new Terminal("Terminal 1", 5000);
+		terminal2 = new Terminal("Terminal 2", 5000);
 		repo = RepoTerminales.getInstance();
-		buscador = BuscadorPOIs.getInstance();
 	}
 	
 	@Test
@@ -44,7 +36,7 @@ public class TestTerminales {
 	
 	@Test
 	public void testModificarTerminales(){
-		
+		repo.registrarTerminal(terminal1);
 		terminal1.setNombre("Hola");
 		
 		//Deberia mandarse con actualizarTerminal pero me rompe

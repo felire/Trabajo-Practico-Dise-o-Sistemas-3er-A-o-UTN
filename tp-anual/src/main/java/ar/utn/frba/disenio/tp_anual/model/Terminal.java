@@ -21,6 +21,7 @@ import javax.swing.Timer;
 
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
+import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.servicios.ServicioMail;
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.Polygon;
@@ -46,7 +47,7 @@ public class Terminal {
 	@SuppressWarnings("unused")
 	private Terminal(){};
 	
-	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
+	public Terminal(String nombre, double tiempoMaximo){
 		this.nombre = nombre;
 		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
@@ -76,6 +77,7 @@ public class Terminal {
 		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
 		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
 		this.notificarObservers(busqueda);
+		RepoBusquedas.getInstance().persistirBusqueda(busqueda);
 		return buscados;
 	}
 	

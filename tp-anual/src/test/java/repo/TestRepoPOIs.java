@@ -24,10 +24,13 @@ public class TestRepoPOIs {
 	@Test
 	public void testAgregarBanco() {
 		nuevoPOI = new SucursalBanco("Santander Rio", new Point(500, 500));
+		nuevoPOI.addTag("sucu");
+		nuevoPOI.addTag("uno");
 		repo.altaPOI(nuevoPOI);
 		
 		SucursalBanco sucursalBanco = (SucursalBanco) repo.buscarPorID(nuevoPOI.getID());
 		assertEquals(nuevoPOI, sucursalBanco);
+		assertEquals(sucursalBanco.getListaTags().contains("sucu"),true);
 	}
 	
 	@After
