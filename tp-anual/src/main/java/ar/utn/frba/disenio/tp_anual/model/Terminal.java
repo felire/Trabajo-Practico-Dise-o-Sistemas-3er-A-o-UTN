@@ -35,9 +35,6 @@ public class Terminal {
 	private long id;
 	private String nombre;
 	
-	@Transient
-	private BuscadorPOIs buscadorPOIS;
-	
 	@OneToMany
 	@JoinColumn(name = "terminal_id")
 	private List<ObserverTerminal> listaObservers;
@@ -50,7 +47,6 @@ public class Terminal {
 	private Terminal(){};
 	
 	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
-		this.buscadorPOIS=buscadorPOIS;
 		this.nombre = nombre;
 		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
@@ -73,7 +69,7 @@ public class Terminal {
     
 	public List<POI> buscar(String palabraClave, String servicio){
 		this.preNotificarObservers(); //Podriamos hacer que notifique solo a los que necesitan el pre
-		List<POI> buscados= buscadorPOIS.buscarPOIs(palabraClave,servicio);
+		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
 		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
 		this.notificarObservers(busqueda);
 		return buscados;
