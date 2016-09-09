@@ -1,18 +1,23 @@
 package ar.utn.frba.disenio.tp_anual.repo;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ar.utn.frba.disenio.tp_anual.model.POI;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
-public class RepoPOIS
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
+import ar.utn.frba.disenio.tp_anual.model.POI;
+import util.FranjaHoraria;
+
+public class RepoPOIS extends RepoGenerico
 {
-	private List<POI> listaPOIs;
 	private static RepoPOIS instance;
-	public List<POI> getListaPOIS(){
-		return listaPOIs;
-	}
+	
 	public static RepoPOIS getInstance(){
 		if(instance == null){
 			instance= new RepoPOIS();
@@ -20,35 +25,38 @@ public class RepoPOIS
 		return instance;
 	}
 	
-	private RepoPOIS()
-	{
-		listaPOIs = new ArrayList<POI>();
+	@SuppressWarnings("unchecked")
+	public List<POI> getListaPOIS(){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		String query = "select poi from POI";
+		Query hibernateQuery = entityManager.createQuery(query);
+		return (List<POI>) hibernateQuery.getResultList();
 	}
 	
 	//Consulta
 	public List<POI> buscarPOIs(String palabraClave){
-		return this.listaPOIs.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList());
+		List<POI> pois = getListaPOIS();
+		return pois.stream().filter(poi -> poi.esBuscado(palabraClave)).collect(Collectors.toList());
 	};
+	
+	public POI buscarPorID(Integer poiID){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		return entityManager.find(POI.class, poiID);
+	}
 	
 	//Alta
 	public void altaPOI(POI nuevoPOI){
-		listaPOIs.add(nuevoPOI);
+		super.persistirNuevoObjeto(nuevoPOI);
 	}
 
 	//Baja
 	public void bajaPOI(POI poi){
-		listaPOIs.remove(poi);
-	}
-	
-	//Buscar POI por ID
-	public POI buscarPorID(Integer id){
-		return listaPOIs.stream().filter(poi -> poi.getID()== id).findFirst().get();
+		super.borrarObjeto(poi);
 	}
 	
 	//Modificación
 	public void modificarPOI(POI modificado){
-		this.bajaPOI(modificado);
-		altaPOI(modificado);
+		super.actualizarObjeto(modificado);
 	}
 
 }
