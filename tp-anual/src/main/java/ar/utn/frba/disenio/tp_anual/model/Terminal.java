@@ -51,6 +51,10 @@ public class Terminal {
 		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
 	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
 	public String getNombre(){
 		return nombre;
 	}
@@ -78,9 +82,11 @@ public class Terminal {
 	public void notificarObservers(Busqueda busqueda){
 		listaObservers.stream().forEach(observer->observer.notificar(busqueda));
 	}
+	
 	public void preNotificarObservers(){
 		listaObservers.stream().forEach(observer->observer.preNotificar());
 	}
+	
 	public Polygon getComuna() {
 		return comuna;
 	}
@@ -93,4 +99,8 @@ public class Terminal {
 		this.comuna = comuna;
 	}
 	
+	public long getID() {
+		return id;
+	}
+
 }
