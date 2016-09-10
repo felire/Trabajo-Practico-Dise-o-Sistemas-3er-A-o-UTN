@@ -28,7 +28,7 @@ public class BuscadorPOIs {
 	
 	private BuscadorPOIs() {
 		buscadoresExternos = new ArrayList<>();	
-		buscadoresExternos.add(new BuscadorCGP());
+		//buscadoresExternos.add(new BuscadorCGP());
 		//buscadoresExternos.add(new BuscadorBanco());
 	}
 	
@@ -38,7 +38,7 @@ public class BuscadorPOIs {
 
 	private List<POI> getResultado(String palabraClave, String servicio) {
 		List<POI> resultados=new ArrayList<POI>();
-		resultados.addAll(RepoPOIS.getInstance().buscarPOIs(palabraClave)); //locales
+		//resultados.addAll(RepoPOIS.getInstance().buscarPOIs(palabraClave)); //locales
 		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, servicio)));
 		return resultados;
 	}

@@ -32,7 +32,6 @@ public class TestFiltrarBancos extends Init {
 	
 	@Before
 	public void setUp(){
-		buscadorBanco.setCreadorDeBancos(creador);
 		buscadorPOIS.agregarBuscadorExterno(buscadorBanco);
 	}
 	@Test
