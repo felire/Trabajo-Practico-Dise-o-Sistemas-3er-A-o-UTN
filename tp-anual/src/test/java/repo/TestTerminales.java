@@ -22,6 +22,10 @@ public class TestTerminales {
 	}
 	
 	@Test
+	public void testVariasTerm(){
+		repo.getListaTerminales();
+	}
+	@Test
 	public void testAgregarTerminales(){
 		
 		repo.registrarTerminal(terminal1);

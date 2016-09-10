@@ -61,9 +61,9 @@ public class TestRepoBusquedas {
 	
 	@After
 	public void clean(){
-		repoBusquedas.borrarBusqueda(busqueda);
 		repoPOIS.bajaPOI(sucursalBanco1);
 		repoPOIS.bajaPOI(sucursalBanco2);
+		repoBusquedas.borrarBusqueda(busqueda);
 		busqueda = null;
 		terminal1 = null;
 		sucursalBanco1 = null;

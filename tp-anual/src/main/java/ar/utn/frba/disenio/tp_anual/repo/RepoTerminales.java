@@ -33,7 +33,7 @@ public class RepoTerminales extends RepoGenerico{
 	@SuppressWarnings("unchecked")
 	public List<Terminal> getListaTerminales(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		Query terminales = entityManager.createQuery("FROM Terminales");
+		Query terminales = entityManager.createQuery("FROM Terminal");
 		return (List<Terminal>) terminales.getResultList();	
 	}
 	
