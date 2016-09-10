@@ -16,6 +16,7 @@
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.CGP</class>
        	      <class>ar.utn.frba.disenio.tp_anual.model.PrestadorDeServicios</class>
     		  <class>ar.utn.frba.disenio.tp_anual.model.Servicio</class>
+    		  <class>ar.utn.frba.disenio.tp_anual.model.ParadaDeColectivo</class>
      	      <class>util.DisponibilidadHoraria</class>
     	 	  <class>util.FranjaHoraria</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.observer.ObserverMail</class>

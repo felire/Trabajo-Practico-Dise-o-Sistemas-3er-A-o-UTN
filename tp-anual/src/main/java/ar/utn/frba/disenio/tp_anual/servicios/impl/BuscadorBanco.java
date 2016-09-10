@@ -23,12 +23,9 @@ import util.FranjaHoraria;
 import javax.persistence.*;
 
 public class BuscadorBanco implements BuscadorExterno{
-	
 
 	private JsonTraduccion jsonTraduccion;
-
 	private ServicioExternoBanco servicioExterno;
-
 	private CreadorDeBancos creadorDeBancos;
 	
 	public BuscadorBanco(){

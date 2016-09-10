@@ -36,6 +36,7 @@ public class TestRepoBusquedas {
 		sucursalBanco1.addTag("uno");
 		sucursalBanco2.addTag("sucu");
 		sucursalBanco2.addTag("dos");
+		SucursalBanco.setHorarioBancario();
 		
 		repoBusquedas = RepoBusquedas.getInstance();
 		repoPOIS = RepoPOIS.getInstance();
@@ -44,7 +45,8 @@ public class TestRepoBusquedas {
 		
 		List<POI> buscados = new ArrayList<POI>();
 		buscados.add(sucursalBanco1);
-		busqueda = new Busqueda(buscados,"1","","terminal");
+		buscados.add(sucursalBanco2);
+		busqueda = new Busqueda(buscados,"1","asd",terminal1.getNombre());
 	}
 	
 	// No anda la persistencia de busqueda, me parece que es un tema del mapeo //
@@ -54,6 +56,7 @@ public class TestRepoBusquedas {
 		repoBusquedas.persistirBusqueda(busqueda);
 		List<Busqueda> listaDeBusquedas = repoBusquedas.getListaBusquedas();
 		assertEquals(listaDeBusquedas.size(),1);
+		
 	}
 	
 	@After

@@ -17,7 +17,7 @@ import org.junit.Test;
 import ar.utn.frba.disenio.tp_anual.adapter.AdapterActualizacionLocalComercial;
 import ar.utn.frba.disenio.tp_anual.adapter.TraductorStringLocalCom;
 
-public class testAdapterActualizacion {
+public class TestAdapterActualizacion {
 	
 	TraductorStringLocalCom traductor;
 	Map<String, List<String>> mapa;

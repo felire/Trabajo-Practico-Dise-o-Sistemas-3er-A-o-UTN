@@ -19,9 +19,6 @@ import org.junit.runners.MethodSorters;
 
 import org.junit.FixMethodOrder;
 
-import util.Point;
-import util.Polygon;
-
 import ar.utn.frba.disenio.tp_anual.model.CGP;
 import ar.utn.frba.disenio.tp_anual.model.LocalComercial;
 import ar.utn.frba.disenio.tp_anual.model.POI;
@@ -32,6 +29,8 @@ import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
+import util.Point;
+import util.Polygon;
 
 @RunWith(DescriptionSorterRunner.class)
 public class Init {
@@ -115,20 +114,22 @@ public class Init {
 		coordenadaBanco = new Point(-34.604056, -58.411226);
 		banco = new SucursalBanco("Banco UTN",coordenadaBanco);
 		banco.addTag("prestamos");
-			/* Setup de Servicios del Banco */
-			ArrayList<DayOfWeek> diasAsesor = new ArrayList<DayOfWeek>();
-			diasAsesor.add(DayOfWeek.MONDAY);
-			diasAsesor.add(DayOfWeek.TUESDAY);
-			diasAsesor.add(DayOfWeek.WEDNESDAY);
-			diasAsesor.add(DayOfWeek.THURSDAY);
-			diasAsesor.add(DayOfWeek.FRIDAY);
-			ArrayList<FranjaHoraria> franjaHorariaAsesor=new ArrayList<FranjaHoraria>();
-			franjaHorariaAsesor.add(new FranjaHoraria(LocalTime.of(12, 0),LocalTime.of(15, 0)));
-			DisponibilidadHoraria disponibilidadAsesorFinanciero = new DisponibilidadHoraria(franjaHorariaAsesor, diasAsesor);
-			disponibilidadesAsesorFinanciero = new HashSet<>();
-			disponibilidadesAsesorFinanciero.add(disponibilidadAsesorFinanciero);
-			asesoramientoFinanciero = new Servicio("Asesoramiento Financiero",disponibilidadesAsesorFinanciero);
-			/* Fin Setup de servicios del banco */
+		
+		/* Setup de Servicios del Banco */
+		ArrayList<DayOfWeek> diasAsesor = new ArrayList<DayOfWeek>();
+		diasAsesor.add(DayOfWeek.MONDAY);
+		diasAsesor.add(DayOfWeek.TUESDAY);
+		diasAsesor.add(DayOfWeek.WEDNESDAY);
+		diasAsesor.add(DayOfWeek.THURSDAY);
+		diasAsesor.add(DayOfWeek.FRIDAY);
+		ArrayList<FranjaHoraria> franjaHorariaAsesor=new ArrayList<FranjaHoraria>();
+		franjaHorariaAsesor.add(new FranjaHoraria(LocalTime.of(12, 0),LocalTime.of(15, 0)));
+		DisponibilidadHoraria disponibilidadAsesorFinanciero = new DisponibilidadHoraria(franjaHorariaAsesor, diasAsesor);
+		disponibilidadesAsesorFinanciero = new HashSet<>();
+		disponibilidadesAsesorFinanciero.add(disponibilidadAsesorFinanciero);
+		asesoramientoFinanciero = new Servicio("Asesoramiento Financiero",disponibilidadesAsesorFinanciero);
+		/* Fin Setup de servicios del banco */
+			
 		banco.addServicio(asesoramientoFinanciero);
 		localDateBanco = LocalDate.of(2016, 4, 18);
 		fechaBanco = localDateBanco.atTime(13, 00);
@@ -147,28 +148,30 @@ public class Init {
 		polygon.add(punto3);
 		polygon.add(punto4);
 		
-		/*Setup Puntos a testear en la comuna del CGP */
-		
+		/*Setup Puntos a testear en la comuna del CGP */		
 		puntoEnLaComuna = new Point(8,40);
 		puntoFueraDeLaComuna = new Point(19,120);
+		
 		/* Setup de CGP */
 		coordenadaCGP = new Point(0,10);
 		cGP = new CGP("CGP1",polygon, coordenadaCGP);
 		cGP.addTag("agip");
-			/* Setup de Servicios del CGP */
-			ArrayList<DayOfWeek> diasRentas = new ArrayList<DayOfWeek>();
-			diasRentas.add(DayOfWeek.MONDAY);
-			diasRentas.add(DayOfWeek.TUESDAY);
-			diasRentas.add(DayOfWeek.WEDNESDAY);
-			diasRentas.add(DayOfWeek.THURSDAY);
-			diasRentas.add(DayOfWeek.FRIDAY);
-			ArrayList<FranjaHoraria> franjaHorariaRentas=new ArrayList<FranjaHoraria>();
-			franjaHorariaRentas.add(new FranjaHoraria(LocalTime.of(9, 0),LocalTime.of(15, 0)));
-			DisponibilidadHoraria disponibilidadRentas = new DisponibilidadHoraria(franjaHorariaRentas, diasRentas);
-			disponibilidadesRentas = new HashSet<>();
-			disponibilidadesRentas.add(disponibilidadRentas);
-			rentas = new Servicio("Rentas",disponibilidadesRentas);
+		
+		/* Setup de Servicios del CGP */
+		ArrayList<DayOfWeek> diasRentas = new ArrayList<DayOfWeek>();
+		diasRentas.add(DayOfWeek.MONDAY);
+		diasRentas.add(DayOfWeek.TUESDAY);
+		diasRentas.add(DayOfWeek.WEDNESDAY);
+		diasRentas.add(DayOfWeek.THURSDAY);
+		diasRentas.add(DayOfWeek.FRIDAY);
+		ArrayList<FranjaHoraria> franjaHorariaRentas=new ArrayList<FranjaHoraria>();
+		franjaHorariaRentas.add(new FranjaHoraria(LocalTime.of(9, 0),LocalTime.of(15, 0)));
+		DisponibilidadHoraria disponibilidadRentas = new DisponibilidadHoraria(franjaHorariaRentas, diasRentas);
+		disponibilidadesRentas = new HashSet<>();
+		disponibilidadesRentas.add(disponibilidadRentas);
+		rentas = new Servicio("Rentas",disponibilidadesRentas);
 		/* Fin Setup de servicios del CGP */
+		
 		localDateRentas = LocalDate.of(2016, 4, 18);
 		fechaRentas = localDateRentas.atTime(9, 01);
 		localDateLibreria = LocalDate.of(2016, 4, 17);

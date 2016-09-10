@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import util.Point;
+import javax.persistence.*;
 
-
-
+@Entity
 public class ParadaDeColectivo extends POI{
 	public ParadaDeColectivo(String lineaColectivo, Point coordenada)
 	{

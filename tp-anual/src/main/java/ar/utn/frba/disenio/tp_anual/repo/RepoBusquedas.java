@@ -31,8 +31,9 @@ public class RepoBusquedas extends RepoGenerico{
 	@SuppressWarnings("unchecked")
 	public List<Busqueda> getListaBusquedas(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		Query busquedas = entityManager.createQuery("FROM Busquedas");
-		return (List<Busqueda>) busquedas.getResultList();	
+		Query busquedas = entityManager.createQuery("SELECT * FROM Busqueda");
+		return (List<Busqueda>) busquedas.getResultList();
+		
 	}
 	
 	public Busqueda buscarPorID(Integer ID){

@@ -14,10 +14,12 @@ import javax.persistence.*;
 
 public class BuscadorCGP implements BuscadorExterno{
 	
-
 	private ServicioExternoCGP servicioExterno;
-
 	private CreadorDeCGP creadorDeCGP;
+	
+	public BuscadorCGP(){
+		this.creadorDeCGP = new CreadorDeCGP();
+	}
 	
 	public List<POI> filtrar(String palabraClave){
 		List<CentroDTO> listaDevolucion = servicioExterno.search(palabraClave);

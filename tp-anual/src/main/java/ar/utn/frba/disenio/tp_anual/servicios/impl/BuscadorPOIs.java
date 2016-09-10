@@ -29,16 +29,18 @@ public class BuscadorPOIs {
 	
 	private BuscadorPOIs() {
 		buscadoresExternos = new ArrayList<>();	
+		buscadoresExternos.add(new BuscadorCGP());
+		//buscadoresExternos.add(new BuscadorBanco());
 		repo = RepoPOIS.getInstance();
 	}
 	
 	public List<POI> buscarPOIs(String palabraClave, String servicio){
 		return this.getResultado(palabraClave, servicio);
-	};
+	}
 
 	private List<POI> getResultado(String palabraClave, String servicio) {
 		List<POI> resultados=new ArrayList<POI>();
-		resultados.addAll(repo.buscarPOIs(palabraClave)); //locales
+		//resultados.addAll(repo.buscarPOIs(palabraClave)); //locales
 		buscadoresExternos.stream().forEach(servicioExterno->resultados.addAll(servicioExterno.filtrar(palabraClave, servicio)));
 		return resultados;
 	}
