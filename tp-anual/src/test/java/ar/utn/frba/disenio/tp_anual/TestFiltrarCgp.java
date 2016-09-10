@@ -29,12 +29,12 @@ public class TestFiltrarCgp extends Init{
 	
 	@Before
 	public void setUp(){
-		buscadorPOIS.agregarBuscadorExterno(buscadorCGP);
-		buscadorCGP.setCreadorDeCGP(new CreadorDeCGP());
+
 	}
 	@Test
 	public void pruebaLLamadoFiltrarCGPs(){		
-		buscadorPOIS.buscarPOIs("PalabraClave",null);
+		//buscadorPOIS.buscarPOIs("PalabraClave",null);
+		buscadorCGP.filtrar("PalabraClave");
 		verify(servicioExterno).search("PalabraClave");
 			    
 	  }

@@ -2,6 +2,8 @@ package repo;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,15 @@ public class TestRepoPOIs {
 		repo = RepoPOIS.getInstance();
 	}
 	
+	@Test
+	public void testLista(){
+		nuevoPOI = new SucursalBanco("Santander Rio", new Point(500, 500));
+		nuevoPOI.addTag("sucu");
+		nuevoPOI.addTag("uno");
+		repo.altaPOI(nuevoPOI);
+		List<POI> lista = RepoPOIS.getInstance().getListaPOIS();
+		assertEquals(nuevoPOI, lista.get(0));
+	}
 	@Test
 	public void testAgregarBanco() {
 		nuevoPOI = new SucursalBanco("Santander Rio", new Point(500, 500));

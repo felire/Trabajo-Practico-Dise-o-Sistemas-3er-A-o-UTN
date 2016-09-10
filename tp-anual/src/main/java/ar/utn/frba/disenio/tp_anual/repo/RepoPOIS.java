@@ -28,7 +28,7 @@ public class RepoPOIS extends RepoGenerico
 	@SuppressWarnings("unchecked")
 	public List<POI> getListaPOIS(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		String query = "select poi from POI";
+		String query = "from POI";
 		Query hibernateQuery = entityManager.createQuery(query);
 		return (List<POI>) hibernateQuery.getResultList();
 	}
