@@ -78,7 +78,6 @@ public class Terminal {
 		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
 		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
 		this.notificarObservers(busqueda);
-		RepoBusquedas.getInstance().persistirBusqueda(busqueda);
 		return buscados;
 	}
 	

@@ -15,6 +15,7 @@ import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
 import util.Point;
 
 public class TestRepoBusquedas {
@@ -42,6 +43,7 @@ public class TestRepoBusquedas {
 		repoPOIS = RepoPOIS.getInstance();
 		repoPOIS.altaPOI(sucursalBanco1);
 		repoPOIS.altaPOI(sucursalBanco2);
+
 		
 		List<POI> buscados = new ArrayList<POI>();
 		buscados.add(sucursalBanco1);
@@ -49,21 +51,19 @@ public class TestRepoBusquedas {
 		busqueda = new Busqueda(buscados,"1","asd",terminal1.getNombre());
 	}
 	
-	// No anda la persistencia de busqueda, me parece que es un tema del mapeo //
 	
 	@Test
 	public void TestGuardarBusquedas(){
 		repoBusquedas.persistirBusqueda(busqueda);
 		List<Busqueda> listaDeBusquedas = repoBusquedas.getListaBusquedas();
-		assertEquals(listaDeBusquedas.size(),1);
-		
+		assertEquals(listaDeBusquedas.size(),1);		
 	}
 	
 	@After
 	public void clean(){
 		repoPOIS.bajaPOI(sucursalBanco1);
 		repoPOIS.bajaPOI(sucursalBanco2);
-		repoBusquedas.borrarBusqueda(busqueda);
+		repoBusquedas.borrarTodasLasBusquedas();
 		busqueda = null;
 		terminal1 = null;
 		sucursalBanco1 = null;

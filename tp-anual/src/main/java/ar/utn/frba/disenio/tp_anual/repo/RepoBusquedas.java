@@ -28,6 +28,10 @@ public class RepoBusquedas extends RepoGenerico{
 		super.borrarObjeto(busqueda);
 	}
 	
+	public void borrarTodasLasBusquedas(){
+		getListaBusquedas().forEach(busqueda -> borrarBusqueda(busqueda));
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Busqueda> getListaBusquedas(){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
