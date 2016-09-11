@@ -18,8 +18,8 @@ import util.Point;
 @Entity
 public class LocalComercial extends POI{
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "rubro_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
 	private Rubro rubro;
 	
 	@OneToMany(cascade = CascadeType.ALL)
