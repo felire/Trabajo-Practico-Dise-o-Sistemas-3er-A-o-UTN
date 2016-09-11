@@ -14,8 +14,10 @@ public class Busqueda {
 	@Id @GeneratedValue
 	private Integer id;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn (name="busqueda_id")
+	@ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="BusquedasPOIs",
+            joinColumns={@JoinColumn(name="id")},
+            inverseJoinColumns={@JoinColumn(name="poiID")})
 	private List<POI> resultados;
 	@Convert (converter = LocalDateConverter.class)
 	private LocalDate fecha;
