@@ -65,7 +65,7 @@ public abstract class POI {
 	
 	public Boolean esBuscado(String palabraClave)
 	{
-	    return listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)) || this.soyBuscado(palabraClave);
+	    return this.nombre.contains(palabraClave) || listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)) || this.soyBuscado(palabraClave);
 	}
 	
 	public abstract Boolean soyBuscado(String palabraClave);
@@ -93,6 +93,10 @@ public abstract class POI {
 	
 	public List<String> getListaTags(){
 		return listaTags;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 }
