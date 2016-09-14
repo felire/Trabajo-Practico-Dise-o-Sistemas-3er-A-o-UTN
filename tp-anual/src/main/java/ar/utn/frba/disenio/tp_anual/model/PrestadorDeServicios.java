@@ -8,10 +8,7 @@ import javax.persistence.*;
 
 import util.Point;
 
-
-
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class PrestadorDeServicios extends POI{
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -21,7 +18,6 @@ public abstract class PrestadorDeServicios extends POI{
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
-	
 	
 	public PrestadorDeServicios(String nombre,Point coordenada)
 	{

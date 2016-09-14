@@ -25,8 +25,12 @@ public class Busqueda {
 	private String fraseBuscada;
 	private String servicioBuscado;
 	private double tiempoDemorado;
-	private String terminal; //El reporte o Busqueda (habria que cambiar el nombre) conoce el nombre de la terminal en la que fue buscado
-	//La terminal la tratamos como usuario
+	
+	@ManyToOne
+	@JoinColumn(name = "terminalID")
+	private Terminal terminalObjeto;
+	private String terminal;
+	
 	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, String terminal){
 		this.resultados = buscados;
 		this.fecha = LocalDate.now(); //Lo seteamos con la fecha actual

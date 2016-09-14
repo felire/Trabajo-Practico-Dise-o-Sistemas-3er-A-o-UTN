@@ -2,6 +2,7 @@ package repo;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -17,37 +18,30 @@ public class TestRepoPOIs {
 
 	private RepoPOIS repo;
 	private POI nuevoPOI;
+	private List<POI> nuevosPOIs;
 	
 	@Before
 	public void setUp(){
+		nuevoPOI = null;
+		nuevosPOIs = new ArrayList<POI>();
 		repo = RepoPOIS.getInstance();
 	}
 	
 	@Test
-	public void testLista(){
-		nuevoPOI = new SucursalBanco("Santander Rio", new Point(500, 500));
-		nuevoPOI.addTag("sucu");
-		nuevoPOI.addTag("uno");
-		repo.altaPOI(nuevoPOI);
-		List<POI> lista = RepoPOIS.getInstance().getListaPOIS();
-		assertEquals(nuevoPOI, lista.get(0));
-	}
-	@Test
 	public void testAgregarBanco() {
 		nuevoPOI = new SucursalBanco("Santander Rio", new Point(500, 500));
-		nuevoPOI.addTag("sucu");
-		nuevoPOI.addTag("uno");
 		repo.altaPOI(nuevoPOI);
 		
 		SucursalBanco sucursalBanco = (SucursalBanco) repo.buscarPorID(nuevoPOI.getID());
 		assertEquals(nuevoPOI, sucursalBanco);
-		assertEquals(sucursalBanco.getListaTags().contains("sucu"),true);
 	}
 	
 	@After
 	public void clean(){
 		repo.bajaPOI(nuevoPOI);
-		nuevoPOI = null;
+		for(POI poi: nuevosPOIs){
+			repo.bajaPOI(poi);
+		}
 	}
 
 }

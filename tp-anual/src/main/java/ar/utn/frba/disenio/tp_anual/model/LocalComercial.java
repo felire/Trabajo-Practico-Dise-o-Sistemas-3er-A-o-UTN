@@ -16,6 +16,7 @@ import util.DisponibilidadHoraria;
 import util.Point;
 
 @Entity
+@DiscriminatorValue(value = "LOCAL_COMERCIAL")
 public class LocalComercial extends POI{
 	
 	@ManyToOne(cascade = CascadeType.ALL)

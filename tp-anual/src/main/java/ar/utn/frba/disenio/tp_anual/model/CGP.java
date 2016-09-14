@@ -8,10 +8,11 @@ import util.Point;
 import util.Polygon;
 
 @Entity
+@DiscriminatorValue(value = "CGP")
 public class CGP extends PrestadorDeServicios{
 	
-	@OneToOne (cascade = CascadeType.ALL)
-	@JoinColumn (name = "comuna")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "id_columna")
 	private Polygon comuna;
 	
 	public Polygon getComuna() {

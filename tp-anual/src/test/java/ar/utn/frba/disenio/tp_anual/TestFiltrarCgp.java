@@ -34,7 +34,6 @@ public class TestFiltrarCgp extends Init{
 	@Test
 	public void pruebaLLamadoFiltrarCGPs(){		
 		BuscadorPOIs.getInstance().buscarPOIs("PalabraClave",null);
-		//buscadorCGP.filtrar("PalabraClave", null);
 		verify(servicioExterno).search("PalabraClave");
 			    
 	  }

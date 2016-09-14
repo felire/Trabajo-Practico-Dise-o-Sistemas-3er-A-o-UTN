@@ -10,8 +10,10 @@ import javax.persistence.*;
 import util.Point;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
+@Table(name = "POI")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO_POI", discriminatorType = DiscriminatorType.STRING)
+public abstract class POI { 
 	
 	@Id
 	@GeneratedValue
@@ -21,13 +23,11 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenada_id")
 	protected Point coordenada;
-
 	
 	@ElementCollection
 	@CollectionTable(name="Tags", joinColumns=@JoinColumn(name="poi_id"))
 	@Column(name="tag")
 	protected List<String> listaTags;
-
 	
 	protected BigDecimal radioDeCercania;
 	

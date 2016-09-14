@@ -1,33 +1,22 @@
 package ar.utn.frba.disenio.tp_anual.model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
-import javax.swing.Timer;
-
 
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
-import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
-import ar.utn.frba.disenio.tp_anual.servicios.ServicioMail;
+
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.Polygon;
-import util.reportes.ReportePorFecha;
-
 
 @Entity
 public class Terminal {
@@ -41,7 +30,7 @@ public class Terminal {
 	@JoinColumn(name = "terminal_id")
 	private List<ObserverTerminal> listaObservers;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	

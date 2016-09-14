@@ -1,4 +1,4 @@
-package ar.utn.frba.disenio.tp_anual.model;
+ package ar.utn.frba.disenio.tp_anual.model;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -18,15 +18,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
-
-
 @Entity
+@DiscriminatorValue(value = "SUCURSAL_BANCO")
 public class SucursalBanco extends PrestadorDeServicios{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "horario_id")
 	private static DisponibilidadHoraria horarioBancario;
-	
 	
 	public SucursalBanco(String nombre,Point coordenada){
 		super(nombre,coordenada);

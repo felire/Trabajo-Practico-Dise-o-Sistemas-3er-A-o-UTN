@@ -7,6 +7,7 @@ import util.Point;
 import javax.persistence.*;
 
 @Entity
+@DiscriminatorValue(value = "PARADA_COLECTIVO")
 public class ParadaDeColectivo extends POI{
 	public ParadaDeColectivo(String lineaColectivo, Point coordenada)
 	{
