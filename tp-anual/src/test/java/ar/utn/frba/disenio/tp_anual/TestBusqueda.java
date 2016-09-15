@@ -4,42 +4,64 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestBusqueda extends TestInit{
+public class TestBusqueda extends Init{
 	
 	@Test
 	public void buscarLocalComercial()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("papelera")).contains(localComercial));
+		assertTrue((buscadorPOIS.buscarPOIs("papelera")).contains(localComercial));
 		//Busco por nombre de rubro
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Libreria")).contains(localComercial));
+		assertTrue((buscadorPOIS.buscarPOIs("Libreria")).contains(localComercial));
 		//Busco parte de un tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("utile")).contains(localComercial));
+		assertTrue((buscadorPOIS.buscarPOIs("utile")).contains(localComercial));
 	}
 
 	@Test
 	public void buscarParadaColectivo()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("bondi")).contains(paradaDe55));
+		assertTrue((buscadorPOIS.buscarPOIs("bondi")).contains(paradaDe55));
 		//Busco por linea
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("55")).contains(paradaDe55));
+		assertTrue((buscadorPOIS.buscarPOIs("55")).contains(paradaDe55));
 	}
 	
 	@Test
 	public void buscarBanco()
 	{
 		//Busco parte de un tag tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("prestamo")).contains(banco));
+		assertTrue((buscadorPOIS.buscarPOIs("prestamo")).contains(banco));
 		//Busco por servicio
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Asesoramiento")).contains(banco));
+		assertTrue((buscadorPOIS.buscarPOIs("Asesoramiento")).contains(banco));
 	}
+	
 	@Test
 	public void buscarCGP()
 	{
 		//Busco por tag
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("agip")).contains(cGP));
+		assertTrue((buscadorPOIS.buscarPOIs("agip")).contains(cGP));
 		//Busco por servicio
-		assertEquals(true,(buscadorPOIS.filtrarPOIs("Rentas")).contains(cGP));
+		assertTrue((buscadorPOIS.buscarPOIs("Rentas")).contains(cGP));
 	}
+	
+	/*@Test
+	public void aasetteoID()
+	{
+		assertTrue((cGP.getID()==1));
+		assertTrue((banco.getID()==2));
+		assertTrue((localComercial.getID()==3));
+		assertTrue((paradaDe55.getID()==4));
+	}*/
+	
+	@Test
+	public void busquedaYEliminacionDePOIPorID()
+	{
+		//Eliminacion por ID
+		assertTrue((buscadorPOIS.buscarPOIs("agip")).contains(cGP));
+		buscadorPOIS.bajaPOI(cGP);
+		assertFalse((buscadorPOIS.buscarPOIs("agip")).contains(cGP));
+		
+	}
+	
+	
 }

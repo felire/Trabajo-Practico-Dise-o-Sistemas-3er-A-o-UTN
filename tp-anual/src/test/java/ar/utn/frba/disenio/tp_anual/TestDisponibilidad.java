@@ -1,39 +1,41 @@
 package ar.utn.frba.disenio.tp_anual;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
 import org.junit.Test;
 
-public class TestDisponibilidad extends TestInit{
+public class TestDisponibilidad extends Init{
 	
-/* Tests Disponibilidad de Banco */
+	/* Tests Disponibilidad de Banco */
     
     @Test
     public void testDisponibilidadSucursalBanco()
     {
-    	assertEquals(true, banco.estaDisponible(fechaBanco));
+    	assertTrue( banco.estaDisponible(fechaBanco));
     }	
     
     @Test
     public void testDisponibilidadServiciosDeBanco()
     {
-    	assertEquals(true, banco.estaDisponible(fechaBanco, "Asesoramiento Financiero"));
+    	assertTrue( banco.estaDisponible(fechaBanco, "Asesoramiento Financiero"));
     }
     
-/* Tests Disponibilidad de Local Comercial */
+    /* Tests Disponibilidad de Local Comercial */
 	
     @Test
     public void testDisponibilidadLocalComercial()
     {
-    	assertEquals(true, localComercial.estaDisponible(fecha));
+    	assertTrue( localComercial.estaDisponible(fecha));
     }
     
     @Test
     public void testDisponibilidadLocalComercialFalla()
     {
-    	assertEquals(false, localComercial.estaDisponible(fechaCuandoEstaCerrado));
+    	assertFalse( localComercial.estaDisponible(fechaCuandoEstaCerrado));
     }
     
     /*Tests Disponibilidad de CGP */
@@ -41,14 +43,14 @@ public class TestDisponibilidad extends TestInit{
     @Test
     public void testDisponibilidadServiciosDeCGP()
     {
-    	assertEquals(true, cGP.estaDisponible(fechaRentas,"Rentas"));
-    	assertEquals(false, cGP.estaDisponible(fechaRentas,"Libreria"));
+    	assertTrue(cGP.estaDisponible(fechaRentas,"Rentas"));
+    	assertFalse( cGP.estaDisponible(fechaRentas,"Libreria"));
     }
     
     @Test
     public void testDisponibilidadDeCGP()
     {
-    	assertEquals(true, cGP.estaDisponible(fechaRentas));
+    	assertTrue( cGP.estaDisponible(fechaRentas));
     }
     
     /* Test disponibilidad Parada de colectivo */
@@ -56,7 +58,7 @@ public class TestDisponibilidad extends TestInit{
     @Test
     public void testDisponibilidadDe55()
     {
-    	assertEquals(true, paradaDe55.estaDisponible(fecha));
+    	assertTrue( paradaDe55.estaDisponible(fecha));
     }
     
 }
