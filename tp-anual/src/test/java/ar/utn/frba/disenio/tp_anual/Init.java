@@ -35,7 +35,7 @@ import util.Polygon;
 @RunWith(DescriptionSorterRunner.class)
 public class Init {
 	/* Variables de Local Comercial */
-	LocalComercial localComercial;
+	public LocalComercial localComercial;
 	Rubro rubro;
 	LocalDate localDate;
 	LocalDate localDateCuandoEstaCerrado;
@@ -46,7 +46,7 @@ public class Init {
 	Set<DisponibilidadHoraria> disponibilidadesLocalComercial;
 		
 	/* Variables de Banco */
-	SucursalBanco banco;
+	protected SucursalBanco banco;
 	Servicio asesoramientoFinanciero;
 	Servicio cajeroElectronico; //Falta instanciar este con su set de disponibilidades etc
 	LocalDate localDateBanco;
@@ -58,7 +58,7 @@ public class Init {
 	
 	 
 	/* Variables de CGP */
-	CGP cGP;
+	protected CGP cGP;
 	Servicio rentas;
 	Servicio libreria;//Falta instanciar este con su set de disponibilidades etc
 	LocalDate localDateRentas;
@@ -107,7 +107,6 @@ public class Init {
 		fechaCuandoEstaCerrado = localDateCuandoEstaCerrado.atTime(21, 00);
 		localComercial.addTag("utiles");
 		localComercial.addTag("papelera");
-		
 		
 		/* Setup de Banco */
 		SucursalBanco.setHorarioBancario();

@@ -56,7 +56,8 @@ public class TestRepoBusquedas {
 	public void TestGuardarBusquedas(){
 		repoBusquedas.persistirBusqueda(busqueda);
 		List<Busqueda> listaDeBusquedas = repoBusquedas.getListaBusquedas();
-		assertEquals(listaDeBusquedas.size(),1);		
+		assertEquals(listaDeBusquedas.size(),1);
+		
 	}
 	
 	@After

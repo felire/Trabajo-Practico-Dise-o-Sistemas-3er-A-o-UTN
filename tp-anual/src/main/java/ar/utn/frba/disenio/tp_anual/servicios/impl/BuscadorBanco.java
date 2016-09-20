@@ -16,6 +16,7 @@ import ar.utn.frba.disenio.tp_anual.model.POI;
 import ar.utn.frba.disenio.tp_anual.model.Servicio;
 import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import ar.utn.frba.disenio.tp_anual.servicios.BuscadorExterno;
+import ar.utn.frba.disenio.tp_anual.servicios.CachePoisExternos;
 import ar.utn.frba.disenio.tp_anual.servicios.ServicioExternoBanco;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
@@ -27,13 +28,15 @@ public class BuscadorBanco implements BuscadorExterno{
 	private JsonTraduccion jsonTraduccion;
 	private ServicioExternoBanco servicioExterno;
 	private CreadorDeBancos creadorDeBancos;
+	private CachePoisExternos cache;
+
 	
 	public BuscadorBanco(){
 		this.jsonTraduccion = new JsonTraduccion();
 		this.creadorDeBancos = new CreadorDeBancos();
 	}
 	
-	public List<POI> filtrar(String palabraClave, String servicio){
+	private List<POI> filtrarInterno(String palabraClave, String servicio){
 		String devolucion = servicioExterno.search(palabraClave, servicio);
 		if(devolucion!=null){
 		List<JsonBanco> listaTraducida = jsonTraduccion.traductor(devolucion);
@@ -46,6 +49,16 @@ public class BuscadorBanco implements BuscadorExterno{
 	
 	public void setCreadorDeBancos(CreadorDeBancos creador){
 		this.creadorDeBancos = creador;
+	}
+	
+	public List<POI> filtrar(String palabraClave, String servicio){
+		List<POI> POIsCache= cache.encontrarBancos(palabraClave, servicio);
+		if(POIsCache==null){
+			List<POI> listaExterna = this.filtrar(palabraClave,servicio);
+			cache.guardarBancos(listaExterna, palabraClave, servicio);	
+			return listaExterna;
+		}
+		return POIsCache;
 	}
 
 }

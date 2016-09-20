@@ -34,4 +34,8 @@ public class DisponibilidadHoraria {
 	public Boolean estaDisponible(LocalDateTime fecha){
 		return diaDisponible(fecha) && horaDisponible(fecha);
 	}
+	
+	public List<FranjaHoraria> getFranjas(){
+		return this.franjas;
+	}
 }
