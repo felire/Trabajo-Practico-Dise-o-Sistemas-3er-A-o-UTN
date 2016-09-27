@@ -55,7 +55,8 @@ public class CreadorDeReportes {
 	
 	public Set<LocalDate> fechasSinRepetir(){
 		Set<LocalDate> fechasSinRepetir = new HashSet<>();
-		busquedas.stream().forEach(busqueda->fechasSinRepetir.add(busqueda.getFecha()));
+		//busquedas.stream().forEach(busqueda->fechasSinRepetir.add(busqueda.getFecha()));
+		
 		return fechasSinRepetir;
 	}
 }
