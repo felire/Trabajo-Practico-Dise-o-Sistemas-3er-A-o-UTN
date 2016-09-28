@@ -20,12 +20,10 @@ import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.Polygon;
 
 @Entity
-@org.mongodb.morphia.annotations.Entity
 public class Terminal {
 	
 	@Id
 	@GeneratedValue
-	@org.mongodb.morphia.annotations.Id
 	private long id;
 	
 	private String nombre;
@@ -69,7 +67,7 @@ public class Terminal {
 	public List<POI> buscar(String palabraClave, String servicio){
 		this.preNotificarObservers(); //Podriamos hacer que notifique solo a los que necesitan el pre
 		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
-		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this);
+		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.nombre);
 		this.notificarObservers(busqueda);
 		return buscados;
 	}

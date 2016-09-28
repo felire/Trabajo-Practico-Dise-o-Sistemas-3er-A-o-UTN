@@ -7,14 +7,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Convert;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.*;
+/*import org.mongodb.morphia.*;
 import org.mongodb.morphia.annotations.Converters;
+import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;
+import org.mongodb.morphia.annotations.Reference;*/
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
 
 
@@ -24,33 +28,37 @@ public class Busqueda {
 	@Id
 	private ObjectId id;
 	
-	@Reference
+	@Embedded
 	private List<POI> resultados;
 	
 	@Convert (converter = LocalDateConverter.class)
 	private LocalDate fecha;
 	
-	@Property
+	//@Property
 	private String fraseBuscada;
 
-	@Property
+	//@Property
 	private String servicioBuscado;
 
-	@Property
+	//@Property
 	private double tiempoDemorado;
 	
-	@Reference
-	private Terminal terminal;
+	//@Property
+	private String terminal;
 	
 	public Busqueda() {
-		super();
+		
 	}
-	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, Terminal terminal){
+	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, String terminal){
 		this.resultados = buscados;
-		this.fecha = null; //Lo seteamos con la fecha actual
+		this.fecha = LocalDate.now(); //Lo seteamos con la fecha actual
 		this.fraseBuscada = fraseBuscada;
 		this.servicioBuscado = servicioBuscado;
 		this.terminal = terminal;
+	}
+	
+	public List<POI> getResultados(){
+		return resultados;
 	}
 	public void setDemora(Double demora){
 		this.tiempoDemorado = demora;
@@ -65,10 +73,10 @@ public class Busqueda {
 		return this.fecha.equals(otraFecha);
 	}
 	public Boolean mismoUsuario(String usuario){
-		return this.terminal.getNombre() == usuario;
+		return this.terminal == usuario;
 	}
 	public String getUsuario(){
-		return terminal.getNombre();
+		return terminal;
 	}
 	public LocalDate getFecha(){
 		return this.fecha;

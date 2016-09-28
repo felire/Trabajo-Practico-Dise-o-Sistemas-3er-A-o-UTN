@@ -22,5 +22,7 @@ public class ParadaDeColectivo extends POI{
 	public Boolean estaDisponible(LocalDateTime fecha) {
 		return true;
 	}
-
+	public ParadaDeColectivo(){
+		super();
+	}
 }

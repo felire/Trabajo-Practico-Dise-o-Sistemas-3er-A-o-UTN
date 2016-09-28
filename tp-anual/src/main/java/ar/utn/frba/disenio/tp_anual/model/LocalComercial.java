@@ -50,4 +50,8 @@ public class LocalComercial extends POI{
 	public Set<DisponibilidadHoraria> getDisponibilidades(){
 		return this.disponibilidades;
 	}
+	
+	public LocalComercial(){
+		super();
+	}
 }

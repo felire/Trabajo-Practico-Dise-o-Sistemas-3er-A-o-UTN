@@ -48,7 +48,7 @@ public class TestRepoBusquedas {
 		List<POI> buscados = new ArrayList<POI>();
 		buscados.add(sucursalBanco1);
 		buscados.add(sucursalBanco2);
-		busqueda = new Busqueda(buscados,"1","asd",terminal1);
+		busqueda = new Busqueda(buscados,"1","asd",terminal1.getNombre());
 	}
 	
 	

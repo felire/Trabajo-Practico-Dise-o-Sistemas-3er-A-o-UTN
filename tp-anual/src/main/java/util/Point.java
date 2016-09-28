@@ -25,4 +25,7 @@ public class Point extends org.uqbar.geodds.Point{
 		this.longitud = aY;
 	}
 	
+	public Point(){
+		super(0,0);
+	}
 }

@@ -8,7 +8,10 @@ import java.util.List;
 import javax.persistence.*;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Property;
 
+import util.BigDecimalConverter;
+import util.LocalTimeConverter;
 import util.Point;
 
 @Entity
@@ -35,7 +38,7 @@ public abstract class POI {
 	protected BigDecimal radioDeCercania;
 	
 	@SuppressWarnings("unused")
-	private POI(){};
+	public POI(){};
 	
 	public POI(String nombre, Point coordenada)
 	{
@@ -101,5 +104,6 @@ public abstract class POI {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	
 }

@@ -5,12 +5,17 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
+import org.mongodb.morphia.annotations.Property;
+
+import util.BigDecimalConverter;
+
 @Entity
 public class Rubro {
 	
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	private BigDecimal radioCercania;
 	private String nombreRubro;
 	

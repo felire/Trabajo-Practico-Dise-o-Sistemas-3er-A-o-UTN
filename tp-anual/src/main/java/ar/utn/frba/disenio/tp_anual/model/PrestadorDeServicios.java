@@ -47,4 +47,9 @@ public abstract class PrestadorDeServicios extends POI{
 	public Boolean soyBuscado(String palabraClave){
 		return this.servicios.stream().anyMatch(servicio -> servicio.toString().contains(palabraClave));
 	}
+	
+	public PrestadorDeServicios()
+	{
+		super();
+	}
 }
