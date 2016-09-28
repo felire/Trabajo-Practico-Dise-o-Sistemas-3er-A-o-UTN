@@ -2,6 +2,7 @@ package util;
 
 import org.mongodb.morphia.converters.SimpleValueConverter;
 import org.mongodb.morphia.converters.TypeConverter;
+
 /*
  * Copyright (c) 2016 MongoDB, Inc.
  *
@@ -17,23 +18,26 @@ import org.mongodb.morphia.converters.TypeConverter;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import org.mongodb.morphia.mapping.MappedField;
 
-import java.time.LocalTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
+import static java.time.ZoneId.systemDefault;
 
 /**
- * Provides a converter for {@link LocalTime} and convert it to its numeric form of milliseconds since midnight.
+ * Provides a converter for {@link LocalDate} converting the value to the Date at the start of that day.
  */
 @SuppressWarnings("Since15")
-public class LocalTimeConverter extends TypeConverter implements SimpleValueConverter {
-
-    private static final int MILLI_MODULO = 1000000;
-
+public class LocalDateConverter extends TypeConverter implements SimpleValueConverter {
     /**
      * Creates the Converter.
      */
-    public LocalTimeConverter() {
-        super(LocalTime.class);
+    public LocalDateConverter() {
+        super(LocalDate.class);
     }
 
     @Override
@@ -42,15 +46,15 @@ public class LocalTimeConverter extends TypeConverter implements SimpleValueConv
             return null;
         }
 
-        if (val instanceof LocalTime) {
+        if (val instanceof LocalDate) {
             return val;
         }
 
-        if (val instanceof Number) {
-            return LocalTime.ofNanoOfDay(((Number) val).longValue() * MILLI_MODULO);
+        if (val instanceof Date) {
+            return LocalDateTime.ofInstant(((Date) val).toInstant(), ZoneId.systemDefault()).toLocalDate();
         }
 
-        throw new IllegalArgumentException("Can't convert to LocalTime from " + val);
+        throw new IllegalArgumentException("Can't convert to LocalDate from " + val);
     }
 
     @Override
@@ -58,9 +62,9 @@ public class LocalTimeConverter extends TypeConverter implements SimpleValueConv
         if (value == null) {
             return null;
         }
-        LocalTime time = (LocalTime) value;
-
-        return time.toNanoOfDay() / MILLI_MODULO;
+        LocalDate date = (LocalDate) value;
+        return Date.from(date.atStartOfDay()
+                             .atZone(systemDefault())
+                             .toInstant());
     }
 }
-

@@ -183,11 +183,11 @@ public class Init {
 		paradaDe55.addTag("bondi");
 		
 		/* Setup de Buscador POIs*/
-		buscadorPOIS = RepoPOIS.getInstance();
+		/*buscadorPOIS = RepoPOIS.getInstance();
 		buscadorPOIS.altaPOI(cGP);
 		buscadorPOIS.altaPOI(banco);
 		buscadorPOIS.altaPOI(localComercial);
-		buscadorPOIS.altaPOI(paradaDe55);
+		buscadorPOIS.altaPOI(paradaDe55);*/
 	
 	}
 	@Test

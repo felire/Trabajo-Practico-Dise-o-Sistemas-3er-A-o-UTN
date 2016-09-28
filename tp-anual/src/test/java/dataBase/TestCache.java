@@ -39,7 +39,7 @@ public class TestCache extends Init{
 	@Test
 	public void TestNil() {
 		CachePoisExternos cache = new CachePoisExternos();
-		List<POI> bancos2 = cache.encontrarBancos("gordo", "puto");
+		List<POI> bancos2 = cache.encontrarBancos("Quiero aprobar", "diseño");
 		assertEquals(bancos2,null);
 	}
 	

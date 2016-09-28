@@ -2,11 +2,14 @@ package mongodb;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+import static org.junit.Assert.*;
 import util.BigDecimalConverter;
-import util.JodaDateTimeConverter;
+import util.LocalDateConverter;
+import util.LocalDateTimeConverter;
+import util.LocalTimeConverter;
 import util.Point;
 
 import org.junit.After;
@@ -29,6 +32,7 @@ import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
 public class TestInitMongoDB {
 	
 	Morphia morphia;
+	MongoClient cliente;
 	Datastore datastore;
 	Busqueda busquedaPersistida;
 	
@@ -36,9 +40,12 @@ public class TestInitMongoDB {
 	public void setUp(){
 		morphia = new Morphia();
 		morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
-		morphia.getMapper().getConverters().addConverter(JodaDateTimeConverter.class);
+		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);
+		morphia.getMapper().getConverters().addConverter(LocalDateTimeConverter.class);
+		morphia.getMapper().getConverters().addConverter(LocalTimeConverter.class);
 		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
-		datastore = morphia.createDatastore(new MongoClient(), "tp_anual_diseno_test");
+		cliente = new MongoClient();
+		datastore = morphia.createDatastore(cliente, "tp_anual_diseno_test");
 	}
 	
 	@Test
@@ -55,9 +62,15 @@ public class TestInitMongoDB {
 	
 		datastore.save(busqueda);
 		busquedaPersistida = datastore.find(Busqueda.class).get();
-		System.out.println(busquedaPersistida.getFecha());
-		System.out.println(busquedaPersistida.getResultados().get(0).getNombre());
-		System.out.println(busquedaPersistida.getResultados().get(0).getCoordenada());
-		System.out.println(busquedaPersistida.getResultados().get(0).getListaTags());
+		assertEquals("55",busquedaPersistida.getResultados().get(0).getNombre());
+		assertEquals((int)5,(int) busquedaPersistida.getResultados().get(0).getCoordenada().getLatitud());
+		assertEquals((int)5, (int)busquedaPersistida.getResultados().get(0).getCoordenada().getLongitud());
+		assertEquals(LocalDate.now(),busquedaPersistida.getFecha());
+	}
+	
+	@After
+	public void clean(){
+
+		cliente.dropDatabase("tp_anual_diseno_test");
 	}
 }
