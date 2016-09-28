@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.bson.types.ObjectId;
+
 import util.Point;
 
 @Entity
@@ -16,6 +18,7 @@ import util.Point;
 public abstract class POI { 
 	
 	@Id
+	@org.mongodb.morphia.annotations.Id
 	@GeneratedValue
 	protected Integer poiID;
 	protected String nombre;

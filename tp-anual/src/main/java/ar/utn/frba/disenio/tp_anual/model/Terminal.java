@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.bson.types.ObjectId;
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 
@@ -19,11 +20,14 @@ import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.Polygon;
 
 @Entity
+@org.mongodb.morphia.annotations.Entity
 public class Terminal {
 	
 	@Id
 	@GeneratedValue
+	@org.mongodb.morphia.annotations.Id
 	private long id;
+	
 	private String nombre;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -65,7 +69,7 @@ public class Terminal {
 	public List<POI> buscar(String palabraClave, String servicio){
 		this.preNotificarObservers(); //Podriamos hacer que notifique solo a los que necesitan el pre
 		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
-		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
+		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this);
 		this.notificarObservers(busqueda);
 		return buscados;
 	}
@@ -93,5 +97,7 @@ public class Terminal {
 	public long getID() {
 		return id;
 	}
-
+	public void setID(long id) {
+		this.id = id;
+	}
 }
