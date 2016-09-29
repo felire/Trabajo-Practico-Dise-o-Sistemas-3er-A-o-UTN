@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import util.BigDecimalConverter;
 import util.LocalDateConverter;
 import util.LocalDateTimeConverter;
-import util.LocalTimeConverter;
+import util.LocalTimeConverterMorphia;
 import util.Point;
 
 import org.junit.After;
@@ -42,7 +42,7 @@ public class TestInitMongoDB {
 		morphia.getMapper().getConverters().addConverter(BigDecimalConverter.class);
 		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);
 		morphia.getMapper().getConverters().addConverter(LocalDateTimeConverter.class);
-		morphia.getMapper().getConverters().addConverter(LocalTimeConverter.class);
+		morphia.getMapper().getConverters().addConverter(LocalTimeConverterMorphia.class);
 		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
 		cliente = new MongoClient();
 		datastore = morphia.createDatastore(cliente, "tp_anual_diseno_test");

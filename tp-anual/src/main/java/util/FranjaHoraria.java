@@ -10,9 +10,9 @@ public class FranjaHoraria {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Convert(converter = LocalTimeConverter.class)
+	@Convert(converter = LocalTimeConverterMorphia.class)
 	private LocalTime desdeHorario;
-	@Convert(converter = LocalTimeConverter.class)
+	@Convert(converter = LocalTimeConverterMorphia.class)
 	private LocalTime hastaHorario;
 	
 	public Boolean contiene(LocalTime hora){

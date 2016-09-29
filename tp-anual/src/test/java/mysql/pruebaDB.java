@@ -1,4 +1,4 @@
-package dataBase;
+package mysql;
 
 import static org.junit.Assert.*;
 

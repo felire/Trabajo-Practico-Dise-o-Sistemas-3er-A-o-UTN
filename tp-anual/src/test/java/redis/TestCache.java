@@ -1,4 +1,4 @@
-package dataBase;
+package redis;
 
 import static org.junit.Assert.*;
 
