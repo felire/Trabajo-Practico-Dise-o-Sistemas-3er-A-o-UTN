@@ -9,15 +9,22 @@ import spark.Request;
 
 public class Session {
 	public static final String NOMBREUSER = "user";
-	public static Boolean existeUsuario(String id, Request req){
+	public static Boolean existeUsuario(String id,String pass, Request req){
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		Usuario usuario = entity.find(Usuario.class, id);
 		if(usuario == null){
 			return false;
 		}
 		else{
-			req.session().attribute(NOMBREUSER, usuario);
-			return true;
+			if(usuario.getPass() == pass)
+			{
+				req.session().attribute(NOMBREUSER, usuario);
+				return true;
+			}
+			else{
+				return false;
+			}
+			
 		}
 	}
 	public static Boolean estaLogeado(Request req){
