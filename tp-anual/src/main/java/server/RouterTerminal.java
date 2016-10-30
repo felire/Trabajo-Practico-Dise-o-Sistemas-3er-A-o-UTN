@@ -1,5 +1,9 @@
 package server;
 
-public class RouterTerminal {
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
+public class RouterTerminal {
+	public static void configure(HandlebarsTemplateEngine engine) {		
+		
+	}
 }
