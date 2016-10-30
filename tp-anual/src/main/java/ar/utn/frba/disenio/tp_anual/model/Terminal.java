@@ -1,34 +1,52 @@
 package ar.utn.frba.disenio.tp_anual.model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
-import javax.swing.Timer;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import org.uqbar.geodds.Polygon;
+import org.bson.types.ObjectId;
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
-import ar.utn.frba.disenio.tp_anual.servicios.ServicioMail;
-import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
-import util.reportes.ReportePorFecha;
 
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
+import util.Polygon;
+
+@Entity
 public class Terminal {
+	
+	@Id
+	@GeneratedValue
+	private long id;
+	
 	private String nombre;
-	private BuscadorPOIs buscadorPOIS;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "terminal_id")
 	private List<ObserverTerminal> listaObservers;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	
-	public Terminal(BuscadorPOIs buscadorPOIS, String nombre, double tiempoMaximo){
-		this.buscadorPOIS=buscadorPOIS;
+	@SuppressWarnings("unused")
+	private Terminal(){};
+	
+	public Terminal(String nombre, double tiempoMaximo){
 		this.nombre = nombre;
 		this.listaObservers = new ArrayList<ObserverTerminal>();
 	}	
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
 	
 	public String getNombre(){
 		return nombre;
@@ -48,8 +66,8 @@ public class Terminal {
     
 	public List<POI> buscar(String palabraClave, String servicio){
 		this.preNotificarObservers(); //Podriamos hacer que notifique solo a los que necesitan el pre
-		List<POI> buscados= buscadorPOIS.buscarPOIs(palabraClave,servicio);
-		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.getNombre());
+		List<POI> buscados= BuscadorPOIs.getInstance().buscarPOIs(palabraClave,servicio);
+		Busqueda busqueda = new Busqueda(buscados, palabraClave, servicio, this.nombre);
 		this.notificarObservers(busqueda);
 		return buscados;
 	}
@@ -57,9 +75,11 @@ public class Terminal {
 	public void notificarObservers(Busqueda busqueda){
 		listaObservers.stream().forEach(observer->observer.notificar(busqueda));
 	}
+	
 	public void preNotificarObservers(){
 		listaObservers.stream().forEach(observer->observer.preNotificar());
 	}
+	
 	public Polygon getComuna() {
 		return comuna;
 	}
@@ -72,4 +92,10 @@ public class Terminal {
 		this.comuna = comuna;
 	}
 	
+	public long getID() {
+		return id;
+	}
+	public void setID(long id) {
+		this.id = id;
+	}
 }

@@ -8,7 +8,8 @@ import org.junit.Test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnit44Runner;
-
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
@@ -32,9 +33,9 @@ public class TestTerminalObservers extends Init{
 	@Mock ServicioMail servicioMail;
 	@InjectMocks ObserverMail observerMail = new ObserverMail();
 	GestorBusquedas gestorBusquedas = new GestorBusquedas(new CreadorDeReportes());
-	Terminal terminal = new Terminal(new BuscadorPOIs(), "Terminus", 0);
-	Terminal alberdi = new Terminal(new BuscadorPOIs(), "Alberdi", 0);
-	Terminal rivadavia = new Terminal(new BuscadorPOIs(), "Rivadavia", 0);
+	Terminal terminal = new Terminal("Terminus", 0);
+	Terminal alberdi = new Terminal("Alberdi", 0);
+	Terminal rivadavia = new Terminal("Rivadavia", 0);
 	
 	@Before
 	public void setUp(){

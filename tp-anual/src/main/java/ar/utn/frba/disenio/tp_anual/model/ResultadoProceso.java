@@ -4,7 +4,13 @@ import java.time.LocalDateTime;
 
 import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoStatus;
 
+import javax.persistence.*;
+
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
 public class ResultadoProceso {
+
+	
 	Integer cantidadAfectados;
 	LocalDateTime fechaEjecucion;
 	ProcesoStatus resultadoDelProceso;

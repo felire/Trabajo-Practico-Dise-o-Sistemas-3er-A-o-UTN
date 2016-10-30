@@ -7,10 +7,18 @@ import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 import util.Timer;
 import util.reportes.CreadorDeReportes;
 
-public class GestorBusquedas implements ObserverTerminal{
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue(value= "busquedas")
+public class GestorBusquedas extends ObserverTerminal{
+	
+	@Transient
 	private Timer timer;
 	
+	@Transient
 	private CreadorDeReportes creadorDeReportes;
+	
 	public GestorBusquedas(CreadorDeReportes creador){
 		this.creadorDeReportes = creador;
 		timer = new Timer();

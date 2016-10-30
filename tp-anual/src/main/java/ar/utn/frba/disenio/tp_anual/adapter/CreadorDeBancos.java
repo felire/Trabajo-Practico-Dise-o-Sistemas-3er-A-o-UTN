@@ -7,13 +7,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.uqbar.geodds.Point;
+
 
 import ar.utn.frba.disenio.tp_anual.json.JsonBanco;
 import ar.utn.frba.disenio.tp_anual.model.Servicio;
 import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
+import util.Point;
 
 public class CreadorDeBancos {
 	public List<SucursalBanco> crearPOIS(List<JsonBanco> bancos){		

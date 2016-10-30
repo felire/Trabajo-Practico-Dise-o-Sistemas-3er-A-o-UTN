@@ -2,10 +2,17 @@ package ar.utn.frba.disenio.tp_anual.model;
 
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import javax.persistence.*;
 
+import util.Point;
+import util.Polygon;
+
+@Entity
+@DiscriminatorValue(value = "CGP")
 public class CGP extends PrestadorDeServicios{
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn (name = "id_columna")
 	private Polygon comuna;
 	
 	public Polygon getComuna() {
@@ -31,5 +38,8 @@ public class CGP extends PrestadorDeServicios{
 		return this.comuna.isInside(coordenada);
 	}
 
-
+	public CGP()
+	{
+		super();
+	}
 }

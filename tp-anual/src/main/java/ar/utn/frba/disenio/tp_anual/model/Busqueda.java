@@ -1,24 +1,64 @@
 package ar.utn.frba.disenio.tp_anual.model;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Convert;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import org.bson.types.ObjectId;
+/*import org.mongodb.morphia.*;
+import org.mongodb.morphia.annotations.Converters;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
+import org.mongodb.morphia.annotations.Reference;*/
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+
+
+@Entity
 public class Busqueda {
+	
+	@Id
+	private ObjectId id;
+	
+	@Embedded
 	private List<POI> resultados;
+	
+	@Convert (converter = LocalDateConverter.class)
 	private LocalDate fecha;
+	
+	//@Property
 	private String fraseBuscada;
+
+	//@Property
 	private String servicioBuscado;
+
+	//@Property
 	private double tiempoDemorado;
-	private String terminal; //El reporte o Busqueda (habria que cambiar el nombre) conoce el nombre de la terminal en la que fue buscado
-	//La terminal la tratamos como usuario
+	
+	//@Property
+	private String terminal;
+	
+	public Busqueda() {
+		
+	}
 	public Busqueda(List<POI> buscados, String fraseBuscada, String servicioBuscado, String terminal){
 		this.resultados = buscados;
 		this.fecha = LocalDate.now(); //Lo seteamos con la fecha actual
 		this.fraseBuscada = fraseBuscada;
 		this.servicioBuscado = servicioBuscado;
 		this.terminal = terminal;
+	}
+	
+	public List<POI> getResultados(){
+		return resultados;
 	}
 	public void setDemora(Double demora){
 		this.tiempoDemorado = demora;
@@ -41,4 +81,5 @@ public class Busqueda {
 	public LocalDate getFecha(){
 		return this.fecha;
 	}
+	
 }

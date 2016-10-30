@@ -1,6 +1,6 @@
 package ar.utn.frba.disenio.tp_anual.adapter;
 
-import org.uqbar.geodds.Point;
+
 
 import ar.utn.frba.disenio.tp_anual.dto.CentroDTO;
 import ar.utn.frba.disenio.tp_anual.dto.RangoServicioDTO;
@@ -9,6 +9,7 @@ import ar.utn.frba.disenio.tp_anual.model.CGP;
 import ar.utn.frba.disenio.tp_anual.model.Servicio;
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
+import util.Point;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -17,6 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import util.Point;
+import util.Polygon;
 
 public class CreadorDeCGP {
 

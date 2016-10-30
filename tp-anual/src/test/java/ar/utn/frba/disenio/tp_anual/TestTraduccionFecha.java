@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-
+import util.Point;
+import util.Polygon;
 import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;
 import ar.utn.frba.disenio.tp_anual.json.JsonBaja;
 import ar.utn.frba.disenio.tp_anual.json.JsonBajaFecha;
