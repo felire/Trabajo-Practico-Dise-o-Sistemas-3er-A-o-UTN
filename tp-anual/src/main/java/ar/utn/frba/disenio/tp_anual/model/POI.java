@@ -8,10 +8,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import org.bson.types.ObjectId;
-import org.mongodb.morphia.annotations.Property;
 
-import util.BigDecimalConverter;
-import util.LocalTimeConverterMorphia;
+
 import util.Point;
 
 @Entity

@@ -5,9 +5,6 @@ import java.math.BigDecimal;
 
 import javax.persistence.*;
 
-import org.mongodb.morphia.annotations.Property;
-
-import util.BigDecimalConverter;
 
 @Entity
 public class Rubro {

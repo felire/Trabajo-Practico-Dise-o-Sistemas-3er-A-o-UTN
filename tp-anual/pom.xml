@@ -105,16 +105,11 @@
     <version>2.4</version>
 	</dependency>
 	<dependency>
-   <groupId>org.redisson</groupId>
-   <artifactId>redisson</artifactId>
-   <version>2.3.0</version>
-</dependency>
-	<dependency>
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
 	    <version>2.7</version>
 	</dependency>
-	<dependency>
+	 <dependency>
 			<groupId>com.sparkjava</groupId>
 			<artifactId>spark-core</artifactId>
 			<version>2.5</version>
@@ -142,7 +137,7 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
-		
+
   </dependencies>
   
 </project>

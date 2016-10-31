@@ -6,7 +6,7 @@
     version="2.0"> 
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
-    	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     	
       		  <class>ar.utn.frba.disenio.tp_anual.model.POI</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.LocalComercial</class>
@@ -23,6 +23,7 @@
     	 	  <class>ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.Busqueda</class>
+    	 	  <class>ar.utn.frba.disenio.tp_anual.model.Usuario</class>
     	 	  <class>util.Point</class>
     	 	  <class>util.Polygon</class> 
     	 	   
@@ -44,11 +45,13 @@
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+
                             
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
             <property name="hibernate.hbm2ddl.auto" value="update" /> 
+            
         </properties>
           
     </persistence-unit> 

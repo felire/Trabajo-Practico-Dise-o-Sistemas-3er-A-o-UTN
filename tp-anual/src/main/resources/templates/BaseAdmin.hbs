@@ -1,0 +1,38 @@
+<html>
+<head>
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	<link rel="stylesheet"  href="main.css">
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand"href="/">Buscador POIS</a>
+      </div>
+      <div>
+        <ul class="nav navbar-nav">
+          <li><a href="/pois">POIs</a></li>
+          <li><a href="/terminales">Terminales</a></li>
+          <li><a href="/consultas">Historico consultas</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+	      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+	    </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+	{{#block "contenido"}}
+	{{/block}}
+</div>
+
+<footer class="footer">
+    <p class="text-center">
+      &copy; Grupo 12
+    </p>
+</footer>
+</body>
+</html>
