@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuario")
 public class Usuario {
+	
 	@Id
 	String user;
 	String pass;

@@ -6,7 +6,7 @@
     version="2.0"> 
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
-    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    	<provider>org.hibernate.ejb.HibernatePersistence</provider>
     	
       		  <class>ar.utn.frba.disenio.tp_anual.model.POI</class>
     	 	  <class>ar.utn.frba.disenio.tp_anual.model.LocalComercial</class>
@@ -32,15 +32,15 @@
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
          
-<!--          Real data base -->
-<!--              <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />  -->
-<!--             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_anual" />  -->
-<!--             <property name="hibernate.connection.username" value="root" />  -->
-<!--             <property name="hibernate.connection.password" value="" />  -->
+         <!--  Real data base -->
+<!--               <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />  
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_anual" />  
+             <property name="hibernate.connection.username" value="root" />  
+             <property name="hibernate.connection.password" value="" /> -->  
 
  
 <!--  In memory data base -->
-            <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
+             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
             <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db" /> 
             <property name="hibernate.connection.username" value="sa" /> 
             <property name="hibernate.connection.password" value="" /> 
@@ -50,7 +50,7 @@
             <property name="hibernate.show_sql" value="true" /> 
             <property name="hibernate.format_sql" value="true" /> 
             <property name="use_sql_comments" value="true" /> 
-            <property name="hibernate.hbm2ddl.auto" value="update" /> 
+            <property name="hibernate.hbm2ddl.auto" value="update" />  
             
         </properties>
           
