@@ -16,12 +16,12 @@ import ar.utn.frba.disenio.tp_anual.model.Usuario;
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
 	public void init() {
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
-		Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
+		/*EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		Usuario user = new Usuario("a", "a", Rol.TERMINAL);
 		EntityTransaction tx = entity.getTransaction();
 		tx.begin();
 		entity.persist(user);
-		tx.commit();
+		tx.commit();*/
 		} //-->> Hay que ver como hacerlo para probar
 	/*public void init(){
 		withTransaction(() ->{

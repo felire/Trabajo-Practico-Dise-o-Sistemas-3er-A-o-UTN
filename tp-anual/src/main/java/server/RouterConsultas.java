@@ -1,13 +1,13 @@
 package server;
 
+import Controller.ConsultasController;
 import Controller.TerminalController;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-public class RouterTerminal {
+public class RouterConsultas {
 	public static void configure(HandlebarsTemplateEngine engine) {	
-		TerminalController controller = new TerminalController();
-		Spark.get("/terminales", controller::inicio, engine);
-		Spark.post("/terminales", controller::busqueda, engine);
+		ConsultasController controller = new ConsultasController();
+		Spark.get("/consultas", controller::inicio, engine);
 	}
 }

@@ -18,6 +18,7 @@ public class Router {
 		RouterInicio.configure(engine);
 		RouterPoi.configure(engine);
 		RouterTerminal.configure(engine);
-		
+		RouterUsuario.configure(engine);
+		RouterConsultas.configure(engine);
 	}
 }

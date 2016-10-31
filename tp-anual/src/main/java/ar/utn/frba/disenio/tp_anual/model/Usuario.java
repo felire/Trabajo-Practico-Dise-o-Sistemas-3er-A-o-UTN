@@ -12,6 +12,7 @@ public class Usuario {
 	String pass;
 	Rol rol;
 	
+	public Usuario(){}
 	public Usuario(String u, String p, Rol r){
 		this.user= u;
 		this.pass = p;

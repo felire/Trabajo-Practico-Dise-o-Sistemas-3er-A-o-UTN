@@ -7,29 +7,25 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class TerminalController {
+public class UserController {
 	public ModelAndView inicio(Request req, Response res){
 		if(Session.estaLogeado(req)){
-			Usuario usuario = Session.getUsuario(req);
-			return darPantalla(usuario, res);
+			Usuario user = Session.getUsuario(req);
+			return darPantalla(user);
 		}
 		else{
 			res.redirect("/");
-			return null;
+			return new ModelAndView(false, "inicio/inicio.hbs");
 		}
+		//return new ModelAndView(null, "terminal/inicio.hbs");
 	}
 	
-	public ModelAndView darPantalla(Usuario user, Response res){
+	public ModelAndView darPantalla(Usuario user){
 		if(user.getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(user, "admin/terminales.hbs");
+			return new ModelAndView(user, "admin/inicio.hbs");
 		}
 		else{
-			res.redirect("/");
-			return null;
+			return new ModelAndView(user, "user/inicio.hbs");
 		}
-	}
-	
-	public ModelAndView busqueda(Request req, Response res){
-		return null;
 	}
 }

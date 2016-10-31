@@ -14,19 +14,17 @@ public class Session{
 	public static Boolean existeUsuario(String id,String pass, Request req){
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		Usuario usuario = entity.find(Usuario.class, id);
-		//System.out.println(entity.find(Usuario.class, "felire"));
 		if(usuario == null){
 			System.out.println("No existe");
 			return false;
 		}
 		else{
-			if(usuario.getPass() == pass)
+			if(usuario.getPass().equals(pass))
 			{
 				req.session().attribute(NOMBREUSER, usuario);
 				return true;
 			}
 			else{
-				System.out.println("No pass");
 				return false;
 			}
 			
@@ -40,5 +38,14 @@ public class Session{
 		else{
 			return true;
 		}
+	}
+	
+	public static void killSession(Request req){
+		Usuario usuario = req.session().attribute(NOMBREUSER);
+		req.session().removeAttribute(NOMBREUSER);
+	}
+	
+	public static Usuario getUsuario(Request req){
+		return req.session().attribute(NOMBREUSER);
 	}
 }

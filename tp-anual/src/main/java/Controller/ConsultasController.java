@@ -7,7 +7,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class TerminalController {
+public class ConsultasController {
 	public ModelAndView inicio(Request req, Response res){
 		if(Session.estaLogeado(req)){
 			Usuario usuario = Session.getUsuario(req);
@@ -21,15 +21,11 @@ public class TerminalController {
 	
 	public ModelAndView darPantalla(Usuario user, Response res){
 		if(user.getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(user, "admin/terminales.hbs");
+			return new ModelAndView(user, "admin/consultas.hbs");
 		}
 		else{
 			res.redirect("/");
 			return null;
 		}
-	}
-	
-	public ModelAndView busqueda(Request req, Response res){
-		return null;
 	}
 }

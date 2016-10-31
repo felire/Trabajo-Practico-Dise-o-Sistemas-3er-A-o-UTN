@@ -8,6 +8,6 @@ public class RouterPoi {
 	public static void configure(HandlebarsTemplateEngine engine) {
 		PoiController controller = new PoiController();
 		Spark.get("/pois", controller::inicio,engine);
-		Spark.get("pois/:id",controller::inicioTerminal, engine);
+		Spark.post("/pois", controller::busqueda, engine);
 	}
 }
