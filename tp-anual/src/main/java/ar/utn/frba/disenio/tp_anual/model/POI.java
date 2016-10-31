@@ -45,6 +45,9 @@ public abstract class POI {
 		this.coordenada = coordenada;
 	}
 	
+	public BigDecimal getRadio(){
+		return this.radioDeCercania;
+	}
 	public Integer getID() {
 		return poiID;
 	}
@@ -101,5 +104,8 @@ public abstract class POI {
 		this.nombre = nombre;
 	}
 	
+	public String getUrl(){
+		return "/pois/"+this.poiID.toString();
+	}
 	
 }

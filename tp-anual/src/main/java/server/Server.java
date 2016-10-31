@@ -1,5 +1,6 @@
 package server;
 
+import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import spark.Spark;
 import spark.debug.DebugScreen;
 

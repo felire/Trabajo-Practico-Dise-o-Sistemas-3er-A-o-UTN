@@ -22,8 +22,9 @@ import javax.persistence.Transient;
 @DiscriminatorValue(value = "SUCURSAL_BANCO")
 public class SucursalBanco extends PrestadorDeServicios{
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "horario_id")
+	/*@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "horario_id")*/
+	@Transient
 	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(String nombre,Point coordenada){
@@ -56,5 +57,6 @@ public class SucursalBanco extends PrestadorDeServicios{
 	private Boolean enHorarioBancario(LocalDateTime fecha) {
 		return horarioBancario.estaDisponible(fecha);
 	}	
+	public SucursalBanco(){}
 	
 }

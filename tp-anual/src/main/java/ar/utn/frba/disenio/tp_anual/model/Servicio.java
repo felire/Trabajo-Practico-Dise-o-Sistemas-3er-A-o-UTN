@@ -36,4 +36,5 @@ public class Servicio {
 	{
 		return nombre;
 	}
+	public Servicio(){}
 }

@@ -46,7 +46,7 @@ public class RepoPOIS extends RepoGenerico
 	
 	//Alta
 	public void altaPOI(POI nuevoPOI){
-		super.persistirNuevoObjeto(nuevoPOI);
+		super.actualizarObjeto(nuevoPOI);
 	}
 
 	//Baja

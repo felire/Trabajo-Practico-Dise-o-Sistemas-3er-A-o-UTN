@@ -25,7 +25,7 @@ public class UserController {
 			return new ModelAndView(user, "admin/inicio.hbs");
 		}
 		else{
-			return new ModelAndView(user, "user/inicio.hbs");
+			return new ModelAndView(null, "user/inicio.hbs");
 		}
 	}
 }
