@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.bson.types.ObjectId;
+
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 

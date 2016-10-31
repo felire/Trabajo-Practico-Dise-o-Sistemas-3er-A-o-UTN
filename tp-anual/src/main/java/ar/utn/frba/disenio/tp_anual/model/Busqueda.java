@@ -5,20 +5,21 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-
+/*
 import javax.persistence.Convert;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;*/
 
 import org.bson.types.ObjectId;
-/*import org.mongodb.morphia.*;
+import org.mongodb.morphia.*;
 import org.mongodb.morphia.annotations.Converters;
 import org.mongodb.morphia.annotations.Embedded;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 import org.mongodb.morphia.annotations.Property;
-import org.mongodb.morphia.annotations.Reference;*/
+import org.mongodb.morphia.annotations.Reference;
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
 
 
@@ -31,7 +32,6 @@ public class Busqueda {
 	@Embedded
 	private List<POI> resultados;
 	
-	@Convert (converter = LocalDateConverter.class)
 	private LocalDate fecha;
 	
 	//@Property

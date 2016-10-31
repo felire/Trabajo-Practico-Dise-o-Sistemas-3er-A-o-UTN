@@ -29,8 +29,7 @@
   </properties>
 
   <dependencies>
-  <!-- JPA Persistence Dependencies -->
-		<dependency>
+<dependency>
 			<groupId>org.uqbar-project</groupId>
 			<artifactId>jpa-java8-extras</artifactId>
 			<version>1.0-alpha-1</version>
@@ -68,11 +67,6 @@
 	<version>1.9.5</version>
 	</dependency>
 	<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.6.2</version>
-	</dependency>
-	<dependency>
     <!-- Note: core-annotations version x.y.0 is generally compatible with
          (identical to) version x.y.1, x.y.2, etc. -->
     <groupId>com.fasterxml.jackson.core</groupId>
@@ -90,16 +84,6 @@
 			<version>2.7.4</version>
 	</dependency>
 	<dependency>
-              <groupId>org.mongodb.morphia</groupId>
-              <artifactId>morphia</artifactId>
-              <version>1.2.1</version>
-    </dependency>
-    <dependency>
-    	<groupId>redis.clients</groupId>
-    	<artifactId>jedis</artifactId>
-    	<version>2.9.0</version>
-    </dependency>
-	<dependency>
     <groupId>commons-io</groupId>
     <artifactId>commons-io</artifactId>
     <version>2.4</version>
@@ -109,7 +93,17 @@
 	    <artifactId>gson</artifactId>
 	    <version>2.7</version>
 	</dependency>
-	 <dependency>
+ 	<dependency>
+              <groupId>org.mongodb.morphia</groupId>
+              <artifactId>morphia</artifactId>
+              <version>1.2.1</version>
+    </dependency> 
+    <dependency>
+    	<groupId>redis.clients</groupId>
+    	<artifactId>jedis</artifactId>
+    	<version>2.9.0</version>
+    </dependency>
+    <dependency>
 			<groupId>com.sparkjava</groupId>
 			<artifactId>spark-core</artifactId>
 			<version>2.5</version>
@@ -137,7 +131,6 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
-
   </dependencies>
   
 </project>

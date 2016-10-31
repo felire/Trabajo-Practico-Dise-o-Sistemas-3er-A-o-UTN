@@ -52,7 +52,7 @@ public class BuscadorBanco implements BuscadorExterno{
 	}
 	
 	public List<POI> filtrar(String palabraClave, String servicio){
-		List<POI> POIsCache= cache.encontrarBancos(palabraClave, servicio);
+		List<POI> POIsCache = cache.encontrarBancos(palabraClave, servicio);
 		if(POIsCache==null){
 			List<POI> listaExterna = this.filtrar(palabraClave,servicio);
 			cache.guardarBancos(listaExterna, palabraClave, servicio);	
