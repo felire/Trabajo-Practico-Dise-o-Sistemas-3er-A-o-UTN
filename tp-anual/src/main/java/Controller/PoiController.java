@@ -32,4 +32,8 @@ public class PoiController {
 		return null;
 	}
 	
+	public ModelAndView poiExacto(Request req, Response res){
+		return null;
+	}
+	
 }

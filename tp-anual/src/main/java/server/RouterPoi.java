@@ -9,5 +9,6 @@ public class RouterPoi {
 		PoiController controller = new PoiController();
 		Spark.get("/pois", controller::inicio,engine);
 		Spark.post("/pois", controller::busqueda, engine);
+		Spark.get("/pois/:id", controller::poiExacto, engine);
 	}
 }

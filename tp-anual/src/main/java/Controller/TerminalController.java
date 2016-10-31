@@ -32,4 +32,8 @@ public class TerminalController {
 	public ModelAndView busqueda(Request req, Response res){
 		return null;
 	}
+	
+	public ModelAndView terminalExacta(Request req, Response res){
+		return null;
+	}
 }

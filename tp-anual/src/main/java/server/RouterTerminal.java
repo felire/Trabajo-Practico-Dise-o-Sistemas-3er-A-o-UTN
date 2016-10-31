@@ -9,5 +9,7 @@ public class RouterTerminal {
 		TerminalController controller = new TerminalController();
 		Spark.get("/terminales", controller::inicio, engine);
 		Spark.post("/terminales", controller::busqueda, engine);
+		Spark.get("/terminales/:id", controller::terminalExacta, engine);
+		//Spark.get("/terminales/nueva", controller::agregarTerminal, engine);
 	}
 }
