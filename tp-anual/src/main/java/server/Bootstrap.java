@@ -23,7 +23,7 @@ import util.Polygon;
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
 	public void init() {
-		SucursalBanco nuevoPOI = new SucursalBanco("Nuevo", new Point(500, 500));
+		/*SucursalBanco nuevoPOI = new SucursalBanco("Nuevo", new Point(500, 500));
 		nuevoPOI.addTag("banco");
 		nuevoPOI.addTag("nuevo");
 		nuevoPOI.setHorarioBancario();
@@ -36,7 +36,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		ParadaDeColectivo parada = new ParadaDeColectivo("asd", new Point(4,5));
 		RepoPOIS.getInstance().altaPOI(parada);
 		RepoPOIS.getInstance().altaPOI(nuevoPOI);
-		RepoPOIS.getInstance().altaPOI(otroPOI);
+		RepoPOIS.getInstance().altaPOI(otroPOI);*/
 		} //-->> Hay que ver como hacerlo para probar
 	/*public void init(){
 		withTransaction(() ->{

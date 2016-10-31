@@ -35,7 +35,10 @@ public class PoiController {
 	
 	public ModelAndView busqueda(Request req, Response res){
 		if(Session.getUsuario(req).getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(null, "admin/inicio.hbs");
+			String nombre = req.queryParams("nombre");
+			String tipo = req.queryParams("tipo");
+			List<POI> lista = FiltradoTipo.filtrar(nombre, tipo);
+			return new ModelAndView(lista, "admin/inicio.hbs");
 		}
 		else{
 			String palabraClave = req.queryParams("palabraClave");
@@ -48,7 +51,7 @@ public class PoiController {
 	public ModelAndView poiExacto(Request req, Response res){
 		if(Session.estaLogeado(req)){
 			Usuario usuario = Session.getUsuario(req);
-			return darPantallaPoiExacto(usuario, req);
+			return darPantallaPoiExacto(usuario, req, res);
 		}
 		else{
 			res.redirect("/");
@@ -56,15 +59,31 @@ public class PoiController {
 		}
 	}
 	
-	public ModelAndView darPantallaPoiExacto(Usuario user, Request req){
+	public ModelAndView darPantallaPoiExacto(Usuario user, Request req, Response res){
 		if(user.getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(null, "admin/inicio.hbs");
+			Integer id = Integer.parseInt(req.params("id"));
+			POI poi = RepoPOIS.getInstance().buscarPorID(id);
+			return accionar(req, res);
 		}
 		else{
 			Integer id = Integer.parseInt(req.params("id"));
 			POI poi = RepoPOIS.getInstance().buscarPorID(id);
 			return new ModelAndView(poi, "user/poi.hbs");
 		}
+	}
+	
+	public ModelAndView accionar(Request req, Response res){
+		Integer id = Integer.parseInt(req.params("id"));
+		POI poi = RepoPOIS.getInstance().buscarPorID(id);
+		if(req.queryParams("editar") != null){
+			return new ModelAndView(poi, "admin/editarPoi.hbs");
+		}
+		if(req.queryParams("borrar")!=null){
+			RepoPOIS.getInstance().bajaPOI(poi);
+			res.redirect("/pois");
+			return null;
+		}
+		return new ModelAndView(poi,"admin/poi.hbs");
 	}
 	
 }

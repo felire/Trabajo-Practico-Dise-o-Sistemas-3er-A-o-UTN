@@ -3,11 +3,11 @@
 <form class="form-inline" action="/pois" method="POST">
   <div class="form-group">
 	<label for="email">Nombre POI:</label>
-	<input type="email" class="form-control" id="nombre">
+	<input type="email" class="form-control" name="nombre">
   </div>
   <div class="form-group" >
     <label for="pwd">Tipo:</label>
-      <select class="form-control" id="tipo">
+      <select class="form-control" name="tipo">
 	    <option>CGP</option>
 	    <option>Local Comercial</option>
 	    <option>Banco</option>
@@ -25,26 +25,18 @@
 		<th>Radio de Cercania</th>
 		<th>Accion</th>
 	</tr>
-	<tr>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td><a href="#"><span class="glyphicon glyphicon-search"></span>   </a>
-		<a href="#"><span class="glyphicon glyphicon-pencil"></span>   </a>
-		<a href="#"><span class="glyphicon glyphicon-remove"></span>   </a>
-		</td>
-	</tr>
-	<tr>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td><a href="#"><span class="glyphicon glyphicon-search"></span>   </a>
-		<a href="#"><span class="glyphicon glyphicon-pencil"></span>   </a>
-		<a href="#"><span class="glyphicon glyphicon-remove"></span>   </a>
-		</td>
-	</tr>
+	{{#each this}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{coordenada.latitud}}</td>
+			<td>{{coordenada.longitud}}</td>
+			<td>{{radio}}</td>
+			<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
+				<a href="{{url}}?editar=true"><span class="glyphicon glyphicon-pencil"></span></a>
+				<a href="{{url}}?borrar=true"><span class="glyphicon glyphicon-remove"></span></a>
+			</td>
+		</tr>
+	{{/each}}
 </table>
 {{/partial}}
 
