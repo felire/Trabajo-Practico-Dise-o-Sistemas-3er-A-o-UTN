@@ -10,5 +10,6 @@ public class RouterPoi {
 		Spark.get("/pois", controller::inicio,engine);
 		Spark.post("/pois", controller::busqueda, engine);
 		Spark.get("/pois/:id", controller::poiExacto, engine);
+		Spark.post("/pois/:id", controller::actualizar,engine);
 	}
 }

@@ -22,7 +22,7 @@ public class UserController {
 	
 	public ModelAndView darPantalla(Usuario user){
 		if(user.getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(user, "admin/inicio.hbs");
+			return new ModelAndView(null, "admin/inicio.hbs");
 		}
 		else{
 			return new ModelAndView(null, "user/inicio.hbs");

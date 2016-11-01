@@ -21,7 +21,14 @@ public abstract class POI {
 	@GeneratedValue
 	protected Integer poiID;
 	protected String nombre;
+	protected String direccion;
 	
+	public void setDireccion(String direc){
+		this.direccion = direc;
+	}
+	public String getDireccion(){
+		return this.direccion;
+	}
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenada_id")
 	protected Point coordenada;
@@ -94,6 +101,9 @@ public abstract class POI {
 	
 	public Point getCoordenada() {
 		return coordenada;
+	}
+	public void setCoordenada(Point point){
+		this.coordenada = point;
 	}
 	
 	public List<String> getListaTags(){

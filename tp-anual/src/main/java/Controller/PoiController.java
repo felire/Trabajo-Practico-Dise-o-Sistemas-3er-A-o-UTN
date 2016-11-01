@@ -11,6 +11,7 @@ import server.Session;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import util.Point;
 
 public class PoiController {
 	public ModelAndView inicio(Request req, Response res){
@@ -26,7 +27,7 @@ public class PoiController {
 	
 	public ModelAndView darPantalla(Usuario user){
 		if(user.getRol() == Rol.ADMINISTRADOR){
-			return new ModelAndView(user, "admin/inicio.hbs");
+			return new ModelAndView(null, "admin/inicio.hbs");
 		}
 		else{
 			return new ModelAndView(null, "user/inicio.hbs");
@@ -84,6 +85,21 @@ public class PoiController {
 			return null;
 		}
 		return new ModelAndView(poi,"admin/poi.hbs");
+	}
+	
+	public ModelAndView actualizar(Request req, Response res){
+		Integer id = Integer.parseInt(req.params("id"));
+		String nombre = req.queryParams("nombre");
+		double latitud = Double.parseDouble(req.queryParams("latitud"));
+		double longitud = Double.parseDouble(req.queryParams("longitud"));
+		String direccion = req.queryParams("direccion");
+		POI poi = RepoPOIS.getInstance().buscarPorID(id);
+		poi.setNombre(nombre);
+		poi.setCoordenada(new Point(latitud, longitud));
+		poi.setDireccion(direccion);
+		RepoPOIS.getInstance().actualizarObjeto(poi);
+		res.redirect("/pois");
+		return null;
 	}
 	
 }
