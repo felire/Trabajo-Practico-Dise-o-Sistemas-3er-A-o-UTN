@@ -11,6 +11,6 @@ public class RouterInicio {
 		InicioController controller = new InicioController();
 		Spark.get("/", controller::inicio, engine);
 		Spark.post("/",controller::logeo, engine);
-		Spark.delete("/", controller::salir, engine);
+		//Spark.delete("/", controller::salir, engine);
 	}
 }

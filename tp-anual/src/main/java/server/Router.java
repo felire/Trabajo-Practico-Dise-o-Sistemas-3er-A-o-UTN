@@ -1,6 +1,10 @@
 package server;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
+
+import spark.Filter;
 import spark.Spark;
+import static spark.Spark.after;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
@@ -14,6 +18,8 @@ public class Router {
 				.build();
 
 		Spark.staticFiles.location("/public");
+		Spark.after((req,res)->{PerThreadEntityManagers.getEntityManager();
+		PerThreadEntityManagers.closeEntityManager();});
 		
 		RouterInicio.configure(engine);
 		RouterPoi.configure(engine);
