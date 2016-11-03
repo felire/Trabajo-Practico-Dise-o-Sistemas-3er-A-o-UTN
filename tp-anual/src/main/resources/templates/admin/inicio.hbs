@@ -20,16 +20,14 @@
 <table class="table table-striped">
   	<tr>
 		<th>Nombre</th>
-		<th>Latitud</th>
-		<th>Longitud</th>
+		<th>Direccion</th>
 		<th>Radio de Cercania</th>
 		<th>Accion</th>
 	</tr>
 	{{#each this}}
 		<tr>
 			<td>{{nombre}}</td>
-			<td>{{coordenada.latitud}}</td>
-			<td>{{coordenada.longitud}}</td>
+			<td>{{direccion}}</td>
 			<td>{{radio}}</td>
 			<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
 				<a href="{{url}}?editar=true"><span class="glyphicon glyphicon-pencil"></span></a>

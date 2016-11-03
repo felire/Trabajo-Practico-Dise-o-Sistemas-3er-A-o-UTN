@@ -23,9 +23,10 @@ import util.Polygon;
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
 	public void init() {
-		/*SucursalBanco nuevoPOI = new SucursalBanco("Nuevo", new Point(500, 500));
+		SucursalBanco nuevoPOI = new SucursalBanco("Nuevo", new Point(500, 500));
 		nuevoPOI.addTag("banco");
 		nuevoPOI.addTag("nuevo");
+		nuevoPOI.setDireccion("Thames 1221");
 		nuevoPOI.setHorarioBancario();
 		Polygon comuna = new Polygon();
 		comuna.setNombre("Palermo");
@@ -33,10 +34,20 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		comuna.add(new Point(1,2));
 		comuna.add(new Point(5,5));
 		POI otroPOI = new CGP("CGP 1", null, new Point(1,1));
+		otroPOI.setDireccion("Merlusa 225");
 		ParadaDeColectivo parada = new ParadaDeColectivo("asd", new Point(4,5));
+		parada.setDireccion("Berraco 453");
 		RepoPOIS.getInstance().altaPOI(parada);
 		RepoPOIS.getInstance().altaPOI(nuevoPOI);
-		RepoPOIS.getInstance().altaPOI(otroPOI);*/
+		RepoPOIS.getInstance().altaPOI(otroPOI);
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
+		Usuario user2 = new Usuario("a", "a", Rol.TERMINAL);
+		EntityTransaction tx = entity.getTransaction();
+		tx.begin();
+		/*entity.persist(user);
+		entity.persist(user2);*/
+		tx.commit();
 		} //-->> Hay que ver como hacerlo para probar
 	/*public void init(){
 		withTransaction(() ->{

@@ -16,16 +16,14 @@
 <table class="table table-striped">
   	<tr>
 		<th>Nombre</th>
-		<th>Latitud</th>
-		<th>Longitud</th>
+		<th>Direccion</th>
 		<th>Radio de Cercania</th>
 		<th>Ver</th>
 	</tr>
 	{{#each this}}
 		<tr>
 			<td>{{nombre}}</td>
-			<td>{{coordenada.latitud}}</td>
-			<td>{{coordenada.longitud}}</td>
+			<td>{{direccion}}</td>
 			<td>{{radio}}</td>
 			<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
 		</tr>
