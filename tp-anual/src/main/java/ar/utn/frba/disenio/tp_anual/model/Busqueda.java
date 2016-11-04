@@ -57,6 +57,9 @@ public class Busqueda {
 		this.terminal = terminal;
 	}
 	
+	public String getTerminal(){
+		return this.terminal;
+	}
 	public List<POI> getResultados(){
 		return resultados;
 	}
@@ -80,6 +83,21 @@ public class Busqueda {
 	}
 	public LocalDate getFecha(){
 		return this.fecha;
+	}
+	public String getFraseBuscada() {
+		return fraseBuscada;
+	}
+	public void setFraseBuscada(String fraseBuscada) {
+		this.fraseBuscada = fraseBuscada;
+	}
+	public void setResultados(List<POI> resultados) {
+		this.resultados = resultados;
+	}
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	public void setTerminal(String terminal) {
+		this.terminal = terminal;
 	}
 	
 }
