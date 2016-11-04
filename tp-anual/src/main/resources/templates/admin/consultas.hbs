@@ -1,10 +1,26 @@
 {{#partial "contenido"}}
 
- <form role="form" action="/terminales" method="POST">
-        <div class="form-group"> <!-- Date input -->
-            <label class="control-label" for="date">Date</label>
-            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+ <form role="form" action="/filtrarConsultas" method="GET">
+        <div class="form-group">
+            <label class="control-label" for="desde">Consultas desde</label>
+            <input class="form-control" i passing multiple objectsd="desde" name="desde" placeholder="DD/MM/YYY" type="text"/>
         </div>
+        <div class="form-group">
+            <label class="control-label" for="hasta">Consultas hasta</label>
+            <input class="form-control" id="hasta" name="hasta" placeholder="DD/MM/YYY" type="text"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="cantidadDevueltos">Cantidad de POIs resultado</label>
+            <input class="form-control" id="cantidadDevueltos" name="cantidad" type="text"/>
+        </div>
+        <div class="form-group" >
+	    <label for="terminal">Terminal:</label>
+	      <select class="form-control" name="terminal">
+		     {{#each terminales}}
+			  	<option value={{id}}>{{nombre}}</option>
+			  {{/each}}
+   		  </select>
+	  	</div>
         <button type="submit" class="btn btn-default">Buscar</button>
     </form>
     
@@ -14,13 +30,21 @@
 {{#partial "contenidoScript"}}
 <script>
     $(document).ready(function(){
-        var date_input=$('input[name="date"]');
+        var desde_input=$('input[name="desde"]');
         var options={
-            format: 'mm/dd/yyyy',
+            format: 'dd/mm/yyyy',
             todayHighlight: true,
             autoclose: true,
         };
-        date_input.datepicker(options);
+        desde_input.datepicker(options);
+        
+        var hasta_input=$('input[name="hasta"]');
+        var options={
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            autoclose: true,
+        };
+        hasta_input.datepicker(options);
     })
 </script>
 {{/partial}}
