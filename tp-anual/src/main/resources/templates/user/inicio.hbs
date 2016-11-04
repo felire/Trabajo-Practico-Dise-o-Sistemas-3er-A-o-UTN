@@ -1,13 +1,17 @@
 {{#partial "contenido"}}
 
-<form role="form" action="/pois" method="POST">
+<form role="form" action="/consultas" method="GET">
   <div class="form-group">
-    <label for="text">Palabra clave: </label>
-    <input type="text" class="form-control" name="palabraClave">
+    <label for="fechaDesde">Fecha desde: </label>
+    <input type="text" id="fechaDesde" class="form-control" name="fechaDesde">
   </div>
   <div class="form-group">
-    <label for="text">Servicio:</label>
-    <input type="text" class="form-control" name="servicio">
+    <label for="fechaHasta">Fecha hasta: </label>
+    <input type="text" id="fechaHasta" class="form-control" name="fechaHasta">
+  </div>
+  <div class="form-group">
+    <label for="cantidadResultados">Cantidad de POIs resultado: </label>
+    <input type="number" id="cantidadResultados" class="form-control" name="cantidadResultados">
   </div>
   <button type="submit" class="btn btn-default">Buscar</button>
 </form>

@@ -1,0 +1,29 @@
+{{#partial "contenido"}}
+
+ <form role="form" action="/terminales" method="POST">
+        <div class="form-group"> <!-- Date input -->
+            <label class="control-label" for="date">Date</label>
+            <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </form>
+    
+{{/partial}}
+
+
+{{#partial "contenidoScript"}}
+<script>
+    $(document).ready(function(){
+        var date_input=$('input[name="date"]');
+        var options={
+            format: 'mm/dd/yyyy',
+            todayHighlight: true,
+            autoclose: true,
+        };
+        date_input.datepicker(options);
+    })
+</script>
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}
