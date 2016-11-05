@@ -64,7 +64,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		entity.persist(user2);*/
 		tx.commit();
 		
-		RepoBusquedas.initMorphia();
+		//RepoBusquedas.initMorphia();
 		
 		} //-->> Hay que ver como hacerlo para probar
 	/*public void init(){

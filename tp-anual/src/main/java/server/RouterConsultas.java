@@ -10,5 +10,7 @@ public class RouterConsultas {
 		ConsultasController controller = new ConsultasController();
 		Spark.get("/consultas", controller::inicio, engine);
 		Spark.get("/filtrarConsultas", controller::filtrar, engine);
+		Spark.get("/filtrarConsultas/:id", controller::busquedaConcreta, engine);
+		
 	}
 }
