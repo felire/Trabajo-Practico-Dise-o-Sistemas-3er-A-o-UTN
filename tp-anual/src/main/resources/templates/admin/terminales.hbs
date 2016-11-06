@@ -12,15 +12,24 @@
   <button type="submit" class="btn btn-default">Buscar</button>
 </form>
 
+    {{#if error}}
+	<div class="alert alert-danger">Uno o mas campos necesarios incompletos</div>
+	{{/if}}
+
 <table class="table table-striped">
   	<tr>
 		<th>Nombre</th>
+		<th>Comuna</th>
 		<th>Accion</th>
 		
 			{{#each busquedas}}
 				<tr>
 				  	<td>{{nombre}}</td>
-				  	<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a></td>
+				  	<td>{{nombreComuna}}</td>
+				  	<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
+				  		<a href="{{url}}?editar=true"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a href="{{url}}?borrar=true"><span class="glyphicon glyphicon-remove"></span></a>
+				  	</td>
 			  	</tr>
 			{{/each}}
 	</tr>

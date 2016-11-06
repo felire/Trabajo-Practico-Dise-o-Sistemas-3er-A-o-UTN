@@ -59,7 +59,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		
 		Terminal terminal3 = new Terminal("Caballo", 15);
 		terminal3.setComuna(comuna2);
-		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
+		//RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
 		
 //		Terminal terminal1 = new Terminal("Once", 10);
 //		Terminal terminal2 = new Terminal("Retiro", 10);

@@ -98,4 +98,12 @@ public class Terminal {
 	public void setID(long id) {
 		this.id = id;
 	}
+	
+	public String getNombreComuna(){
+		return this.comuna.getNombre();
+	}
+	
+	public String getUrl(){
+		return "/terminales/"+Long.toString(this.getID());
+	}
 }

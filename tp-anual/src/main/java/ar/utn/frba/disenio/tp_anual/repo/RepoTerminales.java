@@ -50,15 +50,6 @@ public class RepoTerminales extends RepoGenerico{
 		return lista;
 	}
 	
-/*	public Set<String> getNombreComunas(){
-		Set<String> set = new HashSet<String>();
-		this.getComunas().stream().forEach(comuna -> {
-			if (comuna.getNombre() == null) set.add(" ");
-			else set.add(comuna.getNombre());
-		});
-		return set;
-	}*/
-	
 	public void registrarTerminal(Terminal terminal){
 		super.persistirNuevoObjeto(terminal);
 	}
