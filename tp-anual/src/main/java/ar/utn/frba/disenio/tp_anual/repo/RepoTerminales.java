@@ -39,7 +39,7 @@ public class RepoTerminales extends RepoGenerico{
 	@SuppressWarnings("unchecked")
 	public List<Terminal> buscarPorComuna(String comuna){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		Query terminales = entityManager.createQuery("SELECT Terminal.id, Terminal.nombre, Terminal.comuna_id FROM Terminal, Polygon WHERE Terminal.comuna_id = Polygon.id AND Polygon.nombre = :nombre");
+		Query terminales = entityManager.createNativeQuery("SELECT Terminal.id, Terminal.nombre, Terminal.comuna_id FROM Terminal, Polygon WHERE Terminal.comuna_id = Polygon.id AND Polygon.nombre = :nombre", Terminal.class);
 		terminales.setParameter("nombre", comuna);
 		return (List<Terminal>) terminales.getResultList();	
 	}
