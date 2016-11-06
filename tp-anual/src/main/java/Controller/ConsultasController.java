@@ -34,18 +34,23 @@ public class ConsultasController {
 	}
 	
 	public ModelAndView filtrar(Request req, Response res){
-		String fechaDesde=req.queryParams("desde");
-		String fechaHasta=req.queryParams("hasta");
-		String textoCantidad=req.queryParams("cantidad");
-		String terminal=req.queryParams("terminal");	
-				
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate desde = LocalDate.parse(fechaDesde, formatter);
-		LocalDate hasta = LocalDate.parse(fechaHasta, formatter);	
-		Integer cantidad = Integer.parseInt(textoCantidad);
+		try{
+			String fechaDesde=req.queryParams("desde");
+			String fechaHasta=req.queryParams("hasta");
+			String textoCantidad=req.queryParams("cantidad");
+			String terminal=req.queryParams("terminal");	
+					
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate desde = LocalDate.parse(fechaDesde, formatter);
+			LocalDate hasta = LocalDate.parse(fechaHasta, formatter);	
+			Integer cantidad = Integer.parseInt(textoCantidad);
+			model.put("busquedas", RepoBusquedas.getInstance().filtrarTrucho(desde, hasta, cantidad, terminal));//reemplazar por filtrar posta		
+			model.put("error", false);
+		}
+		catch(Exception e){
+			model.put("error", true);
+		}
 		
-		model.put("busquedas", RepoBusquedas.getInstance().filtrarTrucho(desde, hasta, cantidad, terminal));//reemplazar por filtrar posta		
-				
 		return new ModelAndView(model, "admin/consultas.hbs");
 	}
 	
