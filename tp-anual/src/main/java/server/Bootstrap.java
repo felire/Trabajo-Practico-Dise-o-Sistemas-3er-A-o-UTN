@@ -45,26 +45,37 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		otroPOI.setDireccion("Merlusa 225");
 		ParadaDeColectivo parada = new ParadaDeColectivo("asd", new Point(4,5));
 		parada.setDireccion("Berraco 453");
-		RepoPOIS.getInstance().altaPOI(parada);
-		RepoPOIS.getInstance().altaPOI(nuevoPOI);
-		RepoPOIS.getInstance().altaPOI(otroPOI);
+//		RepoPOIS.getInstance().altaPOI(parada);
+//		RepoPOIS.getInstance().altaPOI(nuevoPOI);
+//		RepoPOIS.getInstance().altaPOI(otroPOI);
 		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
 		Usuario user2 = new Usuario("a", "a", Rol.TERMINAL);
 		
-		Terminal terminal1 = new Terminal("Once", 10);
-		Terminal terminal2 = new Terminal("Retiro", 10);
-		RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
-		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
-		EntityTransaction tx = entity.getTransaction();
+		Polygon comuna2 = new Polygon();
+		comuna2.setNombre("Caballito");
+		comuna2.add(new Point(12,13));
+		comuna2.add(new Point(20,30));
 		
-		tx.begin();
+		Terminal terminal3 = new Terminal("Caballo", 15);
+		terminal3.setComuna(comuna2);
+		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
 		
-		/*entity.persist(user);
-		entity.persist(user2);*/
-		tx.commit();
+//		Terminal terminal1 = new Terminal("Once", 10);
+//		Terminal terminal2 = new Terminal("Retiro", 10);
+//		terminal1.setComuna(comuna);
+//		terminal2.setComuna(comuna);
+//		RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
+//		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
+//		EntityTransaction tx = entity.getTransaction();*/
+//
+//		tx.begin();
+//		
+//		entity.persist(user);
+//		entity.persist(user2);
+//		tx.commit();
 		
-		//RepoBusquedas.initMorphia();
+//		RepoBusquedas.initMorphia();
 		
 		} //-->> Hay que ver como hacerlo para probar
 	/*public void init(){

@@ -52,7 +52,7 @@ public class TestRepoBusquedas {
 	}
 	
 	
-	@Test
+	/*@Test
 	public void TestGuardarBusquedas(){
 		repoBusquedas.persistirBusqueda(busqueda);
 		List<Busqueda> listaDeBusquedas = repoBusquedas.getListaBusquedas();
@@ -69,7 +69,7 @@ public class TestRepoBusquedas {
 		terminal1 = null;
 		sucursalBanco1 = null;
 		sucursalBanco2 = null;
-	}
+	}*/
 	
 	
 

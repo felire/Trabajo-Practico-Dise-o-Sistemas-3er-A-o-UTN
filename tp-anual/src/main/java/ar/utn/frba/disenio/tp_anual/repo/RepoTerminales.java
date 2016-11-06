@@ -1,7 +1,6 @@
 package ar.utn.frba.disenio.tp_anual.repo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -36,6 +35,29 @@ public class RepoTerminales extends RepoGenerico{
 		Query terminales = entityManager.createQuery("FROM Terminal");
 		return (List<Terminal>) terminales.getResultList();	
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Terminal> buscarPorComuna(String comuna){
+		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
+		Query terminales = entityManager.createQuery("SELECT Terminal.id, Terminal.nombre, Terminal.comuna_id FROM Terminal, Polygon WHERE Terminal.comuna_id = Polygon.id AND Polygon.nombre = :nombre");
+		terminales.setParameter("nombre", comuna);
+		return (List<Terminal>) terminales.getResultList();	
+	}
+	
+	public List<Polygon> getComunas(){
+		List<Polygon> lista = new ArrayList<Polygon>();
+		this.getListaTerminales().stream().forEach(terminal ->lista.add(terminal.getComuna()));
+		return lista;
+	}
+	
+/*	public Set<String> getNombreComunas(){
+		Set<String> set = new HashSet<String>();
+		this.getComunas().stream().forEach(comuna -> {
+			if (comuna.getNombre() == null) set.add(" ");
+			else set.add(comuna.getNombre());
+		});
+		return set;
+	}*/
 	
 	public void registrarTerminal(Terminal terminal){
 		super.persistirNuevoObjeto(terminal);

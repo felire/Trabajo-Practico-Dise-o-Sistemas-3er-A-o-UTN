@@ -1,40 +1,30 @@
 {{#partial "contenido"}}
 
 <form role="form" action="/terminales" method="POST">
-  <div class="form-group">
-    <label for="text">Palabra clave: </label>
-    <input type="text" class="form-control" id="palabraClave">
-  </div>
-  <div class="form-group">
-    <label for="text">Servicio:</label>
-    <input type="text" class="form-control" id="servicio">
-  </div>
+        <div class="form-group" >
+	    <label for="comuna">Comuna:</label>
+	      <select class="form-control" name="comuna">
+		     {{#each comunas}}
+			  	<option value={{nombre}}>{{nombre}}</option>
+			  {{/each}}
+   		  </select>
+	  	</div>
   <button type="submit" class="btn btn-default">Buscar</button>
 </form>
 
 <table class="table table-striped">
   	<tr>
 		<th>Nombre</th>
-		<th>Latitud</th>
-		<th>Longitud</th>
-		<th>Radio de Cercania</th>
-		<th>Ver</th>
-	</tr>
-	<tr>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td><a href="#"><span class="glyphicon glyphicon-search"></span></a>
-		</td>
-	</tr>
-	<tr>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td>Ejemplo</td>
-		<td><a href="#"><span class="glyphicon glyphicon-search"></span></a>
-		</td>
+		<th>Comuna</th>
+		<th>Accion</th>
+		
+			{{#each busquedas}}
+				<tr>
+				  	<td>{{nombre}}</td>
+				  	<td>{{comuna}}</td>
+				  	<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a></td>
+			  	</tr>
+			{{/each}}
 	</tr>
 </table>
 {{/partial}}

@@ -27,4 +27,8 @@ public class Polygon extends org.uqbar.geodds.Polygon{
 		this.puntos.add(point);
 	}
 	
+	public String getNombre(){
+		return this.nombre;
+	}
+	
 }
