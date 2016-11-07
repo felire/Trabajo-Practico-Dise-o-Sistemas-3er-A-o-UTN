@@ -10,6 +10,7 @@ public class RouterTerminal {
 		Spark.get("/terminales", controller::inicio, engine);
 		Spark.post("/terminales", controller::busqueda, engine);
 		Spark.get("/terminales/nueva", controller::agregarTerminal, engine);
+		Spark.post("/terminales/nueva", controller::crearTerminal, engine);
 		Spark.get("/terminales/:id", controller::terminalExacta, engine);
 		Spark.post("/terminales/:id", controller::actualizar,engine);
 	}

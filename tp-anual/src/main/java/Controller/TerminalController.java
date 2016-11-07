@@ -98,7 +98,17 @@ public class TerminalController {
 	}
 	
 	public ModelAndView agregarTerminal(Request req, Response res){
+		
 		return new ModelAndView(model,"admin/nuevaTerminal.hbs");
+	}
+	
+	public ModelAndView crearTerminal(Request req, Response res){
+		String nombre = req.queryParams("nombre");
+		String comuna = req.queryParams("comuna");
+		String checkMail = req.queryParams("obsMail");
+		String checkBusqueda = req.queryParams("obsBusqueda");
+		Terminal terminal = new Terminal(nombre, 10);
+		return null;
 	}
 	
 	public ModelAndView actualizar(Request req, Response res){
