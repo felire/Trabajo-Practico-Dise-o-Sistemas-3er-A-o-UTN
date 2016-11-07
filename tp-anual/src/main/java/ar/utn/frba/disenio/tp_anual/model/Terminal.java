@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -12,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
-
+import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas;
 import util.Polygon;
+import util.reportes.CreadorDeReportes;
 
 @Entity
 public class Terminal {
@@ -113,5 +118,26 @@ public class Terminal {
 	
 	public String getUrlNueva(){
 		return "/terminales/nueva";
+	}
+	
+	public Boolean getTieneMailActivo(){
+		return this.getListaObservers().stream().anyMatch(accion-> accion.getClass().equals(ObserverMail.class));
+	}
+	
+	public Boolean getTieneGestorBusquedas(){
+		return this.getListaObservers().stream().anyMatch(accion-> accion.getClass().equals(GestorBusquedas.class));
+	}
+	
+	public void actualizarObservers(List<ObserverTerminal> lista){
+		this.listaObservers.clear();
+		this.listaObservers = lista;
+	}
+	
+	public Boolean tieneGestor(){
+	return this.listaObservers.stream().anyMatch(observer -> observer.getClass().equals(GestorBusquedas.class));
+	}
+	
+	public GestorBusquedas getGestor(){
+		return (GestorBusquedas) this.listaObservers.stream().filter(observer -> observer.getClass().equals(GestorBusquedas.class)).findAny().get();
 	}
 }

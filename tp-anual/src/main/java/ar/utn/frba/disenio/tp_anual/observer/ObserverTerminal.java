@@ -13,4 +13,7 @@ public abstract class ObserverTerminal {
 	private Integer id;
 	public abstract void notificar(Busqueda busqueda);
 	public abstract void preNotificar();
+	public Integer getId(){
+		return this.id;
+	}
 }

@@ -19,6 +19,7 @@ public class GestorBusquedas extends ObserverTerminal{
 	@Transient
 	private CreadorDeReportes creadorDeReportes;
 	
+	public GestorBusquedas(){}
 	public GestorBusquedas(CreadorDeReportes creador){
 		this.creadorDeReportes = creador;
 		timer = new Timer();
@@ -29,6 +30,10 @@ public class GestorBusquedas extends ObserverTerminal{
 	}
 	public void preNotificar(){
 			timer.iniciar();
+	}
+	
+	public CreadorDeReportes getCreadorDeReportes(){
+		return this.creadorDeReportes;
 	}
 	  
 }

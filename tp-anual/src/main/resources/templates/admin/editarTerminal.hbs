@@ -1,21 +1,26 @@
 {{#partial "contenido"}}
 
-<form data-toggle="validator" role="form" class="form" action="{{url}}" method="POST">
+<form data-toggle="validator" role="form" class="form" action="{{terminal.url}}" method="POST">
   <div class="form-group">
 	<label for="text" class="control-label">Nombre:</label>
-	<input type="text" class="form-control" value="{{nombre}}" name="nombre" required>
+	<input type="text" class="form-control" value="{{terminal.nombre}}" name="nombre" required>
   </div>
     <div class="form-group">
 	<label for="text">Comuna:</label>
-	<input type="text" class="form-control" value="{{nombreComuna}}" name="nombreComuna" required>
+		      <select class="form-control" name="comuna">
+	      <option selected disabled>Elegir comuna</option> 
+		     {{#each comunas}}
+			  	<option value={{this}}>{{this}}</option>
+			  {{/each}}
+   		  </select>
   </div>
   <BR>
     <label for="text">Acciones:</label><br>
     <div class="checkbox">
-      <label><input type="checkbox" value="" checked="checked">Almacenar búsquedas</label>
+      <label><input type="checkbox" name="obsBusqueda" {{isTrue terminal.tieneGestorBusquedas}}>Almacenar búsquedas</label>
     </div>
     <div class="checkbox">
-      <label><input type="checkbox" value="" checked="checked">Notificar por mail</label>
+      <label><input type="checkbox" name="obsMail"  {{isTrue terminal.tieneMailActivo}}>Notificar por mail</label>
     </div>
     <BR>
   <button type="submit" class="btn btn-default">Guardar</button>

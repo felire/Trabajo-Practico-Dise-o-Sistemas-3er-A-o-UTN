@@ -50,6 +50,12 @@ public class RepoTerminales extends RepoGenerico{
 		return lista;
 	}
 	
+	public HashSet<String> getNombreComunas(){
+		HashSet<String> set = new HashSet<String>();
+		this.getComunas().stream().forEach(comuna -> set.add(comuna.getNombre()));
+		return set;
+	}
+	
 	public Polygon getComuna(String nombre){
 		return this.getComunas().stream().filter(comuna -> comuna.getNombre().equals(nombre)).findFirst().get();
 	}

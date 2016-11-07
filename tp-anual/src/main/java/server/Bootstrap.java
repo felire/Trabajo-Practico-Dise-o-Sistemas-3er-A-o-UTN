@@ -22,6 +22,7 @@ import ar.utn.frba.disenio.tp_anual.model.Rol;
 import ar.utn.frba.disenio.tp_anual.model.SucursalBanco;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.model.Usuario;
+import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
 import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
@@ -57,17 +58,18 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		comuna2.add(new Point(12,13));
 		comuna2.add(new Point(20,30));
 		
-		Terminal terminal3 = new Terminal("Caballo", 15);
+		Terminal terminal3 = new Terminal("conAccion", 15);
 		terminal3.setComuna(comuna2);
-		//RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
-		
+		terminal3.addObserver(new ObserverMail());
+//		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
+//		
 //		Terminal terminal1 = new Terminal("Once", 10);
 //		Terminal terminal2 = new Terminal("Retiro", 10);
 //		terminal1.setComuna(comuna);
 //		terminal2.setComuna(comuna);
 //		RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
 //		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
-//		EntityTransaction tx = entity.getTransaction();*/
+//		EntityTransaction tx = entity.getTransaction();
 //
 //		tx.begin();
 //		
