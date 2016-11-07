@@ -50,6 +50,10 @@ public class RepoTerminales extends RepoGenerico{
 		return lista;
 	}
 	
+	public Polygon getComuna(String nombre){
+		return this.getComunas().stream().filter(comuna -> comuna.getNombre().equals(nombre)).findFirst().get();
+	}
+	
 	public void registrarTerminal(Terminal terminal){
 		super.persistirNuevoObjeto(terminal);
 	}

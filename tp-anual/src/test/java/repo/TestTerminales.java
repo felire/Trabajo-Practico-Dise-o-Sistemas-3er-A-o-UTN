@@ -8,6 +8,8 @@ import org.junit.Test;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
+import util.Point;
+import util.Polygon;
 
 public class TestTerminales {
 	
@@ -16,6 +18,10 @@ public class TestTerminales {
 	private Terminal terminal2;
 	private ObserverTerminal observer;
 	private ObserverTerminal observer2;
+	private Terminal terminal3;
+	private Terminal terminal4;
+	private Polygon comuna2;
+	private Polygon comuna3;
 	
 	@Before
 	public void setUp(){
@@ -24,6 +30,21 @@ public class TestTerminales {
 		terminal1.addObserver(observer);
 		repo = RepoTerminales.getInstance();
 		repo.registrarTerminal(terminal1);
+		comuna2 = new Polygon();
+		comuna2.setNombre("Caballo");
+		comuna2.add(new Point(12,13));
+		comuna2.add(new Point(20,30));
+		comuna3 = new Polygon();
+		comuna3.setNombre("Caballo");
+		comuna3.add(new Point(12,13));
+		comuna3.add(new Point(20,30));
+		
+		terminal3 = new Terminal("asdasd", 11);
+		terminal3.setComuna(comuna2);
+		terminal4 = new Terminal("asdd", 11);
+		terminal4.setComuna(comuna3);
+		RepoTerminales.getInstance().registrarTerminal(terminal3);
+		RepoTerminales.getInstance().registrarTerminal(terminal4);
 	}
 	
 	@Test
@@ -73,12 +94,19 @@ public class TestTerminales {
 		assertEquals(con2Observers.getListaObservers().get(0),observer2);
 	}
 	
+	@Test
+	public void testearBuscarPorNombreComuna(){
+		assertTrue(RepoTerminales.getInstance().getComuna("Caballo") == comuna2);
+	}
+	
 	
 	
 	@After
 	public void clean(){
 		repo.borrarTerminal(terminal1);
 		repo.borrarTerminal(terminal2);
+		repo.borrarTerminal(terminal3);
+		repo.borrarTerminal(terminal4);
 		observer= null;
 		terminal1 = null;
 		terminal2 = null;

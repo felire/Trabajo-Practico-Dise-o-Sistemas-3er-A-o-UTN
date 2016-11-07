@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
 
 
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
-
+import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import util.Polygon;
 
@@ -92,6 +92,10 @@ public class Terminal {
 		this.comuna = comuna;
 	}
 	
+	public void setearComuna(String nombreComuna){
+		this.comuna = RepoTerminales.getInstance().getComuna(nombreComuna);
+	}
+	
 	public long getID() {
 		return id;
 	}
@@ -105,5 +109,9 @@ public class Terminal {
 	
 	public String getUrl(){
 		return "/terminales/"+Long.toString(this.getID());
+	}
+	
+	public String getUrlNueva(){
+		return "/terminales/nueva";
 	}
 }

@@ -2,14 +2,19 @@
 
 <form role="form" action="/terminales" method="POST">
         <div class="form-group" >
-	    <label for="comuna">Comuna:</label>
+	    <label for="comuna">Comuna:</label> 
 	      <select class="form-control" name="comuna">
+	      <option selected disabled>Elegir comuna</option> 
 		     {{#each comunas}}
 			  	<option value={{nombre}}>{{nombre}}</option>
 			  {{/each}}
    		  </select>
+
 	  	</div>
   <button type="submit" class="btn btn-default">Buscar</button>
+  <a href="/terminales/nueva"><button type="button" class="btn btn-default pull-right">Nueva Terminal</button></a>
+
+ 
 </form>
 
     {{#if error}}

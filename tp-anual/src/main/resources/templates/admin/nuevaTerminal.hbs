@@ -1,0 +1,24 @@
+{{#partial "contenido"}}
+
+  <div class="form-group">
+ <label for="text" class="control-label">Nombre:</label>
+ <input type="text" class="form-control"  name="nombre" required>
+  </div>
+    <div class="form-group">
+ <label for="text">Comuna:</label>
+ <input type="text" class="form-control"  name="nombreComuna" required>
+  </div>
+  <BR>
+    <label for="text">Acciones:</label><br>
+    <div class="checkbox">
+      <label><input type="checkbox" value="" checked="">Almacenar búsquedas</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="" checked="">Notificar por mail</label>
+    </div>
+    <BR>
+  <button type="submit" class="btn btn-default">Guardar</button>
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

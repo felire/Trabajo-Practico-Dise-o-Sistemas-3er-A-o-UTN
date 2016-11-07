@@ -12,6 +12,7 @@ import server.Session;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import util.Point;
 import util.Polygon;
 
 public class TerminalController {
@@ -72,15 +73,36 @@ public class TerminalController {
 	
 	public ModelAndView accionar(Request req, Response res){
 		Long id = Long.parseLong(req.params("id"));
+		if (req.params("id")== "nueva"){
+		return new ModelAndView(model,"admin/nuevaTerminal.hbs");
+		}
+		else{
+			Terminal terminal = RepoTerminales.getInstance().buscarPorID(id);
+			if(req.queryParams("editar") != null){
+				return new ModelAndView(terminal, "admin/editarTerminal.hbs");
+			}
+			if(req.queryParams("borrar")!=null){
+				RepoTerminales.getInstance().borrarTerminal(terminal);
+				res.redirect("/terminales");
+				return null;
+			}
+			return new ModelAndView(terminal,"admin/terminal.hbs");
+		}
+	}
+	
+	public ModelAndView agregarTerminal(Request req, Response res){
+		return new ModelAndView(model,"admin/nuevaTerminal.hbs");
+	}
+	
+	public ModelAndView actualizar(Request req, Response res){
+		Long id = Long.parseLong(req.params("id"));
+		String nombre = req.queryParams("nombre");
+		String comuna = req.queryParams("nombreComuna");
 		Terminal terminal = RepoTerminales.getInstance().buscarPorID(id);
-		if(req.queryParams("editar") != null){
-			return new ModelAndView(terminal, "admin/editarTerminal.hbs");
-		}
-		if(req.queryParams("borrar")!=null){
-			RepoTerminales.getInstance().borrarTerminal(terminal);
-			res.redirect("/terminales");
-			return null;
-		}
-		return new ModelAndView(terminal,"admin/terminal.hbs");
+		terminal.setNombre(nombre);
+		terminal.setearComuna(comuna);
+		RepoTerminales.getInstance().actualizarObjeto(terminal);
+		res.redirect("/terminales");
+		return null;
 	}
 }
