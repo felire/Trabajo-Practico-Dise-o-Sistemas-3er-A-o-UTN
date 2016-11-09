@@ -26,8 +26,10 @@ import ar.utn.frba.disenio.tp_anual.observer.ObserverMail;
 import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
+import ar.utn.frba.disenio.tp_anual.servicios.impl.GestorBusquedas;
 import util.Point;
 import util.Polygon;
+import util.reportes.CreadorDeReportes;
 
 public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, TransactionalOps{
 	
@@ -53,7 +55,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
 		Usuario user2 = new Usuario("a", "a", Rol.TERMINAL);
 		Usuario user3 = new Usuario("b", "a", Rol.TERMINAL);
-		
+		Usuario user4 = new Usuario("c", "a", Rol.TERMINAL);
 		Polygon comuna2 = new Polygon();
 		comuna2.setNombre("Caballito");
 		comuna2.add(new Point(12,13));
@@ -66,10 +68,15 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		
 		Terminal terminal1 = new Terminal("Once", 10);
 		Terminal terminal2 = new Terminal("Retiro", 10);
+		Terminal terminal4 = new Terminal("Merca", 10);
 		terminal1.setComuna(comuna);
 		terminal2.setComuna(comuna);
 		terminal1.setUsuario(user2);
 		terminal2.setUsuario(user3);
+		terminal4.setComuna(comuna);
+		terminal4.setUsuario(user4);
+		terminal4.addObserver(new GestorBusquedas(new CreadorDeReportes()));
+		RepoTerminales.getInstance().persistirNuevoObjeto(terminal4);
 		/*RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
 		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
 		EntityTransaction tx = entity.getTransaction();
