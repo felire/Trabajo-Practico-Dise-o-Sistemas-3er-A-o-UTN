@@ -76,7 +76,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		terminal4.setComuna(comuna);
 		terminal4.setUsuario(user4);
 		terminal4.addObserver(new GestorBusquedas(new CreadorDeReportes()));
-		RepoTerminales.getInstance().persistirNuevoObjeto(terminal4);
+		//RepoTerminales.getInstance().persistirNuevoObjeto(terminal4);
 		/*RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
 		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
 		EntityTransaction tx = entity.getTransaction();

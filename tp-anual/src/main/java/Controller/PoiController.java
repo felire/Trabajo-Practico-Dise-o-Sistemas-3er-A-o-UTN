@@ -61,8 +61,8 @@ public class PoiController {
 	
 	public Terminal obtenerTerminal(Request req){
 		Usuario usuario = Session.getUsuario(req);
-		EntityManager entity = PerThreadEntityManagers.getEntityManager();
 		List<Terminal> terminales = RepoTerminales.getInstance().getListaTerminales();
+		terminales = terminales.stream().filter(term -> term.getUsuario() != null).collect(Collectors.toList());
 		Terminal terminal = terminales.stream().filter(term -> term.getUsuario().getUser().equals(usuario.getUser())).collect(Collectors.toList()).get(0);
 		return terminal;
 	}
