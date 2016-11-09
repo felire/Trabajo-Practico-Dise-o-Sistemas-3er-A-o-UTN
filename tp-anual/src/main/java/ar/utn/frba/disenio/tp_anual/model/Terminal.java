@@ -41,6 +41,10 @@ public class Terminal {
 	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
 	@SuppressWarnings("unused")
 	private Terminal(){};
 	
