@@ -62,15 +62,15 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		terminal3.setComuna(comuna2);
 		terminal3.addObserver(new ObserverMail());
 //		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
-//		
-//		Terminal terminal1 = new Terminal("Once", 10);
-//		Terminal terminal2 = new Terminal("Retiro", 10);
-//		terminal1.setComuna(comuna);
-//		terminal2.setComuna(comuna);
+		
+		Terminal terminal1 = new Terminal("Once", 10);
+		Terminal terminal2 = new Terminal("Retiro", 10);
+		terminal1.setComuna(comuna);
+		terminal2.setComuna(comuna);
 //		RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
 //		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
 //		EntityTransaction tx = entity.getTransaction();
-//
+
 //		tx.begin();
 //		
 //		entity.persist(user);
@@ -80,12 +80,12 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 //		RepoBusquedas.initMorphia();
 		
 		} //-->> Hay que ver como hacerlo para probar
-	/*public void init(){
-		withTransaction(() ->{
-			Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
-			persist(user);
-		});
-		/*EntityManager entity = PerThreadEntityManagers.getEntityManager();
-		entity.find(Usuario.class, "felire").getUser();*/
-	//}*/
+//	public void init(){
+//		withTransaction(() ->{
+//			Usuario user = new Usuario("felire", "a", Rol.ADMINISTRADOR);
+//			persist(user);
+//		});
+//		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+//		entity.find(Usuario.class, "felire").getUser();
+//	}
 }

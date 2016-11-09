@@ -22,7 +22,7 @@ public class pruebaDB {
 	@Test
 	public void test() {
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		//FranjaHoraria franjaMorada = new FranjaHoraria(LocalTime.now(), LocalTime.now());
+		FranjaHoraria franjaMorada = new FranjaHoraria(LocalTime.now(), LocalTime.now());
 		
 		Polygon comuna2 = new Polygon();
 		comuna2.setNombre("Caballito");
@@ -33,10 +33,10 @@ public class pruebaDB {
 		terminal3.setComuna(comuna2);
     	RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
 		RepoTerminales.getInstance().borrarTerminal(terminal3);
-		/*EntityTransaction tx = entityManager.getTransaction();
+		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
-		//entityManager.persist(franjaMorada);
-		tx.commit();*/
+		entityManager.persist(franjaMorada);
+		tx.commit();
 	}
 
 }

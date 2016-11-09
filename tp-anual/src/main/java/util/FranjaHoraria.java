@@ -1,6 +1,7 @@
 package util;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import javax.persistence.*;
 
@@ -14,6 +15,10 @@ public class FranjaHoraria {
 	private LocalTime desdeHorario;
 
 	private LocalTime hastaHorario;
+	
+	public FranjaHoraria(){
+
+	}
 	
 	public Boolean contiene(LocalTime hora){
 		return (desdeHorario.isBefore(hora) && hora.isBefore(hastaHorario));

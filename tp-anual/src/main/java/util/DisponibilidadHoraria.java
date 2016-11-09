@@ -25,6 +25,9 @@ public class DisponibilidadHoraria {
 		this.franjas = franjas;
 		this.dias = dias;		
 	}
+	
+	public DisponibilidadHoraria(){}
+	
 	public Boolean diaDisponible(LocalDateTime fecha){
 		return this.dias.contains(fecha.getDayOfWeek());
 	}
