@@ -69,7 +69,8 @@ public class TestInitMongoDB {
 		List<Busqueda> busquedas2;
 		busquedas2 = RepoBusquedas.getInstance().todasLasBusquedas();
 		busquedas = RepoBusquedas.getInstance().filtrar(LocalDate.of(2000,9,12), LocalDate.of(2056,9,12), 10000, "fhfaohasdohdfsa");
-		busquedas.stream().forEach(bus -> System.out.println(bus.getFraseBuscada()));
+		busquedas2.stream().forEach(bus -> System.out.println(RepoBusquedas.getInstance().buscarPorID(bus.getID()).getID().toString()));
+		
 		//assertEquals(2, busquedas2.size());
 		/*Assert.assertTrue(busquedas.contains(busqueda));
 		assertEquals("55",busquedaPersistida.getResultados().get(0).getNombre());
