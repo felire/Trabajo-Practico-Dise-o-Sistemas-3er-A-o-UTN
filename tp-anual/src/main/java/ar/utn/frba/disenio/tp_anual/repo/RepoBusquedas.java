@@ -152,9 +152,8 @@ public class RepoBusquedas{
 	public List<Busqueda> todasLasBusquedas(){
 		return dataStore.createQuery(Busqueda.class).asList();
 	}
-	public Busqueda buscarPorID(Integer ID){
-		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
-		return entityManager.find(Busqueda.class, ID);
+	public Busqueda buscarPorID(ObjectId ID){
+		return dataStore.createQuery(Busqueda.class).filter("_id", ID).get();
 	}
 	
 	/*public static Datastore getDataStore()
