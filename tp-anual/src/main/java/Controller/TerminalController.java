@@ -49,14 +49,9 @@ public class TerminalController {
 	}
 	
 	public ModelAndView busqueda(Request req, Response res){
-		try{
-		    String comuna = req.queryParams("comuna");
-			model.put("busquedas", RepoTerminales.getInstance().buscarPorComuna(comuna));
-			model.put("error", false);
-		}
-		catch (Exception e){
-			model.put("error", true);
-		}
+	    String comuna = req.queryParams("comuna");
+		model.put("busquedas", RepoTerminales.getInstance().buscarPorComuna(comuna));
+		model.put("error", false);
 		return new ModelAndView(model, "admin/terminales.hbs");
 	}
 	
