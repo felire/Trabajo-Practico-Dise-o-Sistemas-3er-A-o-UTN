@@ -37,7 +37,7 @@ public class Terminal {
 	@JoinColumn(name = "terminal_id")
 	private List<ObserverTerminal> listaObservers;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH})
 	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	
@@ -124,9 +124,19 @@ public class Terminal {
 	public Usuario getUsuario(){
 		return usuario;
 	}
+	
+	public String getUser(){
+		return this.getUsuario().getUser();
+	}
+	
+	public String getPass(){
+		return this.getUsuario().getPass();
+	}
+	
 	public void setUsuario(Usuario usuario){
 		this.usuario = usuario;
 	}
+	
 	public String getUrlNueva(){
 		return "/terminales/nueva";
 	}

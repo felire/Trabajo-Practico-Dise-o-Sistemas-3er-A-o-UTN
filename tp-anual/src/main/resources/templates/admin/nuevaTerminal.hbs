@@ -3,10 +3,20 @@
   <div class="form-group">
  <label for="text" class="control-label">Nombre:</label>
  <input type="text" class="form-control"  name="nombre" required>
+ 	<BR>
+	<label for="text" class="control-label">Usuario:</label>
+	<input type="text" class="form-control" name="user" required>
+	<BR>
+	<label for="text" class="control-label">Contraseña:</label>
+	<input type="text" class="form-control" name="pass" required>
   </div>
     <div class="form-group">
- <label for="text">Comuna:</label>
- <input type="text" class="form-control"  name="nombreComuna" required>
+	<label for="text">Comuna:</label>
+		      <select class="form-control" name="comuna">
+		     {{#each comunas}}
+			  	<option value={{this}}>{{this}}</option>
+			  {{/each}}
+   		  </select>
   </div>
   <BR>
     <label for="text">Acciones:</label><br>

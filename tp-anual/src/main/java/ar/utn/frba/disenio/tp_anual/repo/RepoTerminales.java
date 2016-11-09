@@ -4,7 +4,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+import javax.transaction.UserTransaction;
 
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 

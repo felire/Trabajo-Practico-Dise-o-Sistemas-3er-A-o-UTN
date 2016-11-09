@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.*;
 
+import javax.persistence.Query;
+
 import ar.utn.frba.disenio.tp_anual.model.POI;
 import ar.utn.frba.disenio.tp_anual.model.Rol;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
@@ -98,8 +100,20 @@ public class TerminalController {
 	}
 	
 	public ModelAndView agregarTerminal(Request req, Response res){
-		
-		return new ModelAndView(model,"admin/nuevaTerminal.hbs");
+		if(Session.estaLogeado(req)){
+			Usuario usuario = Session.getUsuario(req);
+			if(usuario.getRol() == Rol.ADMINISTRADOR){
+				return new ModelAndView(model,"admin/nuevaTerminal.hbs");
+				}
+			else{
+				res.redirect("/");
+				return null;
+			}
+		}
+		else{
+			res.redirect("/");
+			return null;
+		}
 	}
 	
 	public ModelAndView crearTerminal(Request req, Response res){
@@ -107,7 +121,15 @@ public class TerminalController {
 		String comuna = req.queryParams("comuna");
 		String checkMail = req.queryParams("obsMail");
 		String checkBusqueda = req.queryParams("obsBusqueda");
+		String user = req.queryParams("user");
+		String pass = req.queryParams("pass");
 		Terminal terminal = new Terminal(nombre, 10);
+		terminal.setUsuario(new Usuario(user,pass, Rol.TERMINAL));
+		terminal.setearComuna(comuna);
+		if(checkMail != null) terminal.addObserver(new ObserverMail());
+		if (checkBusqueda != null) terminal.addObserver(new GestorBusquedas(new CreadorDeReportes()));
+		RepoTerminales.getInstance().registrarTerminal(terminal);
+		res.redirect("/terminales");
 		return null;
 	}
 	
@@ -117,9 +139,12 @@ public class TerminalController {
 		String comuna = req.queryParams("comuna");
 		String checkMail = req.queryParams("obsMail");
 		String checkBusqueda = req.queryParams("obsBusqueda");
+		String user = req.queryParams("user");
+		String pass = req.queryParams("pass");
 		Terminal terminal = RepoTerminales.getInstance().buscarPorID(id);
 		terminal.setNombre(nombre);
 		terminal.setearComuna(comuna);
+		terminal.setUsuario(new Usuario(user,pass,Rol.TERMINAL));
 		List<ObserverTerminal> acciones = new ArrayList<ObserverTerminal>();
 		if(checkMail != null) acciones.add(new ObserverMail());
 		if(checkBusqueda != null){
