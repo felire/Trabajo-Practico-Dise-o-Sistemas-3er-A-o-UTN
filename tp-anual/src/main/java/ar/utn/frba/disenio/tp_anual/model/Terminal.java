@@ -41,6 +41,10 @@ public class Terminal {
 	@JoinColumn(name = "comuna_id")
 	private Polygon comuna;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+	
 	@SuppressWarnings("unused")
 	private Terminal(){};
 	
@@ -101,6 +105,7 @@ public class Terminal {
 		this.comuna = RepoTerminales.getInstance().getComuna(nombreComuna);
 	}
 	
+	
 	public long getID() {
 		return id;
 	}
@@ -116,6 +121,12 @@ public class Terminal {
 		return "/terminales/"+Long.toString(this.getID());
 	}
 	
+	public Usuario getUsuario(){
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario){
+		this.usuario = usuario;
+	}
 	public String getUrlNueva(){
 		return "/terminales/nueva";
 	}
