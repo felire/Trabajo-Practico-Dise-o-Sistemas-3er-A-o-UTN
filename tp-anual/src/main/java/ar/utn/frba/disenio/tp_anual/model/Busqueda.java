@@ -27,7 +27,7 @@ import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
 public class Busqueda {
 	
 	@Id
-	private Integer id;
+	private ObjectId id;
 	
 	@Embedded
 	private List<POI> resultados;
@@ -57,11 +57,11 @@ public class Busqueda {
 		this.terminal = terminal;
 	}
 	
-	public Integer getID(){
+	public ObjectId getID(){
 		return this.id;
 	}
 	
-	public void setId(int id){
+	public void setId(ObjectId id){
 		this.id=id;
 	}
 	
