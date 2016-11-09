@@ -62,7 +62,7 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		Terminal terminal3 = new Terminal("conAccion", 15);
 		terminal3.setComuna(comuna2);
 		terminal3.addObserver(new ObserverMail());
-//		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
+		RepoTerminales.getInstance().persistirNuevoObjeto(terminal3);
 		
 		Terminal terminal1 = new Terminal("Once", 10);
 		Terminal terminal2 = new Terminal("Retiro", 10);
@@ -73,6 +73,14 @@ public class Bootstrap implements WithGlobalEntityManager, EntityManagerOps, Tra
 		/*RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
 		RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
 		EntityTransaction tx = entity.getTransaction();
+
+		terminal1.setUsuario(new Usuario(terminal1.getNombre(), "hola", Rol.TERMINAL));
+		terminal2.setUsuario(new Usuario(terminal2.getNombre(), "asdasd", Rol.TERMINAL));
+		terminal3.setUsuario(new Usuario(terminal3.getNombre(), "345345", Rol.TERMINAL));
+		//RepoTerminales.getInstance().persistirNuevoObjeto(terminal1);
+		//RepoTerminales.getInstance().persistirNuevoObjeto(terminal2);
+//		EntityTransaction tx = entity.getTransaction();
+
 
 		tx.begin();
 		
