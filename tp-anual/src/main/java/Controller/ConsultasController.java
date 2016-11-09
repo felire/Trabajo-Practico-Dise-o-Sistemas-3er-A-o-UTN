@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bson.types.ObjectId;
+
 import ar.utn.frba.disenio.tp_anual.model.Busqueda;
 import ar.utn.frba.disenio.tp_anual.model.Rol;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
@@ -55,7 +57,7 @@ public class ConsultasController {
 	}
 	
 	public ModelAndView busquedaConcreta(Request req, Response res){				
-		Integer idBusqueda=Integer.parseInt(req.params("id"));		
+		ObjectId idBusqueda=new ObjectId(req.params("id"));		
 		Busqueda busqueda= RepoBusquedas.getInstance().buscarPorIDTrucho(idBusqueda);//	remplazar por el posta	
 		return new ModelAndView(busqueda, "admin/resultado.hbs");
 	}	

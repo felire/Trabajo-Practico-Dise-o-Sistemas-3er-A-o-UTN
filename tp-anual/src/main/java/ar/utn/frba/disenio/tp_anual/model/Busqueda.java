@@ -66,7 +66,7 @@ public class Busqueda {
 	}
 	
 	public String getUrl(){
-		return "/filtrarConsultas/"+this.id.toString();
+		return "/filtrarConsultas/"+id.toString();
 	}
 	
 	public String getTerminal(){

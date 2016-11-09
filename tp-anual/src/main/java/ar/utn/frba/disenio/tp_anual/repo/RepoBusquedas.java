@@ -91,12 +91,12 @@ public class RepoBusquedas{
 	public List<Busqueda> filtrarTrucho(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		Busqueda busqueda1= new Busqueda();
 		Busqueda busqueda2= new Busqueda();
-		busqueda1.setId(new ObjectId());
+		busqueda1.setId(new ObjectId("507f1f77bcf86cd799439011"));
 		busqueda1.setTerminal("holaa");
 		busqueda1.setDemora(10.1);
 		busqueda1.setFecha(LocalDate.now());
 		busqueda1.setFraseBuscada("wachooo");
-		busqueda2.setId(new ObjectId());
+		busqueda2.setId(new ObjectId("507f1f77bcf86cd799435011"));
 		busqueda2.setTerminal("chau");
 		busqueda2.setDemora(11.21);
 		busqueda2.setFecha(LocalDate.now());
@@ -107,7 +107,7 @@ public class RepoBusquedas{
 		return retorno;
 	}
 	
-	public Busqueda buscarPorIDTrucho(Integer ID){
+	public Busqueda buscarPorIDTrucho(ObjectId ID){
 		
 		ParadaDeColectivo parada = new ParadaDeColectivo("asd", new Point(4,5));
 		parada.setDireccion("Berraco 453");
