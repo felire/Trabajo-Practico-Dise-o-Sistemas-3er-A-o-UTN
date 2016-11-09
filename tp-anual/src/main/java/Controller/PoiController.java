@@ -1,11 +1,19 @@
 package Controller;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+
+import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
 
 import ar.utn.frba.disenio.tp_anual.model.POI;
 import ar.utn.frba.disenio.tp_anual.model.Rol;
+import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.model.Usuario;
 import ar.utn.frba.disenio.tp_anual.repo.RepoPOIS;
+import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
 import ar.utn.frba.disenio.tp_anual.servicios.impl.BuscadorPOIs;
 import server.Session;
 import spark.ModelAndView;
@@ -44,11 +52,20 @@ public class PoiController {
 		else{
 			String palabraClave = req.queryParams("palabraClave");
 			String servicio = req.queryParams("servicio");
-			List<POI> lista = BuscadorPOIs.getInstance().buscarPOIs(palabraClave, servicio);
+			Terminal terminal = obtenerTerminal(req);
+			//List<POI> lista = BuscadorPOIs.getInstance().buscarPOIs(palabraClave, servicio);
+			List<POI> lista = terminal.buscar(palabraClave, servicio);
 			return new ModelAndView(lista, "user/inicio.hbs");
 		}
 	}
 	
+	public Terminal obtenerTerminal(Request req){
+		Usuario usuario = Session.getUsuario(req);
+		EntityManager entity = PerThreadEntityManagers.getEntityManager();
+		List<Terminal> terminales = RepoTerminales.getInstance().getListaTerminales();
+		Terminal terminal = terminales.stream().filter(term -> term.getUsuario().getUser().equals(usuario.getUser())).collect(Collectors.toList()).get(0);
+		return terminal;
+	}
 	public ModelAndView poiExacto(Request req, Response res){
 		if(Session.estaLogeado(req)){
 			Usuario usuario = Session.getUsuario(req);
