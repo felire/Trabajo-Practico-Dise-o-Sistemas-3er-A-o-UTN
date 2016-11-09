@@ -105,6 +105,7 @@ public class Terminal {
 		this.comuna = RepoTerminales.getInstance().getComuna(nombreComuna);
 	}
 	
+	
 	public long getID() {
 		return id;
 	}
@@ -120,6 +121,12 @@ public class Terminal {
 		return "/terminales/"+Long.toString(this.getID());
 	}
 	
+	public Usuario getUsuario(){
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario){
+		this.usuario = usuario;
+	}
 	public String getUrlNueva(){
 		return "/terminales/nueva";
 	}
