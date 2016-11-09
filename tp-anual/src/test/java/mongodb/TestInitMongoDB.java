@@ -77,9 +77,9 @@ public class TestInitMongoDB {
 		assertEquals(LocalDate.now(),busquedaPersistida.getFecha());*/
 	}
 	
-/*	@After
+	@After
 	public void clean(){
 
 		cliente.dropDatabase("tp_anual_diseno_test");
-	}*/
+	}
 }
