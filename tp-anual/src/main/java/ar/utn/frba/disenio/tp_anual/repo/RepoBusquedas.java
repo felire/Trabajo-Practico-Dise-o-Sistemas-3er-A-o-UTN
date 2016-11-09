@@ -131,10 +131,16 @@ public class RepoBusquedas{
 	
 	public List<Busqueda> filtrar(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		org.mongodb.morphia.query.Query<Busqueda> busquedas = this.getListaBusquedas();
-		return busquedas.
+		List<Busqueda> busquedass = busquedas.
 				field("terminal").contains(terminal).
 				field("fecha").greaterThan(desde).
-				field("fecha").lessThan(hasta).asList().subList(0, cantidad);
+				field("fecha").lessThan(hasta).asList();
+		if(cantidad<busquedass.size()){
+			return busquedass.subList(0, cantidad);
+		}
+		else{
+			return busquedass;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

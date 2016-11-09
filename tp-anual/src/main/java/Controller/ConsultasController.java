@@ -44,7 +44,7 @@ public class ConsultasController {
 			LocalDate desde = LocalDate.parse(fechaDesde, formatter);
 			LocalDate hasta = LocalDate.parse(fechaHasta, formatter);	
 			Integer cantidad = Integer.parseInt(textoCantidad);
-			model.put("busquedas", RepoBusquedas.getInstance().filtrarTrucho(desde, hasta, cantidad, terminal));//reemplazar por filtrar posta		
+			model.put("busquedas", RepoBusquedas.getInstance().filtrar(desde, hasta, cantidad, terminal));//reemplazar por filtrar posta		
 			model.put("error", false);
 		}
 		catch(Exception e){
