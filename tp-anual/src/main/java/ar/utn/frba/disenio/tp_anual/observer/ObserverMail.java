@@ -32,7 +32,7 @@ public class ObserverMail extends ObserverTerminal{
 		timer.iniciar();
 	}
 	public void avisarPorMail(double tardanza){
-		servicioMail.reportarTardanza(tardanza);
+		//servicioMail.reportarTardanza(tardanza);
 	}
 	public void setTiempoMaximo(double tiempo){
 		this.tiempoMaximo = tiempo;
