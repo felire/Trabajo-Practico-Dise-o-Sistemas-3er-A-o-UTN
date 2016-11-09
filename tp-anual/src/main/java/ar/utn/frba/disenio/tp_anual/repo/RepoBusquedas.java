@@ -32,34 +32,9 @@ import util.Point;
 public class RepoBusquedas{
 	
 	private static RepoBusquedas instance;
-<<<<<<< HEAD
-	public static Datastore dataStore;
-	
-	public static void initMorphia(){
-		Morphia morphia = new Morphia();
-
-		// tell Morphia where to find your classes
-		// can be called multiple times with different packages or classes
-		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
-
-		// create the Datastore connecting to the default port on the local host
-		dataStore = morphia.createDatastore(new MongoClient(), "morphia_example");
-		//dataStore.ensureIndexes();
-		
-		//Busqueda busqueda1 = new Busqueda();
-		//busqueda1.setFraseBuscada("azucar");
-	//	busqueda1.setTerminal("Once");
-	//	Busqueda busqueda2 = new Busqueda();
-     //	busqueda2.setFraseBuscada("sal");
-	//	busqueda2.setTerminal("Retiro");
-	
-	//	dataStore.save(busqueda1);
-	//	dataStore.save(busqueda2);
-	}
-=======
 	Morphia morphia;
 	MongoClient cliente;
-	Datastore datastore;
+	Datastore dataStore;
 //	public static Datastore dataStore;
 //	
 //	public static void initMorphia(){
@@ -83,7 +58,6 @@ public class RepoBusquedas{
 //		dataStore.save(busqueda1);
 //		dataStore.save(busqueda2);
 //	}
->>>>>>> 9a87b0428cf66c8c2983f9b821d9a81f3428a0bb
 	
 	private RepoBusquedas(){
 		morphia = new Morphia();
@@ -93,7 +67,7 @@ public class RepoBusquedas{
 		morphia.getMapper().getConverters().addConverter(LocalTimeConverterMorphia.class);
 		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
 		cliente = new MongoClient();
-		datastore = morphia.createDatastore(cliente, "tp_anual_busquedas");
+		dataStore = morphia.createDatastore(cliente, "tp_anual_busquedas");
 	}
 	
 	public static RepoBusquedas getInstance(){
@@ -104,15 +78,15 @@ public class RepoBusquedas{
 	}
 	
 	public void persistirBusqueda(Busqueda busqueda){
-		datastore.save(busqueda);
+		dataStore.save(busqueda);
 	}
 	
 	/*public void borrarBusqueda(Busqueda busqueda){
 		super.borrarObjeto(busqueda);
 	}*/
-	public List<Busqueda> traerBusquedas(){
+	/*public List<Busqueda> traerBusquedas(){
 		return datastore.
-	}
+	}*/
 	
 	public List<Busqueda> filtrarTrucho(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		Busqueda busqueda1= new Busqueda();
@@ -151,9 +125,9 @@ public class RepoBusquedas{
 		return busqueda1;
 	}
 	
-	public void borrarTodasLasBusquedas(){
+	/*public void borrarTodasLasBusquedas(){
 		getListaBusquedas().forEach(busqueda -> borrarBusqueda(busqueda));
-	}
+	}*/
 	
 	public List<Busqueda> filtrar(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		org.mongodb.morphia.query.Query<Busqueda> busquedas = this.getListaBusquedas();
@@ -174,10 +148,10 @@ public class RepoBusquedas{
 		return entityManager.find(Busqueda.class, ID);
 	}
 	
-	public static Datastore getDataStore()
+	/*public static Datastore getDataStore()
 	{
 		RepoBusquedas.initMorphia();
 		return dataStore;
-	}
+	}*/
 
 }
