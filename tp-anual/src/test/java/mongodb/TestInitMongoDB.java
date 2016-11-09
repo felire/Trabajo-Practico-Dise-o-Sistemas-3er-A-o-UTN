@@ -27,7 +27,9 @@ import ar.utn.frba.disenio.tp_anual.model.POI;
 import ar.utn.frba.disenio.tp_anual.model.ParadaDeColectivo;
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;
+import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
+import junit.framework.Assert;
 
 public class TestInitMongoDB {
 	
@@ -48,8 +50,10 @@ public class TestInitMongoDB {
 		datastore = morphia.createDatastore(cliente, "tp_anual_diseno_test");
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testPersistirBusqueda(){
+		Datastore porfavoranda = RepoBusquedas.getDataStore();
 		ParadaDeColectivo parada = new ParadaDeColectivo("55", new Point(5,5));
 		List<POI> pois = new ArrayList<>();
 		
@@ -60,17 +64,20 @@ public class TestInitMongoDB {
 		
 		Busqueda busqueda = new Busqueda(pois, "berreta", "hoola morhpia", terminal.getNombre());
 	
-		datastore.save(busqueda);
-		busquedaPersistida = datastore.find(Busqueda.class).get();
+		porfavoranda.save(busqueda);
+		busquedaPersistida = porfavoranda.find(Busqueda.class).get();
+		List<Busqueda> busquedas = new ArrayList<>();
+		busquedas = RepoBusquedas.getInstance().filtrar(LocalDate.of(2000,9,12), LocalDate.of(2056,9,12), 1, terminal.getNombre());
+		Assert.assertTrue(busquedas.contains(busqueda));
 		assertEquals("55",busquedaPersistida.getResultados().get(0).getNombre());
 		assertEquals((int)5,(int) busquedaPersistida.getResultados().get(0).getCoordenada().getLatitud());
 		assertEquals((int)5, (int)busquedaPersistida.getResultados().get(0).getCoordenada().getLongitud());
 		assertEquals(LocalDate.now(),busquedaPersistida.getFecha());
 	}
 	
-	@After
+/*	@After
 	public void clean(){
 
 		cliente.dropDatabase("tp_anual_diseno_test");
-	}
+	}*/
 }

@@ -12,6 +12,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.uqbarproject.jpa.java8.extras.PerThreadEntityManagers;
@@ -27,29 +28,29 @@ import util.Point;
 public class RepoBusquedas extends RepoGenerico{
 	
 	private static RepoBusquedas instance;
-//	public static Datastore dataStore;
-//	
-//	public static void initMorphia(){
-//		Morphia morphia = new Morphia();
-//
-//		// tell Morphia where to find your classes
-//		// can be called multiple times with different packages or classes
-//		morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
-//
-//		// create the Datastore connecting to the default port on the local host
-//		dataStore = morphia.createDatastore(new MongoClient(), "morphia_example");
-//		dataStore.ensureIndexes();
-//		
-//		Busqueda busqueda1 = new Busqueda();
-//		busqueda1.setFraseBuscada("azucar");
-//		busqueda1.setTerminal("Once");
-//		Busqueda busqueda2 = new Busqueda();
-//		busqueda2.setFraseBuscada("sal");
-//		busqueda2.setTerminal("Retiro");
-//		
-//		dataStore.save(busqueda1);
-//		dataStore.save(busqueda2);
-//	}
+	public static Datastore dataStore;
+	
+	public static void initMorphia(){
+		Morphia morphia = new Morphia();
+
+		// tell Morphia where to find your classes
+		// can be called multiple times with different packages or classes
+		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
+
+		// create the Datastore connecting to the default port on the local host
+		dataStore = morphia.createDatastore(new MongoClient(), "morphia_example");
+		//dataStore.ensureIndexes();
+		
+		//Busqueda busqueda1 = new Busqueda();
+		//busqueda1.setFraseBuscada("azucar");
+	//	busqueda1.setTerminal("Once");
+	//	Busqueda busqueda2 = new Busqueda();
+     //	busqueda2.setFraseBuscada("sal");
+	//	busqueda2.setTerminal("Retiro");
+	
+	//	dataStore.save(busqueda1);
+	//	dataStore.save(busqueda2);
+	}
 	
 	public static RepoBusquedas getInstance(){
 		if(instance == null){
@@ -69,12 +70,12 @@ public class RepoBusquedas extends RepoGenerico{
 	public List<Busqueda> filtrarTrucho(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		Busqueda busqueda1= new Busqueda();
 		Busqueda busqueda2= new Busqueda();
-		busqueda1.setId(1);
+		busqueda1.setId(new ObjectId());
 		busqueda1.setTerminal("holaa");
 		busqueda1.setDemora(10.1);
 		busqueda1.setFecha(LocalDate.now());
 		busqueda1.setFraseBuscada("wachooo");
-		busqueda2.setId(2);
+		busqueda2.setId(new ObjectId());
 		busqueda2.setTerminal("chau");
 		busqueda2.setDemora(11.21);
 		busqueda2.setFecha(LocalDate.now());
@@ -96,34 +97,40 @@ public class RepoBusquedas extends RepoGenerico{
 		pois.add(parada2);
 		
 		Busqueda busqueda1= new Busqueda(pois,"holaa","daa","fsd");
-		busqueda1.setId(1);
+		busqueda1.setId(new ObjectId());
 		busqueda1.setDemora(10.1);
 		busqueda1.setFecha(LocalDate.now());
 		
 		return busqueda1;
 	}
 	
-//	public void borrarTodasLasBusquedas(){
-//		getListaBusquedas().forEach(busqueda -> borrarBusqueda(busqueda));
-//	}
-//	
-//	public List<Busqueda> filtrar(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
-//		List<Busqueda> busquedas=this.getListaBusquedas();
-//		return busquedas.stream().filter(bus->bus.getFecha().isAfter(desde) 
-//				&& bus.getFecha().isBefore(hasta) 
-//				&& bus.getTerminal().equals(terminal)
-//				&& bus.getResultados().size() == cantidad).collect(Collectors.toList());
-//	}
+	public void borrarTodasLasBusquedas(){
+		getListaBusquedas().forEach(busqueda -> borrarBusqueda(busqueda));
+	}
 	
-//	@SuppressWarnings("unchecked")
-//	public List<Busqueda> getListaBusquedas(){
-//		org.mongodb.morphia.query.Query<Busqueda> query = dataStore.createQuery(Busqueda.class);
-//		return query.asList();
-//	}
+	public List<Busqueda> filtrar(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
+		org.mongodb.morphia.query.Query<Busqueda> busquedas = this.getListaBusquedas();
+		return busquedas.
+				field("terminal").contains(terminal).
+				field("fecha").greaterThan(desde).
+				field("fecha").lessThan(hasta).asList().subList(0, cantidad);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public org.mongodb.morphia.query.Query<Busqueda> getListaBusquedas(){
+		org.mongodb.morphia.query.Query<Busqueda> query = dataStore.createQuery(Busqueda.class);
+		return query;
+	}
 	
 	public Busqueda buscarPorID(Integer ID){
 		EntityManager entityManager = PerThreadEntityManagers.getEntityManager();
 		return entityManager.find(Busqueda.class, ID);
+	}
+	
+	public static Datastore getDataStore()
+	{
+		RepoBusquedas.initMorphia();
+		return dataStore;
 	}
 
 }
