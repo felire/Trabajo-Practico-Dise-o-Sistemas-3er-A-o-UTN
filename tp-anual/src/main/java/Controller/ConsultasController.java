@@ -50,6 +50,7 @@ public class ConsultasController {
 			model.put("error", false);
 		}
 		catch(Exception e){
+			System.out.println(e);
 			model.put("error", true);
 		}
 		
@@ -58,7 +59,7 @@ public class ConsultasController {
 	
 	public ModelAndView busquedaConcreta(Request req, Response res){				
 		ObjectId idBusqueda=new ObjectId(req.params("id"));		
-		Busqueda busqueda= RepoBusquedas.getInstance().buscarPorIDTrucho(idBusqueda);//	remplazar por el posta	
+		Busqueda busqueda= RepoBusquedas.getInstance().buscarPorID(idBusqueda);//	remplazar por el posta	
 		return new ModelAndView(busqueda, "admin/resultado.hbs");
 	}	
 	
