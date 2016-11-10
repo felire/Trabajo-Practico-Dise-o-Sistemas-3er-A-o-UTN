@@ -46,6 +46,10 @@ public class ConsultasServe {
 			result.addError("Cantidad invalida");
 		}
 		
+		if(result.hasErrors()){
+			return result;
+		}
+		
 		List<Busqueda> busquedas = RepoBusquedas.getInstance().filtrar(desde, hasta, cantidad, terminal);
 		result.addEntity("busquedas", busquedas);
 		return result;
