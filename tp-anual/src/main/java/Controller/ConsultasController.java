@@ -15,6 +15,8 @@ import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.model.Usuario;
 import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
 import ar.utn.frba.disenio.tp_anual.repo.RepoTerminales;
+import serve.ConsultasServe;
+import serve.ServeResult;
 import server.Session;
 import spark.ModelAndView;
 import spark.Request;
@@ -36,23 +38,19 @@ public class ConsultasController {
 	}
 	
 	public ModelAndView filtrar(Request req, Response res){
-		try{
-			String fechaDesde=req.queryParams("desde");
-			String fechaHasta=req.queryParams("hasta");
-			String textoCantidad=req.queryParams("cantidad");
-			String terminal=req.queryParams("terminal");	
-					
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			LocalDate desde = LocalDate.parse(fechaDesde, formatter);
-			LocalDate hasta = LocalDate.parse(fechaHasta, formatter);	
-			Integer cantidad = Integer.parseInt(textoCantidad);
-			model.put("busquedas", RepoBusquedas.getInstance().filtrar(desde, hasta, cantidad, terminal));//reemplazar por filtrar posta		
-			model.put("error", false);
+		String fechaDesde=req.queryParams("desde");
+		String fechaHasta=req.queryParams("hasta");
+		String textoCantidad=req.queryParams("cantidad");
+		String terminal=req.queryParams("terminal");	
+		
+		ServeResult serverResult = ConsultasServe.getInstance().filtrar(fechaDesde, fechaHasta, textoCantidad, terminal);
+		if(serverResult.hasErrors()){
+			model.put("error", true);	
+		} else{
+			model.put("busquedas", serverResult.getEntity("busquedas"));
 		}
-		catch(Exception e){
-			System.out.println(e);
-			model.put("error", true);
-		}
+		
+		model.put("error", false);
 		
 		return new ModelAndView(model, "admin/consultas.hbs");
 	}
@@ -62,7 +60,6 @@ public class ConsultasController {
 		Busqueda busqueda= RepoBusquedas.getInstance().buscarPorID(idBusqueda);//	remplazar por el posta	
 		return new ModelAndView(busqueda, "admin/resultado.hbs");
 	}	
-	
 	
 	public ModelAndView darPantalla(Usuario user, Response res){
 		List<Terminal> terminales = RepoTerminales.getInstance().getListaTerminales();		

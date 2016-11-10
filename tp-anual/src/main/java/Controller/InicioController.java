@@ -1,6 +1,8 @@
 package Controller;
 
 
+import serve.ServeResult;
+import serve.UserServe;
 import server.Session;
 import spark.ModelAndView;
 import spark.Request;
@@ -26,12 +28,15 @@ public class InicioController {
 	public ModelAndView logeo(Request req, Response res){
 		String user = req.queryParams("user");
 		String pass = req.queryParams("pass");
-		if(Session.existeUsuario(user, pass, req)){
-			res.redirect("/");
-			return new ModelAndView(null, null);//No lanzamos nada, redireccionamos
+		
+		ServeResult serveResult = UserServe.getInstance().loguear(user, pass, req);
+		
+		if(serveResult.hasErrors()){
+			return new ModelAndView(true, "inicio/inicio.hbs");
 		}
 		else{
-			return new ModelAndView(true, "inicio/inicio.hbs");
+			res.redirect("/");
+			return new ModelAndView(null, null);//No lanzamos nada, redireccionamos
 		}
 	}
 	
