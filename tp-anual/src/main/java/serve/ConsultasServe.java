@@ -25,25 +25,31 @@ public class ConsultasServe {
 		LocalDate desde = null;
 		LocalDate hasta = null;
 		Integer cantidad = null;
-		try{					
-			desde = LocalDate.parse(fechaDesde, formatter);
-		}
-		catch(Exception e){
-			result.addError("Fecha desde invalida");
-		}
-		
-		try{					
-			hasta = LocalDate.parse(fechaHasta, formatter);	
-		}
-		catch(Exception e){
-			result.addError("Fecha hasta invalida");
+		if(notEmpty(fechaDesde)){
+			try{					
+				desde = LocalDate.parse(fechaDesde, formatter);
+			}
+			catch(Exception e){
+				result.addError("Fecha desde invalida");
+			}
 		}
 		
-		try{					
-			cantidad = Integer.parseInt(textoCantidad);
+		if(notEmpty(fechaHasta)){
+			try{					
+				hasta = LocalDate.parse(fechaHasta, formatter);	
+			}
+			catch(Exception e){
+				result.addError("Fecha hasta invalida");
+			}
 		}
-		catch(Exception e){
-			result.addError("Cantidad invalida");
+		
+		if(notEmpty(textoCantidad)){
+			try{					
+				cantidad = Integer.parseInt(textoCantidad);
+			}
+			catch(Exception e){
+				result.addError("Cantidad invalida");
+			}
 		}
 		
 		if(result.hasErrors()){
@@ -53,6 +59,10 @@ public class ConsultasServe {
 		List<Busqueda> busquedas = RepoBusquedas.getInstance().filtrar(desde, hasta, cantidad, terminal);
 		result.addEntity("busquedas", busquedas);
 		return result;
+	}
+	
+	private Boolean notEmpty(String s){
+		return s != null && !s.equals("");
 	}
 	
 }

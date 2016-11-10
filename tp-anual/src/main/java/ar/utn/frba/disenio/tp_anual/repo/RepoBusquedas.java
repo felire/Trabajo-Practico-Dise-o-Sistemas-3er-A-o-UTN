@@ -37,27 +37,17 @@ public class RepoBusquedas{
 	Datastore dataStore;
 //	public static Datastore dataStore;
 //	
-//	public static void initMorphia(){
-//		Morphia morphia = new Morphia();
-//
-//		// tell Morphia where to find your classes
-//		// can be called multiple times with different packages or classes
-//		morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
-//
-//		// create the Datastore connecting to the default port on the local host
-//		dataStore = morphia.createDatastore(new MongoClient(), "morphia_example");
-//		dataStore.ensureIndexes();
-//		
-//		Busqueda busqueda1 = new Busqueda();
-//		busqueda1.setFraseBuscada("azucar");
-//		busqueda1.setTerminal("Once");
-//		Busqueda busqueda2 = new Busqueda();
-//		busqueda2.setFraseBuscada("sal");
-//		busqueda2.setTerminal("Retiro");
-//		
-//		dataStore.save(busqueda1);
-//		dataStore.save(busqueda2);
-//	}
+	public void initMorphia(){
+		Busqueda busqueda1 = new Busqueda();
+		busqueda1.setFraseBuscada("azucar");
+		busqueda1.setTerminal("Once");
+		Busqueda busqueda2 = new Busqueda();
+		busqueda2.setFraseBuscada("sal");
+		busqueda2.setTerminal("Retiro");
+		
+		dataStore.save(busqueda1);
+		dataStore.save(busqueda2);
+	}
 	
 	private RepoBusquedas(){
 		morphia = new Morphia();
@@ -68,6 +58,7 @@ public class RepoBusquedas{
 		//morphia.mapPackage("ar.utn.frba.disenio.tp_anual.model");
 		cliente = new MongoClient();
 		dataStore = morphia.createDatastore(cliente, "tp_anual_busquedas");
+		initMorphia();
 	}
 	
 	public static RepoBusquedas getInstance(){
@@ -132,12 +123,19 @@ public class RepoBusquedas{
 	public List<Busqueda> filtrar(LocalDate desde, LocalDate hasta, Integer cantidad, String terminal){
 		org.mongodb.morphia.query.Query<Busqueda> busquedas = this.getListaBusquedas();
 		
-		if(terminal == null) terminal = "";
+		if(terminal != null){
+			busquedas.field("terminal").contains(terminal);
+		}
 		
-		List<Busqueda> busquedass = busquedas.
-				field("terminal").contains(terminal).
-				field("fecha").greaterThan(desde).
-				field("fecha").lessThan(hasta).asList();
+		if(desde != null){
+			busquedas.field("fecha").greaterThan(desde);
+		}	
+	
+		if(desde != null){
+			busquedas.field("fecha").lessThan(hasta);
+		}	
+		
+		List<Busqueda> busquedass = busquedas.asList();
 		if(cantidad != null && cantidad<busquedass.size()){
 			return busquedass.subList(0, cantidad);
 		}
