@@ -9,15 +9,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import ar.utn.frba.disenio.tp_anual.model.Busqueda;
+import ar.utn.frba.disenio.tp_anual.repo.RepoBusquedas;
+
 
 public class CreadorDeReportes {
+	
+	
 	private List<Busqueda> busquedas;
 	
 	public CreadorDeReportes(){
-		busquedas = new ArrayList<Busqueda>();
+		busquedas = RepoBusquedas.getInstance().todasLasBusquedas();
 	}
 	public void agregarBusqueda(Busqueda busqueda){
 		busquedas.add(busqueda);
+		RepoBusquedas.getInstance().persistirBusqueda(busqueda);
 	}
 	public List<ReporteParcialPorUsuario> busquedasParcialesPorTerminal(){
 		List<ReporteParcialPorUsuario> reportesParcialesPorUsuario = new ArrayList<ReporteParcialPorUsuario>();
@@ -53,6 +58,7 @@ public class CreadorDeReportes {
 	public Set<LocalDate> fechasSinRepetir(){
 		Set<LocalDate> fechasSinRepetir = new HashSet<>();
 		busquedas.stream().forEach(busqueda->fechasSinRepetir.add(busqueda.getFecha()));
+		
 		return fechasSinRepetir;
 	}
 }

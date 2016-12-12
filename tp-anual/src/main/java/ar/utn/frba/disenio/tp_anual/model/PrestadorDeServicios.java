@@ -4,14 +4,21 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
+import javax.persistence.*;
 
+import util.Point;
+
+@MappedSuperclass
 public abstract class PrestadorDeServicios extends POI{
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "poi_id")
 	public List<Servicio> servicios;
+	
 	public List<Servicio> getServicios() {
 		return servicios;
 	}
-
+	
 	public PrestadorDeServicios(String nombre,Point coordenada)
 	{
 		super(nombre,coordenada);
@@ -39,5 +46,10 @@ public abstract class PrestadorDeServicios extends POI{
 	
 	public Boolean soyBuscado(String palabraClave){
 		return this.servicios.stream().anyMatch(servicio -> servicio.toString().contains(palabraClave));
+	}
+	
+	public PrestadorDeServicios()
+	{
+		super();
 	}
 }

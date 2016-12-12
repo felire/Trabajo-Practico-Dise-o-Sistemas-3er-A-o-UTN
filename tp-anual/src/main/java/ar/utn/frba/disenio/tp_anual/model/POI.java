@@ -4,16 +4,44 @@ package ar.utn.frba.disenio.tp_anual.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.uqbar.geodds.Point;
 
-public abstract class POI { //Fijense que habria que ver que getter y setter dejar y cuales inizializar en el constructor
+import javax.persistence.*;
+
+
+
+import util.Point;
+
+@Entity
+@Table(name = "POI")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO_POI", discriminatorType = DiscriminatorType.STRING)
+public abstract class POI { 
 	
-	protected String nombre;
-	protected Point coordenada;
-	protected List<String> listaTags;
-	protected BigDecimal radioDeCercania;
+	@Id
+	@GeneratedValue
 	protected Integer poiID;
+	protected String nombre;
+	protected String direccion;
 	
+	public void setDireccion(String direc){
+		this.direccion = direc;
+	}
+	public String getDireccion(){
+		return this.direccion;
+	}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "coordenada_id")
+	protected Point coordenada;
+	
+	@ElementCollection
+	@CollectionTable(name="Tags", joinColumns=@JoinColumn(name="poi_id"))
+	@Column(name="tag")
+	protected List<String> listaTags;
+	
+	protected BigDecimal radioDeCercania;
+	
+	@SuppressWarnings("unused")
+	public POI(){};
 	
 	public POI(String nombre, Point coordenada)
 	{
@@ -24,6 +52,9 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 		this.coordenada = coordenada;
 	}
 	
+	public BigDecimal getRadio(){
+		return this.radioDeCercania;
+	}
 	public Integer getID() {
 		return poiID;
 	}
@@ -46,7 +77,7 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	public Boolean esBuscado(String palabraClave)
 	{
-	    return listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)) || this.soyBuscado(palabraClave);
+	    return this.nombre.contains(palabraClave) || listaTags.stream().anyMatch(cadena1 -> cadena1.contains(palabraClave)) || this.soyBuscado(palabraClave);
 	}
 	
 	public abstract Boolean soyBuscado(String palabraClave);
@@ -70,6 +101,21 @@ public abstract class POI { //Fijense que habria que ver que getter y setter dej
 	
 	public Point getCoordenada() {
 		return coordenada;
+	}
+	public void setCoordenada(Point point){
+		this.coordenada = point;
+	}
+	
+	public List<String> getListaTags(){
+		return listaTags;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public String getUrl(){
+		return "/pois/"+this.poiID.toString();
 	}
 	
 }

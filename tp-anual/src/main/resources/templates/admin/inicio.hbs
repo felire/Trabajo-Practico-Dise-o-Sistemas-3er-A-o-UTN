@@ -1,0 +1,42 @@
+{{#partial "contenido"}}
+
+<form class="form-inline" action="/pois" method="POST">
+  <div class="form-group">
+	<label for="text">Nombre POI:</label>
+	<input type="text" class="form-control" name="nombre">
+  </div>
+  <div class="form-group" >
+    <label for="pwd">Tipo:</label>
+      <select class="form-control" name="tipo">
+	    <option>CGP</option>
+	    <option>Local Comercial</option>
+	    <option>Banco</option>
+	    <option>Parada de Colectivo</option>
+	  </select>
+  </div>
+  <button type="submit" class="btn btn-default">Buscar</button>
+</form>
+
+<table class="table table-striped">
+  	<tr>
+		<th>Nombre</th>
+		<th>Direccion</th>
+		<th>Radio de Cercania</th>
+		<th>Accion</th>
+	</tr>
+	{{#each this}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{direccion}}</td>
+			<td>{{radio}}</td>
+			<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
+				<a href="{{url}}?editar=true"><span class="glyphicon glyphicon-pencil"></span></a>
+				<a href="{{url}}?borrar=true"><span class="glyphicon glyphicon-remove"></span></a>
+			</td>
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

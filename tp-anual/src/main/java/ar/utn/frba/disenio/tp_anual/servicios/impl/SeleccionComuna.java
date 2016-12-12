@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.uqbar.geodds.Polygon;
+import util.Point;
+import util.Polygon;
 
 import ar.utn.frba.disenio.tp_anual.model.Terminal;
 import ar.utn.frba.disenio.tp_anual.observer.ObserverTerminal;

@@ -4,7 +4,12 @@ import java.time.LocalDateTime;
 
 import ar.utn.frba.disenio.tp_anual.schedule.process.ProcesoStatus;
 
+import javax.persistence.*;
+
+
 public class ResultadoProceso {
+
+	
 	Integer cantidadAfectados;
 	LocalDateTime fechaEjecucion;
 	ProcesoStatus resultadoDelProceso;

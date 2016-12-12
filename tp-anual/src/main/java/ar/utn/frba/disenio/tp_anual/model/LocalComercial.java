@@ -7,14 +7,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.uqbar.geodds.Point;
+
+import javax.persistence.*;
+
+
 
 import util.DisponibilidadHoraria;
+import util.Point;
 
+@Entity
+@DiscriminatorValue(value = "LOCAL_COMERCIAL")
 public class LocalComercial extends POI{
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
 	private Rubro rubro;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "poi_id")
 	private Set<DisponibilidadHoraria> disponibilidades;
 	
+			
 	public void addDisponibilidad(DisponibilidadHoraria disponibilidad){
 		disponibilidades.add(disponibilidad);
 	}
@@ -33,5 +46,12 @@ public class LocalComercial extends POI{
 	
 	public Boolean soyBuscado(String palabraClave){
 	    return this.rubro.getNombre().equals(palabraClave);
+	}
+	public Set<DisponibilidadHoraria> getDisponibilidades(){
+		return this.disponibilidades;
+	}
+	
+	public LocalComercial(){
+		super();
 	}
 }

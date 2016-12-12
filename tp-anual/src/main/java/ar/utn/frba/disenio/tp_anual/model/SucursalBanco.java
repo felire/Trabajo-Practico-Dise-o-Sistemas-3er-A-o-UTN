@@ -1,18 +1,30 @@
-package ar.utn.frba.disenio.tp_anual.model;
+ package ar.utn.frba.disenio.tp_anual.model;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import org.uqbar.geodds.Point;
 
 import util.DisponibilidadHoraria;
 import util.FranjaHoraria;
+import util.Point;
 
 import java.util.ArrayList;
 
-public class SucursalBanco extends PrestadorDeServicios{
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
+@Entity
+@DiscriminatorValue(value = "SUCURSAL_BANCO")
+public class SucursalBanco extends PrestadorDeServicios{
+	
+	/*@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "horario_id")*/
+	@Transient
 	private static DisponibilidadHoraria horarioBancario;
 	
 	public SucursalBanco(String nombre,Point coordenada){
@@ -45,5 +57,6 @@ public class SucursalBanco extends PrestadorDeServicios{
 	private Boolean enHorarioBancario(LocalDateTime fecha) {
 		return horarioBancario.estaDisponible(fecha);
 	}	
+	public SucursalBanco(){}
 	
 }

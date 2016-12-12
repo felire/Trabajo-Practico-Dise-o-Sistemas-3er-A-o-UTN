@@ -1,0 +1,79 @@
+{{#partial "contenido"}}
+
+ <form role="form" action="filtrarConsultas" method="GET">
+        <div class="form-group">
+            <label class="control-label" for="desde">Consultas desde</label>
+            <input class="form-control" id="desde" name="desde" placeholder="DD/MM/YYY" type="text"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="hasta">Consultas hasta</label>
+            <input class="form-control" id="hasta" name="hasta" placeholder="DD/MM/YYY" type="text"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="cantidad">Cantidad de POIs del resultado</label>
+            <input class="form-control" id="cantidad" name="cantidad" type="number" min="0"/>
+        </div>
+        <div class="form-group" >
+	    <label for="terminal">Terminal:</label>
+	      <select class="form-control" name="terminal">
+	      	      <option selected disabled>Elegir terminal</option> 
+		     {{#each terminales}}
+			  	<option value={{nombre}}>{{nombre}}</option>
+			  {{/each}}
+   		  </select>
+	  	</div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+    </form>
+    
+    {{#if error}}
+	<div class="alert alert-danger">Uno o mas campos necesarios incompletos</div>
+	{{/if}}
+    
+    <table class="table table-striped">
+	  	<tr>
+			<th>Fecha</th>
+			<th>Frase Buscada</th>
+			<th>Servicio Buscado</th>
+			<th>Terminal</th>
+			<th>Tiempo Tardado</th>
+			<th>Accion</th>
+			{{#each busquedas}}
+				<tr>
+				  	<td>{{fecha}}</td>
+				  	<td>{{fraseBuscada}}</td>
+				  	<td>{{servicioBuscado}}</td>
+				  	<td>{{terminal}}</td>
+				  	<td>{{tiempoDemorado}}</td>
+				  	<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a></td>
+			  	</tr>
+			{{/each}}			
+		</tr>		
+	</table>
+    
+{{/partial}}
+
+
+{{#partial "contenidoScript"}}
+<script>
+    $(document).ready(function(){
+        var desde_input=$('input[name="desde"]');
+        var options={
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            autoclose: true,
+        };
+        desde_input.datepicker(options);
+        
+        var hasta_input=$('input[name="hasta"]');
+        var options={
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            autoclose: true,
+        };
+        hasta_input.datepicker(options);
+    })
+</script>
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

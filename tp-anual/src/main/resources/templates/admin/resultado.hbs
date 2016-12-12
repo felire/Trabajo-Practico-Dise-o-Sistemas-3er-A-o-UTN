@@ -1,0 +1,34 @@
+{{#partial "contenido"}}
+
+	<div class="panel panel-primary">
+	  <div class="panel-heading">Busqueda {{id}}</div>
+	  <div class="panel-body">
+	  	<label for="text">Fecha {{fecha}}</label><br>
+	    <label for="text">Terminal: {{terminal}}</label><br>
+	    <label for="text">Tiempo demorado: {{tiempoDemorado}}</label><br>
+	    <label for="text">Frase Buscada: {{fraseBuscada}}</label><br>
+	  </div>
+	</div>
+
+	<label for="text">POIs encontrados:</label><br>
+ 
+ 	<table class="table table-striped">
+	  	<tr>
+			<th>Nombre</th>
+			<th>Direccion</th>
+			<th>Radio de Cercania</th>
+			<th>Accion</th>
+			{{#each resultados}}
+				<tr>
+				<td>{{nombre}}</td>
+					<td>{{direccion}}</td>
+					<td>{{radio}}</td>
+			  	</tr>
+			{{/each}}			
+		</tr>		
+	</table>
+
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

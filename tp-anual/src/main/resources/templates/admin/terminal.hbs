@@ -1,0 +1,24 @@
+{{#partial "contenido"}}
+
+<div class="panel panel-primary">
+  <div class="panel-heading">{{nombre}}</div>
+  <div class="panel-body">
+   <label for="text">Comuna: {{nombreComuna}}</label><br>
+   	<BR>
+   	<label for="text">Usuario: {{user}}</label><br>
+   	<label for="text">Contraseña: {{pass}}</label><br>
+   <BR>
+  <label for="text">Acciones:</label><br>
+    <div class="checkbox">
+      <label><input type="checkbox" disabled {{isTrue tieneGestorBusquedas}}>Almacenar búsquedas</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" disabled {{isTrue tieneMailActivo}}>Notificar por mail</label>
+    </div>
+  </div>
+</div>
+
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

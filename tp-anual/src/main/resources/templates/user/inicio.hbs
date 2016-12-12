@@ -1,0 +1,35 @@
+{{#partial "contenido"}}
+
+<form role="form" action="/pois" method="POST">
+   <div class="form-group">
+     <label for="text">Palabra clave: </label>
+    <input type="text" class="form-control" name="palabraClave">
+   </div>
+   <div class="form-group">
+     <label for="text">Servicio:</label>
+     <input type="text" class="form-control" name="servicio">
+   </div>
+   <button type="submit" class="btn btn-default">Buscar</button>
+ </form>
+
+
+<table class="table table-striped">
+  	<tr>
+		<th>Nombre</th>
+		<th>Direccion</th>
+		<th>Radio de Cercania</th>
+		<th>Ver</th>
+	</tr>
+	{{#each this}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{direccion}}</td>
+			<td>{{radio}}</td>
+			<td><a href="{{url}}"><span class="glyphicon glyphicon-search"></span></a>
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+
+
+{{>BaseUser.hbs}}

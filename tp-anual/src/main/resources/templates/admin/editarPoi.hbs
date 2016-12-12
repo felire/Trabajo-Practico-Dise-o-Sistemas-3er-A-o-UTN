@@ -1,0 +1,26 @@
+{{#partial "contenido"}}
+
+<form data-toggle="validator" role="form" class="form" action="{{url}}" method="POST">
+  <div class="form-group">
+	<label for="text" class="control-label">Nombre:</label>
+	<input type="text" class="form-control" value="{{nombre}}" name="nombre" required>
+  </div>
+    <div class="form-group">
+	<label for="text">Direccion:</label>
+	<input type="text" class="form-control" value="{{direccion}}" name="direccion" required>
+  </div>
+    <div class="form-group">
+	<label for="text">Latitud:</label>
+	<input type="text" pattern="[0-9]{1,}.[0-9]{1,}" class="form-control" value="{{coordenada.latitud}}" name="latitud" required>
+  </div>
+    <div class="form-group">
+	<label for="text">Longitud:</label>
+	<input type="text" pattern="[0-9]{1,}.[0-9]{1,}" class="form-control" value="{{coordenada.longitud}}" name="longitud" required>
+  </div>
+  <button type="submit" class="btn btn-default">Guardar</button>
+</form>
+
+{{/partial}}
+
+
+{{>BaseAdmin.hbs}}

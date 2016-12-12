@@ -6,7 +6,8 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
+import util.Point;
+import util.Polygon;
 
 import ar.utn.frba.disenio.tp_anual.adapter.CreadorDeBancos;
 import ar.utn.frba.disenio.tp_anual.adapter.JsonTraduccion;

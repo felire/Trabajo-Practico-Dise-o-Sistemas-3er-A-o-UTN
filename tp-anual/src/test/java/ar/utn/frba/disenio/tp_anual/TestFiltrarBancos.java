@@ -19,17 +19,19 @@ import org.mockito.Mock;
 import org.mockito.InjectMocks;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import util.Point;
+import util.Polygon;
+
 @RunWith(MockitoJUnit44Runner.class)
 public class TestFiltrarBancos extends Init {
 	
 	@Mock ServicioExternoBanco servicioExterno;
 	@InjectMocks BuscadorBanco buscadorBanco = new BuscadorBanco();
 	private CreadorDeBancos creador = new CreadorDeBancos();
-	private BuscadorPOIs buscadorPOIS = new BuscadorPOIs();
+	private BuscadorPOIs buscadorPOIS = BuscadorPOIs.getInstance();
 	
 	@Before
 	public void setUp(){
-		buscadorBanco.setCreadorDeBancos(creador);
 		buscadorPOIS.agregarBuscadorExterno(buscadorBanco);
 	}
 	@Test
