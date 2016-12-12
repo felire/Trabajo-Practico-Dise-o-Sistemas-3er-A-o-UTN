@@ -13,3 +13,5 @@ Master status: [![Build Status](https://travis-ci.com/dds-utn/2016-jm-group-12.s
 
 #### Ayudante:
 - Federico Cano
+
+Tecnologias Aplicadas: Java, MySql, Hibernate, MongoDB, Morphia, Redis, Spark, HTML y CSS
